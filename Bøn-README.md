@@ -135,7 +135,9 @@ a small off-the shelf 24V DC, 1.5A (100 VAC input) power supply to the
 
 We're powering the 5V Mesa boards using a stand-alone ATX power supply.
 This power supply's Ground is connected to 0G/G24.  The power supply
-also provides the +12/-12 VDC for the resolvers.
+also provides the +12/-12 VDC for the resolvers.  FIXME: The eventual
+final controller will likely run the LinuxCNC control computer off this
+same power supply.
 
 
 ## Servos
