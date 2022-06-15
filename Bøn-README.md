@@ -109,7 +109,7 @@ connectors between control computer and machine cabling:
 
 # Mazak VQC 15/40 hardware
 
-spindle drive: Mitsubishi Freqrol-SF
+spindle drive: Mitsubishi Freqrol FR-SE
 
 servo amps: Mitsubishi Meldas TRS50B AXO4D
 
@@ -129,9 +129,10 @@ is on.
 
 We hardwired "0G" to "G24" with a jumper wire.
 
-We disconnected the PD14C-1 power supply by the NC and instead wired
-a small off-the shelf 24V DC, 1.5A (100 VAC input) power supply to the
-"+24"/"0G" power rail.  It's powered by the 100V AC from the machine.
+We disconnected the PD14C-1 power supply by the NC and instead wired a
+small off-the shelf 24V DC (Mean Well HDR-60-24), 1.5A (100 VAC input)
+power supply to the "+24"/"0G" power rail.  It's powered by the 100V
+AC from the machine.
 
 We're powering the 5V Mesa boards using a stand-alone ATX power supply.
 This power supply's Ground is connected to 0G/G24.  The power supply
