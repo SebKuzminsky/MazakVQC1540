@@ -222,7 +222,7 @@ Analog Servo CMD 1 Ground	ERR1			2						Connect to 0G ground
 							3
 							4
 				SC1			5
-NC Ready 1			READY1			6	7i84.0.1	TB2-17	output-08	Weakly pulled up to 24V, pull to ground to enable servo amp.  FIXME: 7i84 output is too weak to pull down
+NC Ready 1			READY1			6	8-relay-board	Ch1 NO			Pulled up to 24V by the servo amp, pull to ground to enable servo amp.  FIXME: 7i84 output is too weak to pull down, how much current are we talking about here?
 Servo On 1			SVON1			7	7i84.0.0	TB3-5	input-04	The TRS-50B drives this to +24V when the servo amp is ready
 				ALM1			8
 				RG			9						Connect to 0G ground
@@ -232,8 +232,8 @@ Servo On 1			SVON1			7	7i84.0.0	TB3-5	input-04	The TRS-50B drives this to +24V w
 							13
 							14
 							15
-NC Ready 2						16	7i84.0.1	TB2-19	output-10
-Servo On 2						17	7i84.0.0	TB3-6	input-05
+NC Ready 2			READY2			16	8-relay-board	Ch2 NO			Pulled up to 24V by the servo amp, pull to ground to enable servo amp.
+Servo On 2			SVON2			17	7i84.0.0	TB3-6	input-05
 							18
 							19
 							20
@@ -254,8 +254,8 @@ Servo On 2						17	7i84.0.0	TB3-6	input-05
 							35
 							36
 							37
-NC Ready 3						38	7i84.0.1	TB2-21	output-12
-Servo On 3						39	7i84.0.0	TB3-7	input-06
+NC Ready 3			READY3			38	8-relay-board	Ch3 NO			Pulled up to 24V by the servo amp, pull to ground to enable servo amp.
+Servo On 3			SVON3			39	7i84.0.0	TB3-7	input-06
 							40
 							41
 							42
