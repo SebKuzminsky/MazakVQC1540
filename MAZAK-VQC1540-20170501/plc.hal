@@ -96,34 +96,29 @@ net servo-z-drive-alarm       => classicladder.0.in-53
 # EXTERNAL PLC OUTPUTS (PLC ==> machine)
 #-------------------
 # 7i84-A:
-# Enable spindle drive
-net spindle-set				hm2_7i80.0.7i84.0.0.output-00	#<= classicladder.0.out-15 => hm2_7i80.0.pwmgen.03.enable
-# Spindle forward/reverse commands (requires spindle-run for spindle to activate)
-net spindle-reverse			hm2_7i80.0.7i84.0.0.output-01	#<= classicladder.0.out-29
-net spindle-forward			hm2_7i80.0.7i84.0.0.output-02	#<= classicladder.0.out-28
-# Spindle run command
-net spindle-run				hm2_7i80.0.7i84.0.0.output-03	#<= classicladder.0.out-27
-net spindle-air-blast			hm2_7i80.0.7i84.0.0.output-04	#<= classicladder.0.out-39
-net spindle-fan				hm2_7i80.0.7i84.0.0.output-05	#<= classicladder.0.out-17
+#net spindle-set        <= classicladder.0.out-15
+#net spindle-reverse    <= classicladder.0.out-29
+#net spindle-forward    <= classicladder.0.out-28
+#net spindle-run	       <= classicladder.0.out-27
+#net spindle-air-blast  <= classicladder.0.out-39
+#net spindle-fan        <= classicladder.0.out-17
 
-net magazine-run			hm2_7i80.0.7i84.0.0.output-08
-net orient-command			hm2_7i80.0.7i84.0.0.output-09	#<= classicladder.0.out-34
-net magazine-cw-reverse			hm2_7i80.0.7i84.0.0.output-10	#<= classicladder.0.out-41
-net magazine-ccw-forward		hm2_7i80.0.7i84.0.0.output-11	#<= classicladder.0.out-40
-net magazine-cover-close		hm2_7i80.0.7i84.0.0.output-12	#<= classicladder.0.out-33
-net tool-change-release-limits		hm2_7i80.0.7i84.0.0.output-13	#<= classicladder.0.out-26
-net tool-unclamp			hm2_7i80.0.7i84.0.0.output-14	#<= classicladder.0.out-37
-net tool-measuring-arm-extend		hm2_7i80.0.7i84.0.0.output-15	#<= classicladder.0.out-25
+#net orient-command             <= classicladder.0.out-34
+#net magazine-cw-reverse        <= classicladder.0.out-41
+#net magazine-ccw-forward       <= classicladder.0.out-40
+#net magazine-cover-close       <= classicladder.0.out-33
+#net tool-change-release-limits <= classicladder.0.out-26
+#net tool-unclamp               <= classicladder.0.out-37
+#net tool-measuring-arm-extend  <= classicladder.0.out-25
 
 # 7i84-B:
-#net servo-x-off			hm2_7i80.0.7i84.0.1.output-00	<= classicladder.0.out-42
-#net servo-y-off			hm2_7i80.0.7i84.0.1.output-01	<= classicladder.0.out-43
-#net servo-z-off			hm2_7i80.0.7i84.0.1.output-02	<= classicladder.0.out-44
-net servos-ready			hm2_7i80.0.7i84.0.1.output-03	# 7i84 1, TB3-20 <= classicladder.0.out-18
-net work-light				hm2_7i80.0.7i84.0.1.output-04
-net hydraulic-lube-pump-on		hm2_7i80.0.7i84.0.1.output-05	#<= classicladder.0.out-16
-net flood-coolant-motor-on		hm2_7i80.0.7i84.0.1.output-06	#<= classicladder.0.out-30
-net power-on				hm2_7i80.0.7i84.0.1.output-07	#<= classicladder.0.out-00
+#net servo-x-off <= classicladder.0.out-42
+#net servo-y-off <= classicladder.0.out-43
+#net servo-z-off <= classicladder.0.out-44
+#net servos-ready           <= classicladder.0.out-18
+#net hydraulic-lube-pump-on <= classicladder.0.out-16
+#net flood-coolant-motor-on <= classicladder.0.out-30
+#net power-on               <= classicladder.0.out-00
 
 # Servo-on = power up XYZ axis servo drives through relay (for sinking output)
 # but do not enable drives / activate servo motors (linked to "ESTOP" button/circuit)
