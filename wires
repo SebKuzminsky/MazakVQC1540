@@ -214,7 +214,7 @@ Head Lube Pressure Alarm	141	CN3-2		48
 Waylube Alarm			WLAL	CN3-35		49
 Main Transformer Over Heat	146	TB4-146		50
 
-CND5 MR-50
+CND5 MR-20
 ----------
 Signal							Pin	Mesa Board	IO Pin
 Spindle Analog Control					4	7i49		TB4-24
