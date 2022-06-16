@@ -69,7 +69,7 @@ net tool-unclamped			hm2_7i80.0.7i84.0.0.input-30	=> classicladder.0.in-36
 net tool-clamped			hm2_7i80.0.7i84.0.0.input-31	=> classicladder.0.in-37
 
 # 7i84-B:
-net machine-estop			hm2_7i80.0.7i84.0.1.input-28	=> classicladder.0.in-01
+net machine-estop-ok			hm2_7i80.0.7i84.0.1.input-28	=> classicladder.0.in-01
 net feed-hold-button                    hm2_7i80.0.7i84.0.1.input-27    => classicladder.0.in-10
 net machine-power-supply-on		hm2_7i80.0.7i84.0.1.input-00	=> classicladder.0.in-14
 net thermal-protector-tripped		hm2_7i80.0.7i84.0.1.input-01	=> classicladder.0.in-13
