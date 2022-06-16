@@ -110,6 +110,9 @@ net spindle-zero-speed         <= hm2_7i80.0.7i84.0.0.input-00
 net spindle-controller-normal  <= hm2_7i80.0.7i84.0.0.input-01
 net spindle-orient-arrival     <= hm2_7i80.0.7i84.0.0.input-02
 net spindle-tool-detector      <= hm2_7i80.0.7i84.0.0.input-03
+net servo1-on                  <= hm2_7i80.0.7i84.0.0.input-04
+net servo2-on                  <= hm2_7i80.0.7i84.0.0.input-05
+net servo3-on                  <= hm2_7i80.0.7i84.0.0.input-06
 
 #net magazine-cover-open        <= hm2_7i80.0.7i84.0.0.input-06
 #net magazine-cover-closed      <= hm2_7i80.0.7i84.0.0.input-07
@@ -198,6 +201,7 @@ net work-light                 => hm2_7i80.0.7i84.0.1.output-04
 net hydraulic-lube-pump-on     => hm2_7i80.0.7i84.0.1.output-05
 net flood-coolant-motor-on     => hm2_7i80.0.7i84.0.1.output-06
 net power-on                   => hm2_7i80.0.7i84.0.1.output-07
+
 
 #=============================
 # AXIS SETUP
