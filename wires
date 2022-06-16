@@ -94,7 +94,7 @@ Recessing Tool LS		RCTLS		TB1-RCTLS	37
 Pallet Clamp SS			PCLSS		TB7-855		39
 Pallet Unclamp SS		PUCSS		TB7-856		40
 Reset Out			RST		TB1-RST		41
-Servo Ready			SA		CN301A-7	42	7i84.0.1	TB2-11	input-26	Reads +24V when FIXME the servos are ready??  Servo amps are on??
+Servo Ready			SA		CN301A-7	42	7i84.0.1	TB3-20	output-03	Drive to +24V to enable all three axis servos
 Tool Change Memory		TCME		CN301A-33	43
 				M43T		CN301A-3	44
 Tool Measuring Arm Extend	762		CN13-9		45	7i84.0.0	TB2-24	output-15	Drive to +24V to extend the tool length probe.  Drive to 0V to retract the arm.
@@ -137,7 +137,7 @@ Magazine Run (CN11 SSR board connector)		7574	CN11-5		28	7i84.0.0	TB2-17	output-
 Pallet Unload					PUD	TB7-782B	29
 Spindle Run					SMR	CN301A-29	30	7i84.0.0	TB3-20	output-03	Drive to +24 to turn on spindle (drive Spindle Fwd or Spindle Rev first to pick direction).
 Magazine CCW (Forward)				708A	CN13-2		31	7i84.0.0	TB2-20	output-11	Drive to +24 to move the magazine one step in the forward/CCW direction. (works)
-Over Travel Release				OTR	CN301A-11	32
+Over Travel Release				OTR	CN301A-11	32	7i84.0.1	TB2-23	output-14	Drive to +24 to allow movement even when overtravel is active
 Pallet Select No. 2 				P2S	TB7-787B	33
 Work Light					WL	CN301A-8	34
 Pallet Cycle No. 1 LED				PCY1	TB6-PCY1	35
@@ -216,47 +216,47 @@ Spindle Analog Control					4	7i49		TB4-24
 Spindle Analog Control Ground				5	7i49		TB4-23
 
 CAM1 MR-50
-Signal				Line #	Conn.		Pin	Control Board	Pin	HAL Pin		Notes
-Analog Servo CMD 1 (+10 to -10)	ER1			1	7i49		P4-20			AOUT0
-Analog Servo CMD 1 Ground	ERR1			2	7i49		P4-19			GND0
+Signal				Line #	Conn.		Pin	Control Board	Pin		HAL Pin		Notes
+Analog Servo CMD 1		ER1			1	7i49		P4-20 AOUT0			-10 to +10, vs GND0
+Analog Servo CMD 1 Ground	ERR1			2	7i49		P4-19 GND0			
 							3
 							4
 				SC1			5
-NC Ready 1			READY1			6	8-relay-board	Ch1 NO			Pulled up to 24V by the servo amp, pull to ground to enable servo amp.  We need to sink about 15 mA, the 7i84 sourcing output is too weak to pull down so we use an external relay.
-Servo On 1			SVON1			7	7i84.0.0	TB3-5	input-04	The TRS-50B drives this to +24V when the servo amp is ready
-Servo Drive 1 Alarm		ALM1			8	7i84.0.1	TB2-14	input-29	The TRS-50B drives this to +24V when there is a problem?  FIXME
-				RG			9						Connect to 0G ground
+NC Ready 1			READY1			6	8-relay-board	Ch1 NO				Pulled up to 24V by the servo amp, relay pulls it down to ground to enable servo amp.
+Servo On 1			SVON1			7	7i84.0.0	TB3-5		input-04	The TRS-50B drives this to +24V when the servo amp is ready
+Servo Drive 1 Alarm		ALM1			8	7i84.0.1	TB2-14		input-29	The TRS-50B drives this to +24V when there is a problem?  FIXME
+				RG			9							Connect to 0G ground
 							10
-							11
-							12
+Analog Servo CMD 2		ER2			11
+Analog Servo CMD 2 Ground	ERR2			12
 							13
 							14
-							15
-NC Ready 2			READY2			16	8-relay-board	Ch2 NO			Pulled up to 24V by the servo amp, pull to ground to enable servo amp.
-Servo On 2			SVON2			17	7i84.0.0	TB3-6	input-05
-							18
+				SC2			15
+NC Ready 2			READY2			16	8-relay-board	Ch2 NO				Pulled up to 24V by the servo amp, relay pulls it down to ground to enable servo amp.
+Servo On 2			SVON2			17	7i84.0.0	TB3-6		input-05	The TRS-50B drives this to +24V when the servo amp is ready
+Servo Drive 2 Alarm		ALM2			18	7i84.0.1	TB2-15		input-30	The TRS-50B drives this to +24V when there is a problem?  FIXME
 							19
 							20
-				AG			21						Connect to 0G ground
-							22
+				AG			21							Connect to 0G ground
+				AG			22							Connect to 0G ground
 							23
 							24
 							25
 							26
-				+24V			27						Connect to 24V power rail
-							28
+				+24V			27							Connect to 24V power rail
+				+24V			28							Connect to 24V power rail
 							29
-							30
+				RG			30							Connect to 0G ground
 							31
 							32
-							33
-							34
+Analog Servo CMD 3		ER3			33
+Analog Servo CMD 1 Ground	ERR3			34
 							35
 							36
-							37
-NC Ready 3			READY3			38	8-relay-board	Ch3 NO			Pulled up to 24V by the servo amp, pull to ground to enable servo amp.
-Servo On 3			SVON3			39	7i84.0.0	TB3-7	input-06
-							40
+				SC3			37
+NC Ready 3			READY3			38	8-relay-board	Ch3 NO				Pulled up to 24V by the servo amp, relay pulls it to ground to enable servo amp.
+Servo On 3			SVON3			39	7i84.0.0	TB3-7		input-06	The TRS-50B drives this to +24V when the servo amp is ready
+Servo Drive 3 Alarm		ALM3			40	7i84.0.1	TB2-16		input-31	The TRS-50B drives this to +24V when there is a problem?  FIXME
 							41
 							42
 							43
@@ -267,6 +267,12 @@ Servo On 3			SVON3			39	7i84.0.0	TB3-7	input-06
 							48
 							49
 							50
+
+Notes:
+
+1. The "NC Ready ${N}" lines need to sink about 15 mA to turn on the
+   servo amps.  The 7i84 sourcing output is too weak to pull down,
+   so we use an external relay.
 
 CNA3 (X) MR-20
 Signal		Line #	Pin	Board	Pin	Notes
@@ -356,9 +362,9 @@ than 1 mA to activate the relay (per '8 Relay Module.pdf').
 10-pin control connector | Connected to
 -------------------------+-------------------------
 GND                      | GND on ATX power supply
-IN1                      | 7i49 P4-18 ENA0+ (P4-17 ENA0- is GND)
-IN2                      | 7i49 P4-22 ENA1+ (P4-21 ENA1- is GND)
-IN3                      | 7i49 P3-18 ENA2+ (P3-17 ENA2- is GND)
+IN1                      | 7i49 P4-18 ENA0+ (P4-17 ENA0- is wired to GND on the ATX power supply, which is tied to 0G)
+IN2                      | 7i49 P4-22 ENA1+ (P4-21 ENA1- is wired to GND on the ATX power supply, which is tied to 0G)
+IN3                      | 7i49 P3-18 ENA2+ (P3-17 ENA2- is wired to GND on the ATX power supply, which is tied to 0G)
 IN4                      |
 IN5                      |
 IN6                      |
