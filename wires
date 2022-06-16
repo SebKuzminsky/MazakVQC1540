@@ -44,12 +44,12 @@ Tool Measure Arm Extended	342	TB41-342	41	7i84.0.0	TB2-12	input-27	Reads +24V wh
 Pallet Unload PRS		PULPRS	TB7-299		42
 Pallet On Stocker No. 1 PRS	PON1PRS	TB7-292		43
 Pallet On Stocker No. 2 PRS	PON2PRS	TB7-293		44
-+X Overtravel			+LX			45	7i84.0.1	TB3-4	input-03
-							46
-+Y 2nd Overtravel		+LY	CN3-37		47	7i84.0.1	TB2-6	input-21
--Y Overtravel			-LY			48	7i84.0.1	TB2-7	input-22
-							49
--Z 2nd Over Travel		-LZ	CN3-38		50
++X Overtravel			+LX			45	7i84.0.1	TB2-4	input-19	
+-X Overtravel			-LX			46	7i84.0.1	TB2-5	input-20	
++Y Overtravel			+LY	CN3-37		47	7i84.0.1	TB2-6	input-21	
+-Y Overtravel			-LY			48	7i84.0.1	TB2-7	input-22	
++Z Overtravel			+LZ			49	7i84.0.1	TB2-8	input-23	
+-Z Overtravel			-LZ	CN3-38		50	7i84.0.1	TB2-9	input-24	
 
 CND2 MR-50
 Signal				Line #		Conn.		Pin	IO Board	IO Pin	HAL Pin		Notes
