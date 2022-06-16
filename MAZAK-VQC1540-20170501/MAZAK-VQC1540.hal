@@ -102,13 +102,9 @@ addf hm2_7i80.0.write         servo-thread
 #-------------------
 # Note: most are handled in plc.hal
 
-# Work Light
-net work-light 			hm2_7i80.0.7i84.0.1.output-04 #not used until integrated with GMOCCAPY or other button
-
 #-------------------
 # EXTERNAL INPUT SIGNALS
 #-------------------
-
 # Most external signals handled in plc.hal
 
 #=============================
