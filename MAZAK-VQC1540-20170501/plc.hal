@@ -95,12 +95,12 @@ net z-mag-interfere-prs			classicladder.0.in-07
 #net x-overtravel-return-decel		hm2_7i80.0.7i84.0.1.input-16
 #net y-overtravel-return-decel		hm2_7i80.0.7i84.0.1.input-17
 #net z-overtravel-return-decel		hm2_7i80.0.7i84.0.1.input-18
-#net x-pos-limit-switch			hm2_7i80.0.7i84.0.1.input-19
-#net x-neg-limit-switch			hm2_7i80.0.7i84.0.1.input-20
+net x-pos-limit-switch			hm2_7i80.0.7i84.0.1.input-19
+net x-neg-limit-switch			hm2_7i80.0.7i84.0.1.input-20
 net y-pos-limit-switch			hm2_7i80.0.7i84.0.1.input-21
 net y-neg-limit-switch			hm2_7i80.0.7i84.0.1.input-22
-#net z-pos-limit-switch			hm2_7i80.0.7i84.0.1.input-23
-#net z-neg-limit-switch			hm2_7i80.0.7i84.0.1.input-24
+net z-pos-limit-switch			hm2_7i80.0.7i84.0.1.input-23
+net z-neg-limit-switch			hm2_7i80.0.7i84.0.1.input-24
 
 net servo-x-drive-alarm			hm2_7i80.0.7i84.0.1.input-29	=> classicladder.0.in-51
 net servo-y-drive-alarm			hm2_7i80.0.7i84.0.1.input-30	=> classicladder.0.in-52
