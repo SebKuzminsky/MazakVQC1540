@@ -211,12 +211,12 @@ Waylube Alarm			WLAL	CN3-35		49
 Main Transformer Over Heat	146	TB4-146		50
 
 CND5 MR-50
-Signal							Pin	Mesa Board	IO Pin
+Signal							Pin	Control Board	Ctrl Pin
 Spindle Analog Control					4	7i49		TB4-24
 Spindle Analog Control Ground				5	7i49		TB4-23
 
 CAM1 MR-50
-Signal				Line #	Conn.		Pin	IO Board	IO Pin	HAL Pin		Notes
+Signal				Line #	Conn.		Pin	Control Board	Pin	HAL Pin		Notes
 Analog Servo CMD 1 (+10 to -10)	ER1			1	7i49		P4-20			AOUT0
 Analog Servo CMD 1 Ground	ERR1			2						Connect to 0G ground
 							3
