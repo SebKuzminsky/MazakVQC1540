@@ -122,7 +122,7 @@ net tool-mag-position-1        <= hm2_7i80.0.7i84.0.0.input-17
 net tool-mag-position-2        <= hm2_7i80.0.7i84.0.0.input-18
 net tool-mag-position-4        <= hm2_7i80.0.7i84.0.0.input-19
 net tool-mag-position-8        <= hm2_7i80.0.7i84.0.0.input-20
-#net magazine-ccw-forward       <= hm2_7i80.0.7i84.0.0.input-21
+net magazine-button            <= hm2_7i80.0.7i84.0.0.input-21
 net tool-mag-cover-open        <= hm2_7i80.0.7i84.0.0.input-22
 net tool-mag-cover-closed      <= hm2_7i80.0.7i84.0.0.input-23
 net tool-mag-position-16       <= hm2_7i80.0.7i84.0.0.input-24
@@ -201,6 +201,8 @@ net work-light                 => hm2_7i80.0.7i84.0.1.output-04
 net hydraulic-lube-pump-on     => hm2_7i80.0.7i84.0.1.output-05
 net flood-coolant-motor-on     => hm2_7i80.0.7i84.0.1.output-06
 net power-on                   => hm2_7i80.0.7i84.0.1.output-07
+
+net overtravel-release         => hm2_7i80.0.7i84.0.1.output-14
 
 
 #=============================
