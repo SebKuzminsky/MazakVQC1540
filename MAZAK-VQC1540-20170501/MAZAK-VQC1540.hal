@@ -43,6 +43,8 @@ loadrt hm2_eth board_ip="192.168.1.121" config="num_resolvers=6 num_encoders=0 n
 # PID Realtime Loop Component - axis x, y, & z
 loadrt pid names=pid.x,pid.y,pid.z,pid.s
 
+loadrt estop_latch
+
 
 #-------------------
 # LOAD MODULES
@@ -57,6 +59,8 @@ setp    hm2_7i80.0.watchdog.timeout_ns 5000000
 
 # - Read the 7i80 pins:
 addf hm2_7i80.0.read          servo-thread
+
+addf estop-latch.0            servo-thread
 
 # - Motion command handler:
 addf motion-command-handler   servo-thread
@@ -97,19 +101,109 @@ addf hm2_7i80.0.write         servo-thread
 # - input-or-output = an input, so put 'input' (and use 'output' for an output...)
 # - pin-number = the given pin number, starting with 00, numbered for the BOARD, not the connector. See given manual for numbering.
 
-#-------------------
-# EXTERNAL OUTPUT SIGNALS
-#-------------------
-# Note: most are handled in plc.hal
-
-# Work Light
-net work-light 			hm2_7i80.0.7i84.0.1.output-04 #not used until integrated with GMOCCAPY or other button
 
 #-------------------
-# EXTERNAL INPUT SIGNALS
+# EXTERNAL SIGNALS - inputs to LinuxCNC from the machine
 #-------------------
 
-# Most external signals handled in plc.hal
+net spindle-zero-speed         <= hm2_7i80.0.7i84.0.0.input-00
+net spindle-controller-normal  <= hm2_7i80.0.7i84.0.0.input-01
+net spindle-orient-arrival     <= hm2_7i80.0.7i84.0.0.input-02
+net spindle-tool-detector      <= hm2_7i80.0.7i84.0.0.input-03
+net servo1-on                  <= hm2_7i80.0.7i84.0.0.input-04
+net servo2-on                  <= hm2_7i80.0.7i84.0.0.input-05
+net servo3-on                  <= hm2_7i80.0.7i84.0.0.input-06
+
+#net magazine-cover-open        <= hm2_7i80.0.7i84.0.0.input-06
+#net magazine-cover-closed      <= hm2_7i80.0.7i84.0.0.input-07
+
+net tool-mag-in-position       <= hm2_7i80.0.7i84.0.0.input-16
+net tool-mag-position-1        <= hm2_7i80.0.7i84.0.0.input-17
+net tool-mag-position-2        <= hm2_7i80.0.7i84.0.0.input-18
+net tool-mag-position-4        <= hm2_7i80.0.7i84.0.0.input-19
+net tool-mag-position-8        <= hm2_7i80.0.7i84.0.0.input-20
+net magazine-button            <= hm2_7i80.0.7i84.0.0.input-21
+net tool-mag-cover-open        <= hm2_7i80.0.7i84.0.0.input-22
+net tool-mag-cover-closed      <= hm2_7i80.0.7i84.0.0.input-23
+net tool-mag-position-16       <= hm2_7i80.0.7i84.0.0.input-24
+net tool-measure-lower-switch  <= hm2_7i80.0.7i84.0.0.input-25
+net tool-measure-upper-switch  <= hm2_7i80.0.7i84.0.0.input-26
+net tool-measure-arm-extended  <= hm2_7i80.0.7i84.0.0.input-27
+net tool-measure-arm-retracted <= hm2_7i80.0.7i84.0.0.input-28
+net tool-mag-tool-detector     <= hm2_7i80.0.7i84.0.0.input-29
+net tool-unclamped             <= hm2_7i80.0.7i84.0.0.input-30
+net tool-clamped               <= hm2_7i80.0.7i84.0.0.input-31
+
+net machine-power-supply-on    <= hm2_7i80.0.7i84.0.1.input-00
+net thermal-protector-tripped  <= hm2_7i80.0.7i84.0.1.input-01
+net main-transformer-overheat  <= hm2_7i80.0.7i84.0.1.input-02
+net head-lube-pressure-alarm   <= hm2_7i80.0.7i84.0.1.input-03
+net head-lube-pressure-alarm2  <= hm2_7i80.0.7i84.0.1.input-04
+net way-lube-alarm             <= hm2_7i80.0.7i84.0.1.input-05
+
+net machine-door-interlock     <= hm2_7i80.0.7i84.0.1.input-08
+
+net x-zero-point-ls            <= hm2_7i80.0.7i84.0.1.input-16
+net y-zero-point-ls            <= hm2_7i80.0.7i84.0.1.input-17
+net z-zero-point-ls            <= hm2_7i80.0.7i84.0.1.input-18
+
+#net x-overtravel-return-decel		hm2_7i80.0.7i84.0.1.input-16
+#net y-overtravel-return-decel		hm2_7i80.0.7i84.0.1.input-17
+#net z-overtravel-return-decel		hm2_7i80.0.7i84.0.1.input-18
+
+net x-pos-limit-switch         <= hm2_7i80.0.7i84.0.1.input-19
+net x-neg-limit-switch         <= hm2_7i80.0.7i84.0.1.input-20
+net y-pos-limit-switch         <= hm2_7i80.0.7i84.0.1.input-21
+net y-neg-limit-switch         <= hm2_7i80.0.7i84.0.1.input-22
+net z-pos-limit-switch         <= hm2_7i80.0.7i84.0.1.input-23
+net z-neg-limit-switch         <= hm2_7i80.0.7i84.0.1.input-24
+
+# net y-mag-interfere-prs        <= hm2_7i80.0.7i84.0.1.input-21
+# net z-mag-interfere-prs        <= hm2_7i80.0.7i84.0.1.input-24
+
+net feed-hold-button           <= hm2_7i80.0.7i84.0.1.input-27
+net machine-estop-ok           <= hm2_7i80.0.7i84.0.1.input-28
+net servo-x-drive-alarm        <= hm2_7i80.0.7i84.0.1.input-29
+net servo-y-drive-alarm        <= hm2_7i80.0.7i84.0.1.input-30
+net servo-z-drive-alarm        <= hm2_7i80.0.7i84.0.1.input-31
+
+
+#-------------------
+# EXTERNAL SIGNALS - outputs from LinuxCNC to the machine
+#-------------------
+
+# Enable spindle drive
+net spindle-set                => hm2_7i80.0.7i84.0.0.output-00
+net spindle-set                => hm2_7i80.0.pwmgen.03.enable
+
+# Spindle forward/reverse commands (requires spindle-run for spindle to activate)
+net spindle-reverse            => hm2_7i80.0.7i84.0.0.output-01
+net spindle-forward            => hm2_7i80.0.7i84.0.0.output-02
+
+net spindle-run	               => hm2_7i80.0.7i84.0.0.output-03
+net spindle-air-blast          => hm2_7i80.0.7i84.0.0.output-04
+net spindle-fan	               => hm2_7i80.0.7i84.0.0.output-05
+
+net magazine-run               => hm2_7i80.0.7i84.0.0.output-08
+net orient-command             => hm2_7i80.0.7i84.0.0.output-09
+net magazine-cw-reverse        => hm2_7i80.0.7i84.0.0.output-10
+net magazine-ccw-forward       => hm2_7i80.0.7i84.0.0.output-11
+net magazine-cover-close       => hm2_7i80.0.7i84.0.0.output-12
+net tool-change-release-limits => hm2_7i80.0.7i84.0.0.output-13
+net tool-unclamp               => hm2_7i80.0.7i84.0.0.output-14
+net tool-measuring-arm-extend  => hm2_7i80.0.7i84.0.0.output-15
+
+#net servo-x-off                => hm2_7i80.0.7i84.0.1.output-00
+#net servo-y-off                => hm2_7i80.0.7i84.0.1.output-01
+#net servo-z-off                => hm2_7i80.0.7i84.0.1.output-02
+net servos-ready               => hm2_7i80.0.7i84.0.1.output-03 # 7i84 1, TB3-20
+net work-light                 => hm2_7i80.0.7i84.0.1.output-04
+net hydraulic-lube-pump-on     => hm2_7i80.0.7i84.0.1.output-05
+net flood-coolant-motor-on     => hm2_7i80.0.7i84.0.1.output-06
+net power-on                   => hm2_7i80.0.7i84.0.1.output-07
+
+net overtravel-release         => hm2_7i80.0.7i84.0.1.output-14
+
 
 #=============================
 # AXIS SETUP
