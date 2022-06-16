@@ -372,14 +372,14 @@ relay output pins        | Connected to
 -------------------------+-------------------------
 Ch1 common               | 0G
 Ch1 NC                   |
-Ch1 NO                   | CAM1-6 "READY1"
+Ch1 NO                   | CAM1-6 "NC READY 1"
 -------------------------+-------------------------
 Ch2 common               | 0G
 Ch2 NC                   |
-Ch2 NO                   | CAM1-16 "READY2"
+Ch2 NO                   | CAM1-16 "NC READY 2"
 -------------------------+-------------------------
 Ch3 common               | 0G
 Ch3 NC                   |
-Ch3 NO                   | CAM1-38 "READY3"
+Ch3 NO                   | CAM1-38 "NC READY 3"
 -------------------------+-------------------------
 Channels 4-8 are currently unused.
