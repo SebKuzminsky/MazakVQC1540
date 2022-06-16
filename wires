@@ -218,13 +218,13 @@ Spindle Analog Control Ground				5	7i49		TB4-23
 CAM1 MR-50
 Signal				Line #	Conn.		Pin	Control Board	Pin	HAL Pin		Notes
 Analog Servo CMD 1 (+10 to -10)	ER1			1	7i49		P4-20			AOUT0
-Analog Servo CMD 1 Ground	ERR1			2						Connect to 0G ground
+Analog Servo CMD 1 Ground	ERR1			2	7i49		P4-19			GND0
 							3
 							4
 				SC1			5
-NC Ready 1			READY1			6	8-relay-board	Ch1 NO			Pulled up to 24V by the servo amp, pull to ground to enable servo amp.  FIXME: 7i84 output is too weak to pull down, how much current are we talking about here?
+NC Ready 1			READY1			6	8-relay-board	Ch1 NO			Pulled up to 24V by the servo amp, pull to ground to enable servo amp.  We need to sink about 15 mA, the 7i84 sourcing output is too weak to pull down so we use an external relay.
 Servo On 1			SVON1			7	7i84.0.0	TB3-5	input-04	The TRS-50B drives this to +24V when the servo amp is ready
-				ALM1			8
+Servo Drive 1 Alarm		ALM1			8	7i84.0.1	TB2-14	input-29	The TRS-50B drives this to +24V when there is a problem?  FIXME
 				RG			9						Connect to 0G ground
 							10
 							11
