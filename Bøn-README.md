@@ -113,6 +113,11 @@ spindle drive: Mitsubishi Freqrol FR-SE
 
 servo amps: Mitsubishi Meldas TRS50B AXO4D
 
+The tool changer magazine run on hydraulic pressure using solenoids.
+The door between the magazine and the work space, as well as the tool
+height measuring arm run on air pressure.  The tool change button at
+the back signal the computer and is not directly connected to the
+magazine system.
 
 # Power supplies
 
