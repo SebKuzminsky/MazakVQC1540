@@ -185,6 +185,33 @@ near the servo.  The one on the Y ball screw is labeled:
     "M12", and two "AG" pins are connected to 0G.
 
 
+## Servo amps
+
+This machine has TRS-50B servo amps.  Each servo amp presents these pins
+on CAM1:
+
+Drive Pin Name | Notes
+---------------+----------------------------------------------------------
+ER             |
+ERR            |
+---------------+----------------------------------------------------------
+SC             |
+ALM            |
+---------------+----------------------------------------------------------
+READY          | Controller pulls this to ground to enable servo power.
+SVON           | Controller pulls this to ground to enable servo control.
+---------------+----------------------------------------------------------
++24V           | Connect to +24V power
+RG             | Connect to Ground
+AG             | Connect to Ground
+---------------+----------------------------------------------------------
+
+Give the servo amp power and ground.  When the controller wants axis
+motion, pull READY to ground, then pull SVON to ground.  Mesa 7i84
+boards have current sourcing outputs and can only pull up, so use the
+7i84 output to activate a relay that connects the servo amp pin to ground.
+
+
 # To bring machine up
 
 Apply pressurized air (what pressure?).
