@@ -229,6 +229,9 @@ Power on the hydraulic pump ("hydraulic-lube-pump-on" net).
 
 Activate the tool magazine main solenoid ("magazine-run" net).
 
-Power on the SE relay ("servos-ready" net).
+Enable the three axis servos by setting pwmgen.00.enable true (turns on
+all three servo amps)
 
-Enable the three axis servos by setting pwmgen.00.enable true (turns on all three servo amps)
+Power on the SE relay ("servos-ready" net).  This will release the brake,
+and if the Z servo is not running then the Z axis will drop towards
+the table.
