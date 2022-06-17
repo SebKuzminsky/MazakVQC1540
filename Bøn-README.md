@@ -119,7 +119,8 @@ height measuring arm run on air pressure.  The tool change button at
 the back signal the computer and is not directly connected to the
 magazine system.
 
-# Power supplies
+
+## Power supplies
 
 There are two 24V DC power systems:
 
