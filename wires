@@ -228,8 +228,8 @@ Analog Servo CMD 1 Ground	ERR1			2	7i49		P4-19 GND0
 							3
 							4
 				SC1			5
-NC Ready 1			READY1			6	8-relay-board	Ch1 NO				Pulled up to 24V by the servo amp, relay pulls it down to ground to enable servo amp.
-Servo On 1			SVON1			7	7i84.0.0	TB3-5		input-04	The TRS-50B drives this to +24V when the servo amp is ready
+NC Ready 1			READY1			6	8-relay-board	Ch1 NO				*1 Pulled up to 24V by the servo amp, relay pulls it to ground to enable servo power.
+Servo On 1			SVON1			7	8-relay-board	Ch4 NO				*1 Pulled up to 24V by the servo amp, relay pulls it to ground to enable servo control.
 Servo Drive 1 Alarm		ALM1			8	7i84.0.1	TB2-14		input-29	The TRS-50B drives this to +24V when there is a problem?  FIXME
 				RG			9							Connect to 0G ground
 							10
@@ -238,8 +238,8 @@ Analog Servo CMD 2 Ground	ERR2			12
 							13
 							14
 				SC2			15
-NC Ready 2			READY2			16	8-relay-board	Ch2 NO				Pulled up to 24V by the servo amp, relay pulls it down to ground to enable servo amp.
-Servo On 2			SVON2			17	7i84.0.0	TB3-6		input-05	The TRS-50B drives this to +24V when the servo amp is ready
+NC Ready 2			READY2			16	8-relay-board	Ch2 NO				*1 Pulled up to 24V by the servo amp, relay pulls it to ground to enable servo power.
+Servo On 2			SVON2			17	8-relay-board	Ch5 NO				*1 Pulled up to 24V by the servo amp, relay pulls it to ground to enable servo control.
 Servo Drive 2 Alarm		ALM2			18	7i84.0.1	TB2-15		input-30	The TRS-50B drives this to +24V when there is a problem?  FIXME
 							19
 							20
@@ -260,8 +260,8 @@ Analog Servo CMD 1 Ground	ERR3			34
 							35
 							36
 				SC3			37
-NC Ready 3			READY3			38	8-relay-board	Ch3 NO				Pulled up to 24V by the servo amp, relay pulls it to ground to enable servo amp.
-Servo On 3			SVON3			39	7i84.0.0	TB3-7		input-06	The TRS-50B drives this to +24V when the servo amp is ready
+NC Ready 3			READY3			38	8-relay-board	Ch3 NO				*1 Pulled up to 24V by the servo amp, relay pulls it to ground to enable servo power.
+Servo On 3			SVON3			39	8-relay-board	Ch6 NO				*1 Pulled up to 24V by the servo amp, relay pulls it to ground to enable servo control.
 Servo Drive 3 Alarm		ALM3			40	7i84.0.1	TB2-16		input-31	The TRS-50B drives this to +24V when there is a problem?  FIXME
 							41
 							42
@@ -276,9 +276,9 @@ Servo Drive 3 Alarm		ALM3			40	7i84.0.1	TB2-16		input-31	The TRS-50B drives this
 
 Notes:
 
-1. The "NC Ready ${N}" lines need to sink about 15 mA to turn on the
-   servo amps.  The 7i84 sourcing output is too weak to pull down,
-   so we use an external relay.
+1. The "NC Ready ${N}" and "Servo On ${N}" lines need to sink about 15
+   mA to turn on the servo amps.  The 7i84 sourcing output is too weak
+   to pull down, so we use an external relay.
 
 CNA3 (X) MR-20
 --------------
@@ -374,9 +374,9 @@ GND                      | GND on ATX power supply
 IN1                      | 7i49 P4-18 ENA0+ (P4-17 ENA0- is wired to GND on the ATX power supply, which is tied to 0G)
 IN2                      | 7i49 P4-22 ENA1+ (P4-21 ENA1- is wired to GND on the ATX power supply, which is tied to 0G)
 IN3                      | 7i49 P3-18 ENA2+ (P3-17 ENA2- is wired to GND on the ATX power supply, which is tied to 0G)
-IN4                      |
-IN5                      |
-IN6                      |
+IN4                      | 7i84.0.1 TB2-18 (hm2_7i80.0.7i84.0.1.output-09), SVON1
+IN5                      | 7i84.0.1 TB2-20 (hm2_7i80.0.7i84.0.1.output-11), SVON2
+IN6                      | 7i84.0.1 TB2-22 (hm2_7i80.0.7i84.0.1.output-13), SVON3
 IN7                      |
 IN8                      |
 VCC                      | +5V on ATX power supply
@@ -397,4 +397,16 @@ Ch3 common               | 0G
 Ch3 NC                   |
 Ch3 NO                   | CAM1-38 "NC READY 3"
 -------------------------+-------------------------
-Channels 4-8 are currently unused.
+Ch4 common               | 0G
+Ch4 NC                   |
+Ch4 NO                   | CAM1-7 "Servo On 1"
+-------------------------+-------------------------
+Ch5 common               | 0G
+Ch5 NC                   |
+Ch5 NO                   | CAM1-17 "Servo On 2"
+-------------------------+-------------------------
+Ch6 common               | 0G
+Ch6 NC                   |
+Ch6 NO                   | CAM1-39 "Servo On 3"
+-------------------------+-------------------------
+Channels 7-8 are currently unused.
