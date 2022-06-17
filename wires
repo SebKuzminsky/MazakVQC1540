@@ -233,8 +233,8 @@ Servo On 1			SVON1			7	8-relay-board	Ch4 NO				*1 Pulled up to 24V by the servo 
 Servo Drive 1 Alarm		ALM1			8	7i84.0.1	TB2-14		input-29	The TRS-50B drives this to +24V when there is a problem?  FIXME
 				RG			9							Connect to 0G ground
 							10
-Analog Servo CMD 2		ER2			11
-Analog Servo CMD 2 Ground	ERR2			12
+Analog Servo CMD 2		ER2			11	7i49		P4-24 AOUT1			-10 to +10, vs GND0
+Analog Servo CMD 2 Ground	ERR2			12	7i49		P4-23 GND1			
 							13
 							14
 				SC2			15
@@ -255,8 +255,8 @@ Servo Drive 2 Alarm		ALM2			18	7i84.0.1	TB2-15		input-30	The TRS-50B drives this
 				RG			30							Connect to 0G ground
 							31
 							32
-Analog Servo CMD 3		ER3			33
-Analog Servo CMD 1 Ground	ERR3			34
+Analog Servo CMD 3		ER3			33	7i49		P3-20 AOUT2			-10 to +10, vs GND0
+Analog Servo CMD 1 Ground	ERR3			34	7i49		P3-19 GND2			
 							35
 							36
 				SC3			37
