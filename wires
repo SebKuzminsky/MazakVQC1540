@@ -1,4 +1,5 @@
 CND1 MR-50
+----------
 Signal				Line #	Conn.		Pin	IO board	IO Pin	HAL Pin		Notes
 Spindle Zero Speed		143	CN3-4		1	7i84.0.0	TB3-1	input-00
 Spindle Controller Normal	FA	CON1-11		2	7i84.0.0	TB3-2	input-01
@@ -52,6 +53,7 @@ Pallet On Stocker No. 2 PRS	PON2PRS	TB7-293		44
 -Z Overtravel			-LZ	CN3-38		50	7i84.0.1	TB2-9	input-24	
 
 CND2 MR-50
+----------
 Signal				Line #		Conn.		Pin	IO Board	IO Pin	HAL Pin		Notes
 X Axis Interlock		INTX		TB6-INTX	1
 Z Axis Interlock		INTZ		TB6-INTZ	2
@@ -105,6 +107,7 @@ Cycle Start PB			CSTPB		TB6-CSTPB	49
 								50
 
 CND3 MR-50
+----------
 Signal						Line #	Conn.		Pin	IO Board	IO Pin	HAL Pin		Notes
 Spindle Air Blast				715	CN13-6		1	7i84.0.0	TB3-21	output-04	Drive to +24 to open the solenoid valve to let compressed air out by the spindle?
 DC 24V -Com					OG	CN301A-41	2
@@ -158,6 +161,7 @@ Tool Unclamp					710	CN13-3		49
 Magazine Cover Close				727	CN13-14		50	7i84.0.0	TB2-21	output-12	Drive to +24 to close the door between the tool magazine and the workspace.
 
 CND4 MR-50
+----------
 Signal				Line #	Conn.		Pin	IO Board	IO Pin	HAL Pin
 DC 24V -Com			OG	TB51-OG		1
 Pallet No. 1 On			P1ON	TB6-P1ON	2
@@ -210,12 +214,14 @@ Head Lube Pressure Alarm	141	CN3-2		48
 Waylube Alarm			WLAL	CN3-35		49
 Main Transformer Over Heat	146	TB4-146		50
 
-CND5 MR-50
+CND5 MR-20
+----------
 Signal							Pin	Control Board	Ctrl Pin
 Spindle Analog Control					4	7i49		TB4-24
 Spindle Analog Control Ground				5	7i49		TB4-23
 
 CAM1 MR-50
+----------
 Signal				Line #	Conn.		Pin	Control Board	Pin		HAL Pin		Notes
 Analog Servo CMD 1		ER1			1	7i49		P4-20 AOUT0			-10 to +10, vs GND0
 Analog Servo CMD 1 Ground	ERR1			2	7i49		P4-19 GND0			
@@ -275,6 +281,7 @@ Notes:
    so we use an external relay.
 
 CNA3 (X) MR-20
+--------------
 Signal		Line #	Pin	Board	Pin	Notes
 Ground		0G	1			Connect to 0G
 -12V			2			Connect to -12V (blue) on the ATX power supply
@@ -298,6 +305,7 @@ TG2			19			Tach output, unused
 			20
 
 CNA4 (Y) MR-20
+--------------
 Signal		Line #	Pin	Board	Pin	Notes
 Ground		0G	1			Connect to 0G
 -12V			2			Connect to -12V (blue) on the ATX power supply
@@ -321,6 +329,7 @@ TG2			19			Tach output, unused
 			20
 
 CNA5 (Z) MR-20
+--------------
 Signal		Line #	Pin	Board	Pin	Notes
 Ground		0G	1			Connect to 0G
 -12V			2			Connect to -12V (blue) on the ATX power supply
