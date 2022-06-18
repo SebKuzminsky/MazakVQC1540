@@ -181,21 +181,21 @@ The servo amps are labeled: Mitsubishi Meldas TRS-50B BN624A559G52 AXO4D
 
 Each servo amp presents these pins on CAM1:
 
-Drive Pin Name | Notes
----------------+----------------------------------------------------------
-ER             |
-ERR            |
----------------+----------------------------------------------------------
-SC             |
-ALM            |
----------------+----------------------------------------------------------
-READY          | Controller pulls this to ground to enable servo power.
-SVON           | Controller pulls this to ground to enable servo control.
----------------+----------------------------------------------------------
-+24V           | Connect to +24V power
-RG             | Connect to Ground
-AG             | Connect to Ground
----------------+----------------------------------------------------------
+    Drive Pin Name | Notes
+    ---------------+----------------------------------------------------------
+    ER             |
+    ERR            |
+    ---------------+----------------------------------------------------------
+    SC             |
+    ALM            |
+    ---------------+----------------------------------------------------------
+    READY          | Controller pulls this to ground to enable servo power.
+    SVON           | Controller pulls this to ground to enable servo control.
+    ---------------+----------------------------------------------------------
+    +24V           | Connect to +24V power
+    RG             | Connect to Ground
+    AG             | Connect to Ground
+    ---------------+----------------------------------------------------------
 
 Give the servo amp power and ground.  When the controller wants axis
 motion, pull READY to ground, then pull SVON to ground.  Mesa 7i84
