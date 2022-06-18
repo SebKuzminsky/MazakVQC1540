@@ -96,7 +96,7 @@ Recessing Tool LS		RCTLS		TB1-RCTLS	37
 Pallet Clamp SS			PCLSS		TB7-855		39
 Pallet Unclamp SS		PUCSS		TB7-856		40
 Reset Out			RST		TB1-RST		41
-Servo Ready			SA		CN301A-7	42	7i84.0.1	TB3-20	output-03	Drive to +24V to enable all three axis servos
+Servo Ready			SA		CN301A-7	42	7i84.0.1	TB3-20	output-03	Drive to +24V to release the Z auxillary brake
 Tool Change Memory		TCME		CN301A-33	43
 				M43T		CN301A-3	44
 Tool Measuring Arm Extend	762		CN13-9		45	7i84.0.0	TB2-24	output-15	Drive to +24V to extend the tool length probe.  Drive to 0V to retract the arm.

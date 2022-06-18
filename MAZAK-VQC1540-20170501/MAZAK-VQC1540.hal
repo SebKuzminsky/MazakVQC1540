@@ -201,7 +201,7 @@ net tool-measuring-arm-extend  => hm2_7i80.0.7i84.0.0.output-15
 #net servo-x-off                => hm2_7i80.0.7i84.0.1.output-00
 #net servo-y-off                => hm2_7i80.0.7i84.0.1.output-01
 #net servo-z-off                => hm2_7i80.0.7i84.0.1.output-02
-net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-03 # this net activates Z servo and releases ABRK
+net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-03 # this pin activates ABRK, which releases the Z brake
 net work-light                 => hm2_7i80.0.7i84.0.1.output-04
 net hydraulic-lube-pump-on     => hm2_7i80.0.7i84.0.1.output-05
 net flood-coolant-motor-on     => hm2_7i80.0.7i84.0.1.output-06
@@ -213,7 +213,7 @@ net servo-on-1                 => hm2_7i80.0.pwmgen.00.enable
 net servo-on-2                 => hm2_7i80.0.7i84.0.1.output-11
 net servo-on-2                 => hm2_7i80.0.pwmgen.01.enable
 #net ???                        => hm2_7i80.0.7i84.0.1.output-12
-net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-13 # this net activates Z servo and releases ABRK
+net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-13 # this pin activates the Z servo
 net servo-on-3                 => hm2_7i80.0.pwmgen.02.enable
 
 net overtravel-release         => hm2_7i80.0.7i84.0.1.output-14
