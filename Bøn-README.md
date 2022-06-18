@@ -190,8 +190,10 @@ badly tuned servo amp?
 
 Z: Spindle drifts upwards slowly - badly tuned Z servo amp?  Negative
 control voltage moves spindle down (-0.005 is a nice slow pace).
-Positive control voltage does not appear to move spindle up.  Enable Z
-servo amp and release ABRK at the same time.
+This is the intuitive direction, so we set pwmgen.02.scale to 1 so that
+a positive pwmgen.02.value moves the spindle up, in the +Z direction.
+Note that ABRK must be active, so that the Z brake is released, before
+trying to move the Z axis.
 
 
 ## Spindle drive
