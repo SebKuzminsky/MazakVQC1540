@@ -111,7 +111,7 @@ connectors between control computer and machine cabling:
 
 spindle drive: Mitsubishi Freqrol FR-SE
 
-servo amps: Mitsubishi Meldas TRS50B AXO4D
+servo amps: Mitsubishi Meldas TRS50B BN624A559G52 AXO4D
 
 The tool changer magazine run on hydraulic pressure using solenoids.
 The door between the magazine and the work space, as well as the tool
