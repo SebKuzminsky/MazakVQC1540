@@ -239,7 +239,8 @@ Apply pressurized air (what pressure?).
 
 Open the manual air valve at the machine's air intake.
 
-Turn on "+24V"/"0G" power supply.
+Turn on "+24V"/"0G" power supply (currently hard wired to come on when
+the main machine power comes on).
 
 Release all E-stop buttons (1 by operator console, 1 by tool magazine
 access door, 1 optional on "handy controller").
