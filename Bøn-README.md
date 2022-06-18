@@ -113,8 +113,14 @@ spindle drive: Mitsubishi Freqrol FR-SE
 
 servo amps: Mitsubishi Meldas TRS50B AXO4D
 
+The tool changer magazine run on hydraulic pressure using solenoids.
+The door between the magazine and the work space, as well as the tool
+height measuring arm run on air pressure.  The tool change button at
+the back signal the computer and is not directly connected to the
+magazine system.
 
-# Power supplies
+
+## Power supplies
 
 There are two 24V DC power systems:
 
@@ -179,6 +185,44 @@ near the servo.  The one on the Y ball screw is labeled:
     "M12", and two "AG" pins are connected to 0G.
 
 
+## Servo amps
+
+This machine has TRS-50B servo amps.  Each servo amp presents these pins
+on CAM1:
+
+Drive Pin Name | Notes
+---------------+----------------------------------------------------------
+ER             |
+ERR            |
+---------------+----------------------------------------------------------
+SC             |
+ALM            |
+---------------+----------------------------------------------------------
+READY          | Controller pulls this to ground to enable servo power.
+SVON           | Controller pulls this to ground to enable servo control.
+---------------+----------------------------------------------------------
++24V           | Connect to +24V power
+RG             | Connect to Ground
+AG             | Connect to Ground
+---------------+----------------------------------------------------------
+
+Give the servo amp power and ground.  When the controller wants axis
+motion, pull READY to ground, then pull SVON to ground.  Mesa 7i84
+boards have current sourcing outputs and can only pull up, so use the
+7i84 output to activate a relay that connects the servo amp pin to ground.
+
+X: Negative control voltage moves table left (ie moves machine in +X
+direction).
+
+Y: Negative control voltage moves spindle away from operator.  Spindle
+drifts towards operator slowly - badly tuned servo amp?
+
+Z: Spindle drifts upwards slowly - badly tuned Z servo amp?  Negative
+control voltage moves spindle down (-0.005 is a nice slow pace).
+Positive control voltage does not appear to move spindle up.  Enable Z
+servo amp and release ABRK at the same time.
+
+
 # To bring machine up
 
 Apply pressurized air (what pressure?).
@@ -196,6 +240,14 @@ Power on the hydraulic pump ("hydraulic-lube-pump-on" net).
 
 Activate the tool magazine main solenoid ("magazine-run" net).
 
-Power on the SE relay ("servos-ready" net).
+Enable power to the three axis servos by setting pwmgen.00.enable true
+(turns on power on all three servo amps).
 
-Enable the three axis servos by setting pwmgen.00.enable true (turns on all three servo amps)
+Enable servo control by setting servo-on-{1,2,3} to 1.  Be careful,
+when setting servo-on-3 true, the Z servo amp will take control of the
+Z axis, so the ABRK relay needs to be released at the same time (via the
+"Servos Ready"/"SA" line).
+
+Powering on the SE relay (via "Servos Ready"/"SA") will release the
+Z brake, and if the Z servo is not running then the Z axis will drop
+towards the table.
