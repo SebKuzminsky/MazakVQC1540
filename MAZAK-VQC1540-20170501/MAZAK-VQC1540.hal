@@ -246,7 +246,7 @@ net x-index-enable	=>	pid.x.index-enable
 net x-pos-cmd        	=>	pid.x.command
 net x-vel-cmd        	=>	pid.x.command-deriv
 net x-pos-fb         	=>	pid.x.feedback
-net x-output         	<=	pid.x.output
+#net x-output         	<=	pid.x.output
 
 
 # AXIS SERVO DRIVE / AMPLIFIER FAULT (from PLC)
@@ -324,7 +324,7 @@ net servo-y-enable     	=>	pid.y.enable
 net y-pos-cmd        	<=	pid.y.command
 net y-vel-cmd        	<=	pid.y.command-deriv
 net y-pos-fb         	=>	pid.y.feedback
-net y-output         	<=	pid.y.output
+#net y-output         	<=	pid.y.output
 
 
 # AXIS SERVO DRIVE / AMPLIFIER FAULT (from PLC)
@@ -400,7 +400,7 @@ net servo-z-enable	 =>	pid.z.enable
 net z-pos-cmd   	     =>	pid.z.command
 net z-vel-cmd       	 =>	pid.z.command-deriv
 net z-pos-fb        	 =>	pid.z.feedback
-net z-output        	 =>	pid.z.output
+#net z-output        	 =>	pid.z.output
 
 
 # AXIS SERVO DRIVE / AMPLIFIER FAULT (from PLC)
