@@ -16,9 +16,9 @@ Pallet Unclamp PRS		PUCPRS	TB7-299		12
 Ext Finish Signal		EXFIN	TB6-EXFIN	13
 Pallet Select No. 2 LS		PS2LS	TB7-288		14
 DC 24V -Com			OG	TB41-OG		15
-X-Axis Zero Return Decel	DecX	TB41-DECX	16
-Y-Axis Zero Return Decel	DecY	TB41-DECY	17
-Z-Axis Zero Return Decel	DECZ	TB51-DECZ	18
+X-Axis Zero Return Decel	DecX	TB41-DECX	16	7i84.0.1	TB2-1	input-16	
+Y-Axis Zero Return Decel	DecY	TB41-DECY	17	7i84.0.1	TB2-2	input-17	Y home and + limit switch
+Z-Axis Zero Return Decel	DECZ	TB51-DECZ	18	7i84.0.1	TB2-3	input-18	
 Magazine Pos 4			223	TB41-223	19	7i84.0.0	TB2-4	input-19	Bit 2 of the Tool Magazine Address
 Magazine Pos 8			224	TB41-224	20	7i84.0.0	TB2-5	input-20	Bit 3 of the Tool Magazine Address
 Magazine Pos 16			225			21	7i84.0.0	TB2-9	input-24	Bit 4 of the Tool Magazine Address
