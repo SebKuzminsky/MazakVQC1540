@@ -198,7 +198,7 @@ trying to move the Z axis.
 
 ## Spindle drive
 
-spindle drive: Mitsubishi Freqrol FR-SE
+spindle drive: Mitsubishi Freqrol FR-SE-2-11K
 
 
 ## Tool Magazine
