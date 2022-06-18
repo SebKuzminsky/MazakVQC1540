@@ -77,9 +77,9 @@ net head-lube-pressure-alarm2 => classicladder.0.in-12
 net way-lube-alarm            => classicladder.0.in-18
 net machine-door-interlock    => classicladder.0.in-19
 
-net x-zero-point-ls           => classicladder.0.in-03
-net y-zero-point-ls           => classicladder.0.in-04
-net z-zero-point-ls           => classicladder.0.in-05
+#net x-zero-point-ls           => classicladder.0.in-03
+#net y-zero-point-ls           => classicladder.0.in-04
+#net z-zero-point-ls           => classicladder.0.in-05
 net y-mag-interfere-prs       => classicladder.0.in-06
 net z-mag-interfere-prs       => classicladder.0.in-07
 
@@ -149,9 +149,9 @@ net servo-z-drive-alarm       => classicladder.0.in-53
 net plc-estop				<=	classicladder.0.out-01
 # Feed hold button > PLC > LinuxCNC.motion
 net feed-hold                           <=      classicladder.0.out-07
-net x-home				<=	classicladder.0.out-02
-net y-home				<=	classicladder.0.out-03
-net z-home				<=	classicladder.0.out-04
+#net x-home				<=	classicladder.0.out-02
+#net y-home				<=	classicladder.0.out-03
+#net z-home				<=	classicladder.0.out-04
 net y-mag-interfere			<=	classicladder.0.out-05
 net z-mag-interfere			<=	classicladder.0.out-06
 net plc-servo-x-drive-alarm		<=	classicladder.0.out-49
