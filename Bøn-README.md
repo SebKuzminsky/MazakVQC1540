@@ -1,34 +1,8 @@
 Mazak VQC 15/40
 
-TDS used:
+# Mesa interface hardware
 
-    7i80HD anyio (3x50-pin)
-
-    7i49 resolver servo interface, 50-pin
-
-    7i44 (sserial breakout
-
-    2*7i84 (the regular "not-D" version) (32 input/16 output each,
-    sserial)
-        7i84-A
-            in: 19
-                TB2 15: 1-8 10-16
-                TB3  4: 1-4
-            out: 13
-        7i84-B
-            in: 22
-                TB2 12: 1-9 13 (14-16?)
-                TB3 10: 1-6 9-12
-            out: 16
-        total:
-            41 in
-            29 out
-
-    7i73 smart serial remote control panel interface
-
-we're using:
-
-    7i80HD-25 (AnyIO FPGA board)
+    7i80HD-25 (AnyIO FPGA board, 3x50-pin connectors)
 
         MAC 00:60:1B:11:81:AA
 
@@ -82,7 +56,6 @@ we're using:
             pin 1-4 are connected to P24 on the Mazak (+24V DC)
             pin 5 is not connected (internally connected to VFIELDB via W1 in the left position)
             pin 6-8 are connected to G24 on the Mazak (ground for P24 power rail)
-
 
 
 # Mazak VQC 15/40 hardware
