@@ -109,16 +109,6 @@ connectors between control computer and machine cabling:
 
 # Mazak VQC 15/40 hardware
 
-spindle drive: Mitsubishi Freqrol FR-SE
-
-servo amps: Mitsubishi Meldas TRS50B BN624A559G52 AXO4D
-
-The tool changer magazine run on hydraulic pressure using solenoids.
-The door between the magazine and the work space, as well as the tool
-height measuring arm run on air pressure.  The tool change button at
-the back signal the computer and is not directly connected to the
-magazine system.
-
 
 ## Power supplies
 
@@ -187,8 +177,9 @@ near the servo.  The one on the Y ball screw is labeled:
 
 ## Servo amps
 
-This machine has TRS-50B servo amps.  Each servo amp presents these pins
-on CAM1:
+The servo amps are labeled: Mitsubishi Meldas TRS-50B BN624A559G52 AXO4D
+
+Each servo amp presents these pins on CAM1:
 
 Drive Pin Name | Notes
 ---------------+----------------------------------------------------------
@@ -221,6 +212,22 @@ Z: Spindle drifts upwards slowly - badly tuned Z servo amp?  Negative
 control voltage moves spindle down (-0.005 is a nice slow pace).
 Positive control voltage does not appear to move spindle up.  Enable Z
 servo amp and release ABRK at the same time.
+
+
+## Spindle drive
+
+spindle drive: Mitsubishi Freqrol FR-SE
+
+
+## Tool Magazine
+
+The tool magazine runs on hydraulic pressure using solenoids.
+
+The door between the magazine and the work space, as well as the tool
+height measuring arm run on air pressure.
+
+The tool change button at the back is connected to the control computer,
+not directly to the tool magazine.
 
 
 # To bring machine up
