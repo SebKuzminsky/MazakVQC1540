@@ -212,6 +212,22 @@ The tool change button at the back is connected to the control computer,
 not directly to the tool magazine.
 
 
+## Home and Limit switches
+
+### X
+
+### Y
+
+Y has a negative limit switch (`-LY`, "-Y Over Travel"), and a combined
+Home and positive limit switch (`*DECY`, "Y Axis Zero Return Decelerate").
+
+
+### Z
+
+Z has a switch near the top of its travel (ie a positiva limit switch),
+but it's not `+LZ' (CND1-49).
+
+
 # To bring machine up
 
 Apply pressurized air (what pressure?).

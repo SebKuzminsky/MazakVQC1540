@@ -155,9 +155,9 @@ net machine-door-interlock     <= hm2_7i80.0.7i84.0.1.input-08
 #net ???                        <= hm2_7i80.0.7i84.0.1.input-13
 #net ???                        <= hm2_7i80.0.7i84.0.1.input-14
 #net ???                        <= hm2_7i80.0.7i84.0.1.input-15
-net x-zero-point-ls            <= hm2_7i80.0.7i84.0.1.input-16
-net y-zero-point-ls            <= hm2_7i80.0.7i84.0.1.input-17
-net z-zero-point-ls            <= hm2_7i80.0.7i84.0.1.input-18
+net x-home-switch              <= hm2_7i80.0.7i84.0.1.input-16-not
+net y-home-switch              <= hm2_7i80.0.7i84.0.1.input-17-not
+net z-home-switch              <= hm2_7i80.0.7i84.0.1.input-18-not
 net x-pos-limit-switch         <= hm2_7i80.0.7i84.0.1.input-19-not
 net x-neg-limit-switch         <= hm2_7i80.0.7i84.0.1.input-20-not
 net y-pos-limit-switch         <= hm2_7i80.0.7i84.0.1.input-21-not
@@ -296,9 +296,9 @@ net x-index-enable 			joint.0.index-enable  <=>  hm2_7i80.0.resolver.00.index-en
 net x-pos-rawcounts		<=	hm2_7i80.0.resolver.00.rawcounts
 
 # HOME/LIMIT-SWITCH SIGNAL SETUP
-net x-home             => joint.0.home-sw-in
+net x-home-switch      => joint.0.home-sw-in
 net x-neg-limit-switch => joint.0.neg-lim-sw-in
-net x-pos-limit-switch => joint.0.pos-lim-sw-in
+net x-home-switch      => joint.0.pos-lim-sw-in
 
 # Homing Signal:
 net x-homing			<=	joint.0.homing
@@ -371,9 +371,9 @@ net y-index-enable joint.1.index-enable  <=>  hm2_7i80.0.resolver.01.index-enabl
 net y-pos-rawcounts		<=	hm2_7i80.0.resolver.01.rawcounts
 
 # HOME/LIMIT-SWITCH SIGNAL SETUP
-net y-home             => joint.1.home-sw-in
+net y-home-switch      => joint.1.home-sw-in
 net y-neg-limit-switch => joint.1.neg-lim-sw-in
-net y-pos-limit-switch => joint.1.pos-lim-sw-in
+net y-home-switch      => joint.1.pos-lim-sw-in
 
 # Homing Signal:
 net y-homing			<=	joint.1.homing
@@ -447,9 +447,9 @@ net z-index-enable joint.2.index-enable  <=>  hm2_7i80.0.resolver.02.index-enabl
 net z-pos-rawcounts		<=	hm2_7i80.0.resolver.02.rawcounts
 
 # HOME/LIMIT-SWITCH SIGNAL SETUP
-net z-home             => joint.2.home-sw-in
+net z-home-switch      => joint.2.home-sw-in
 net z-neg-limit-switch => joint.2.neg-lim-sw-in
-net z-pos-limit-switch => joint.2.pos-lim-sw-in
+net z-home-switch      => joint.2.pos-lim-sw-in
 
 # Homing Signal:
 net z-homing			<=	joint.2.homing
