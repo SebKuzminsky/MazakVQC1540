@@ -183,8 +183,10 @@ X: Negative control voltage moves table left (ie moves tool in
 pwmgen.00.value moves the tool in the +X direction (ie moves the table
 in the -X direction).
 
-Y: Negative control voltage moves spindle away from operator.  Spindle
-drifts towards operator slowly - badly tuned servo amp?
+Y: Negative control voltage moves spindle away from operator.  We set
+pwmgen.01.scale to -1 so that a positive pwmgen.01.value moves the
+tool in the +Y direction.  Spindle drifts towards operator slowly -
+badly tuned servo amp?
 
 Z: Spindle drifts upwards slowly - badly tuned Z servo amp?  Negative
 control voltage moves spindle down (-0.005 is a nice slow pace).
