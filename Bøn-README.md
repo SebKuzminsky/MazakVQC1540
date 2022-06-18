@@ -84,7 +84,22 @@ we're using:
             pin 6-8 are connected to G24 on the Mazak (ground for P24 power rail)
 
 
-# NC Connectors
+
+# Mazak VQC 15/40 hardware
+
+
+## NC Connectors
+
+The CND[1234] and CAM1 cable connectors are marked "Honda MR-50W".
+
+The CND5 cable connector is marked "Honda MR-20W".
+
+The CNA[345] cable connectors are marked "Honda MR-20L".
+
+The controller should have the mating connectors for those.
+
+
+### Pins
 
 Mating pins?  https://www.radwell.co.uk/en-GB/Buy/HONDA/HONDA/MRP-M112
 
@@ -96,18 +111,6 @@ We don't have the correct mating connectors or pins, so we're using 0.72
 mm² cross-sectional area stranded wire, to which we're attaching some
 random pin connectors that we bought.  They friction-fit into the female
 connectors ok.
-
-The CND[1234] cable connectors are marked "Honda MR-50W".  The controller
-should have the mating connector.
-
-connectors between control computer and machine cabling:
-
-    MR-50L Honda connectors?
-
-    pins: "MRP-M1( )( )"?
-
-
-# Mazak VQC 15/40 hardware
 
 
 ## Power supplies
