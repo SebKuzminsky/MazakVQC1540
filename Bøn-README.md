@@ -262,3 +262,25 @@ Z axis, so the ABRK relay needs to be released at the same time (via the
 Powering on the SE relay (via "Servos Ready"/"SA") will release the
 Z brake, and if the Z servo is not running then the Z axis will drop
 towards the table.
+
+
+# Axis brakes
+
+## Z axis brake
+
+sheet 334A:
+* solenoid 60 opens Z brake, controlled by line #60
+
+sheet 406B:
+* line #60 (Z brake open) activates when ABRK relay closed
+* ABRK relay activates when EMS (e-stop ok) and SE (servos enable) are closed
+
+## Table Unclamp (for NC Table, aka rotary 4th axis)
+
+sheet 346A:
+* "Table Unclamp" solenoid 20 between #16 and #420 (AC, i think)
+* #420 is on TB-41, mentioned on sheet 338 2/5
+* #420 is on CA-4, sheet 338 3/5
+
+sheet 371A
+* "Table Unclamp" solenoid 20
