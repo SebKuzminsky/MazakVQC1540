@@ -224,17 +224,43 @@ Power on the hydraulic pump ("hydraulic-lube-pump-on" net).
 
 Activate the tool magazine main solenoid ("magazine-run" net).
 
-Enable power to the three axis servos by setting pwmgen.00.enable true
-(turns on power on all three servo amps).
+'sets servo-on-1': (Note: this name follows Mazak's servo numbering
+scheme which starts at 1.)  This net does a couple of things:
 
-Enable servo control by setting servo-on-{1,2,3} to 1.  Be careful,
-when setting servo-on-3 true, the Z servo amp will take control of the
-Z axis, so the ABRK relay needs to be released at the same time (via the
-"Servos Ready"/"SA" line).
+    * Enable pwmgen.00.  This does two things:
 
-Powering on the SE relay (via "Servos Ready"/"SA") will release the
-Z brake, and if the Z servo is not running then the Z axis will drop
-towards the table.
+        * It turns on all 6 of the Enable outputs on the 7i49.  The
+          Enables for channels 0, 1, and 2 turn on external relays 1,
+          2, and 3, which asserts NC READY 1, 2, and 3, which turns on
+          servo power on the X, Y, and Z servo amps.
+
+        * Enable the analog control voltage from the 7i49 to the X servo.
+
+    * Set SVON1 true, which activates external relay 4, which enables
+      servo control of X.
+
+'sets servo-on-2 1':
+
+    * Enable pwmgen.01.  This enables the analog control voltage from
+      the 7i49 to the Y servo.
+
+    * Sets SVON2 true, which activates external relay 5, which enables
+      servo control of Y.
+
+'sets servo-on-3 1':
+
+    * Enable pwmgen.02.  This enables the analog control voltage from
+      the 7i49 to the Z servo.
+
+    * Sets SVON3 true, which activates external relay 6, which enables
+      servo control of Z.
+
+    * Assert SA, to activate the ABRK relay, which releases the Z brake.
+      Note: the Z servo amp and the Z brake can not be active at the same
+      time, or the Z servo will fault with an overcurrent alarm as the
+      servo fights against the brake.  If you release the Z brake without
+      Z servo control active, the Z axis will slowly drop downwards due
+      to gravity.
 
 
 # Axis brakes
