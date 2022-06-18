@@ -216,9 +216,9 @@ Main Transformer Over Heat	146	TB4-146		50
 
 CND5 MR-20
 ----------
-Signal							Pin	Control Board	Ctrl Pin
-Spindle Analog Control					4	7i49		TB4-24
-Spindle Analog Control Ground				5	7i49		TB4-23
+Signal				Line #			Pin	Control Board	Ctrl Pin
+Spindle Analog Control		SE1			4	7i49		TB3-24 AOUT3
+Spindle Analog Control Ground	SE2			5	7i49		TB3-23 GND3
 
 CAM1 MR-50
 ----------
