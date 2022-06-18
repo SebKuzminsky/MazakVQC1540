@@ -178,8 +178,10 @@ motion, pull READY to ground, then pull SVON to ground.  Mesa 7i84
 boards have current sourcing outputs and can only pull up, so use the
 7i84 output to activate a relay that connects the servo amp pin to ground.
 
-X: Negative control voltage moves table left (ie moves machine in +X
-direction).
+X: Negative control voltage moves table left (ie moves tool in
++X direction).  We set pwmgen.00.scale to -1 so that a positive
+pwmgen.00.value moves the tool in the +X direction (ie moves the table
+in the -X direction).
 
 Y: Negative control voltage moves spindle away from operator.  Spindle
 drifts towards operator slowly - badly tuned servo amp?
