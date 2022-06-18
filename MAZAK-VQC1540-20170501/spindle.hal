@@ -59,7 +59,7 @@ net spindle-index-enable	pid.s.index-enable
 net spindle-enable		=>	pid.s.enable
 net spindle-vel-cmd-rpm		pid.s.command
 net spindle-vel-fb-rpm		pid.s.feedback
-net spindle-output		pid.s.output
+#net spindle-output		pid.s.output
 
 # Setup Spindle Control Signals
 net spindle-vel-cmd-rps		spindle.0.speed-out-rps
