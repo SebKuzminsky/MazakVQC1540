@@ -10,6 +10,8 @@ Documentation downloaded from the Internet
   https://www.manualslib.com/manual/2310879/Mitsubishi-Meldas-Trs50.html
 * Mitsubishi-Freqrol-SF-maintenance-manual.pdf
   http://cncmanual.com/mitsubishi-ac-spindle-drive-freqrol-sf-maintenance-manual/
+* Mitsubishi-Freqrol-FR-SE-Maintenance-Manual.pdf
+  http://cncmanual.com/mitsubishi-freqrol-ac-spindle-controller-fr-se-maintenance-manual/
 * MR-connectors.pdf
   https://www.onlinecomponents.com/en/datasheet/mr50l-42248021/
 * mrp-m1( )( ).pdf
