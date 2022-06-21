@@ -305,3 +305,12 @@ sheet 346A:
 
 sheet 371A
 * "Table Unclamp" solenoid 20
+
+
+## MMS Renishaw probe
+
+The probe tool is connected to a control box in the lower right of the
+right cabinet door.
+
+https://www.practicalmachinist.com/forum/threads/mazak-probing.173948/
+https://www.forum.linuxcnc.org/40-subroutines-and-ngcgui/33034-probe-calibration-renishaw-mp12
