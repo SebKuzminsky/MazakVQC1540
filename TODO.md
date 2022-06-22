@@ -24,3 +24,7 @@ make finished Mesa controller and electronics mounting plate with
 MR-20 and MR-50 connectors
 
 figure out and hook up Renishaw probe tool (MMS)
+
+integrate tool magazine/atc into linuxcnc
+
+integrate tool length probe arm into linuxcnc
