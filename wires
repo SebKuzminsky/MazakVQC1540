@@ -367,7 +367,7 @@ Each relay control input (IN1-IN8) needs to be grounded and sink less
 than 1 mA to activate the relay (per '8 Relay Module.pdf').
 
 
-8 channel relay board    |
+8 channel 5V relay board |
 10-pin control connector | Connected to
 -------------------------+-------------------------
 GND                      | GND on ATX power supply
@@ -382,7 +382,7 @@ IN8                      |
 VCC                      | +5V on ATX power supply
 
 
-8 channel relay board    |
+8 channel 5V relay board |
 relay output pins        | Connected to
 -------------------------+-------------------------
 Ch1 common               | 0G

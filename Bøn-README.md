@@ -57,6 +57,16 @@ Mazak VQC 15/40
             pin 5 is not connected (internally connected to VFIELDB via W1 in the left position)
             pin 6-8 are connected to G24 on the Mazak (ground for P24 power rail)
 
+    Sainsmart 8-channel 5V relay board
+
+        Used to provide pull-downs for the TRS-50B `NC READY` and
+        `SERVO ON` signals.  (The TRS-50B pulls those lines to +24V
+        internally, the controller must pull them both to ground to
+        enable the servo amp.  We can't use the 7i84 for this since it
+        has sourcing outputs.)
+
+        The jumper on the board connects VCC to JD-VCC.
+
 
 # Mazak VQC 15/40 hardware
 
