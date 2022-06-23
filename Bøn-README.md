@@ -212,6 +212,35 @@ trying to move the Z axis.
 
 spindle drive: Mitsubishi Freqrol FR-SE-2-11K
 
+When enabling Spindle and trying to run forward or backwards, by
+activating relays SSET and SMR using 'sets spindle-run 1', 'sets
+spindle-set 1' and 'sets spindle-cw 1', the spindle controller trip
+and report 'Inverter I O C'.  According to page 32 in
+Mitsubishi-Freqrol-FR-SE-Maintenance-Manual.pdf, this can be caused by
+faulty power transistors or diods in the controller.  Conducting the
+tests listed there did not show any issues:
+
+Waited until machine had been turned off for 4 days
+
+Tested 0+20 voltage beteen P and N is 0.00
+
+Tested 0-200 ohm resistance between P and R3, S3 and T3 is infinite
+Tested 0-200 ohm resistance between N and R3, S3 and T3 is infinite
+Tested 0-2000 ohm resistance between P and R3, S3 and T3 is around 400 ohm
+Tested 0-2000 ohm resistance between N and R3, S3 and T3 is around 400 ohm and rising
+
+Tested 0-200 ohm resistance between P and U, V and W is infinite
+Tested 0-200 ohm resistance between N and U, V and W is infinite
+Tested 0-2000 ohm resistance between P and U, V and W is around 500 ohm
+Tested 0-2000 ohm resistance between N and U, V and W is around 500 ohm and rising
+
+The transistors are marked QM150DY-H and BKO-C2144H01.
+
+Some ideas:
+
+ * https://forum.linuxcnc.org/30-cnc-machines/32162-mitsubishi-freqrol-fr-se-replacement-recommendations
+ * https://www.practicalmachinist.com/forum/threads/spindle-drive-issues-leadwell-mcv-0p-3-axis-vmc-with-mitsubish-freqrol-fr-sf-spindl.280843/
+
 
 ## Tool Magazine
 
