@@ -191,8 +191,8 @@ boards have current sourcing outputs and can only pull up, so use the
 X: Negative control voltage moves table left (ie moves tool in
 +X direction).  We set pwmgen.00.scale to -1 so that a positive
 pwmgen.00.value moves the tool in the +X direction (ie moves the table
-in the -X direction).  An alternative is to switch the ER and ERR pins
-on the Mesa card, but as ERR is also ground 0G, this might cause
+in the -X direction).  It is not an alternative to switch the ER and
+ERR pins on the Mesa card, as ERR is also ground 0G, this might cause
 unwanted currents to flow.
 
 Y: Negative control voltage moves spindle away from operator.  We set
