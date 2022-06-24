@@ -283,13 +283,13 @@ Notes:
 CNA3 (X) MR-20
 --------------
 Signal		Line #	Pin	Board	Pin	Notes
-Ground		0G	1			Connect to 0G
--12V			2			Connect to -12V (blue) on the ATX power supply
+Ground		0G	1	GND		Connect to 0G
+-12V			2	ATX	-12V	Connect to -12V (blue) on the ATX power supply
 			3
 			4
 			5
-+12V			6			Connect to +12V (yellow) on the ATX power supply
-Ground		0G	7			Connect to 0G
++12V			6	ATX	+12V	Connect to +12V (yellow) on the ATX power supply
+Ground		0G	7	GND		Connect to 0G
 			8
 			9
 			10
@@ -307,13 +307,13 @@ TG2			19			Tach output, unused
 CNA4 (Y) MR-20
 --------------
 Signal		Line #	Pin	Board	Pin	Notes
-Ground		0G	1			Connect to 0G
--12V			2			Connect to -12V (blue) on the ATX power supply
+Ground		0G	1	GND		Connect to 0G
+-12V			2	ATX	-12V	Connect to -12V (blue) on the ATX power supply
 			3
 			4
 			5
-+12V			6			Connect to +12V (yellow) on the ATX power supply
-Ground		0G	7			Connect to 0G
++12V			6	ATX	+12V	Connect to +12V (yellow) on the ATX power supply
+Ground		0G	7	GND		Connect to 0G
 			8
 			9
 			10
@@ -331,13 +331,13 @@ TG2			19			Tach output, unused
 CNA5 (Z) MR-20
 --------------
 Signal		Line #	Pin	Board	Pin	Notes
-Ground		0G	1			Connect to 0G
--12V			2			Connect to -12V (blue) on the ATX power supply
+Ground		0G	1	GND		Connect to 0G
+-12V			2	ATX	-12V	Connect to -12V (blue) on the ATX power supply
 			3
 			4
 			5
-+12V			6			Connect to +12V (yellow) on the ATX power supply
-Ground		0G	7			Connect to 0G
++12V			6	ATX	+12V	Connect to +12V (yellow) on the ATX power supply
+Ground		0G	7	GND		Connect to 0G
 			8
 			9
 			10
