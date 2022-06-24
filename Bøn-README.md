@@ -281,13 +281,15 @@ the main machine power comes on).
 Release all E-stop buttons (1 by operator console, 1 by tool magazine
 access door, 1 optional on "handy controller").
 
-Power on MAR relay ("power-on" net).
+Then, using "halcmd -kf":
 
-Power on the hydraulic pump ("hydraulic-lube-pump-on" net).
+Power on MAR relay ("sets power-on 1").
 
-Activate the tool magazine main solenoid ("magazine-run" net).
+Power on the hydraulic pump ("sets hydraulic-lube-pump-on 1").
 
-'sets servo-on-1': (Note: this name follows Mazak's servo numbering
+Activate the tool magazine main solenoid ("sets magazine-run 1").
+
+'sets servo-on-1 1': (Note: this name follows Mazak's servo numbering
 scheme which starts at 1.)  This net does a couple of things:
 
     * Enable pwmgen.00.  This does two things:
@@ -355,3 +357,5 @@ right cabinet door.
 
 https://www.practicalmachinist.com/forum/threads/mazak-probing.173948/
 https://www.forum.linuxcnc.org/40-subroutines-and-ngcgui/33034-probe-calibration-renishaw-mp12
+
+https://forum.linuxcnc.org/27-driver-boards/45636-interfacing-with-m8-renishaw-probe
