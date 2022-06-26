@@ -18,3 +18,5 @@ Documentation downloaded from the Internet
   https://www.onlinecomponents.com/en/datasheet/mrpm112-41909323/
 * MazatrolM2OperatorManual.pdf - Operating Manual for Mazak Mazatrol Cam M-2
   http://catiadoc.free.fr/img/MazatrolM2OperatorManual.pdf
+* Mitsubishi-Freqrol-SE-Standard-Specification.pdf
+  https://elektrotanya.com/mitsubishi_freqrol_fr-se_ac-spindle-controller_ver-3.00_instruction_sm.zip/download.html#dl
