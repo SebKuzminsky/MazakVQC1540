@@ -265,7 +265,7 @@ Home and positive limit switch (`*DECY`, "Y Axis Zero Return Decelerate").
 
 ### Z
 
-Z has a switch near the top of its travel (ie a positiva limit switch),
+Z has a switch near the top of its travel (ie a positive limit switch),
 but it's not `+LZ' (CND1-49).
 
 
