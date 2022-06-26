@@ -302,7 +302,7 @@ RO1			16	7i49	P4-7	DRV0+
 RO2			17	7i49	P4-6	DRV0-
 TG1			18			Tach output, unused
 TG2			19			Tach output, unused
-			20
+GND			20	7i49	P4-5
 
 CNA4 (Y) MR-20
 --------------
@@ -326,7 +326,7 @@ RO1			16	7i49	P4-15	DRV1+
 RO2			17	7i49	P4-14	DRV1-
 TG1			18			Tach output, unused
 TG2			19			Tach output, unused
-			20
+GND			20	7i49	P4-13
 
 CNA5 (Z) MR-20
 --------------
@@ -350,7 +350,7 @@ RO1			16	7i49	P3-7	DRV2+
 RO2			17	7i49	P3-6	DRV2-
 TG1			18			Tach output, unused
 TG2			19			Tach output, unused
-			20
+GND			20	7i49	P3-5
 
 
 # External relay board
