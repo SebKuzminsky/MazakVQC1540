@@ -374,9 +374,9 @@ GND                      | GND on ATX power supply
 IN1                      | 7i49 P4-18 ENA0+ (P4-17 ENA0- is wired to GND on the ATX power supply, which is tied to 0G)
 IN2                      | 7i49 P4-22 ENA1+ (P4-21 ENA1- is wired to GND on the ATX power supply, which is tied to 0G)
 IN3                      | 7i49 P3-18 ENA2+ (P3-17 ENA2- is wired to GND on the ATX power supply, which is tied to 0G)
-IN4                      | 7i84.0.1 TB2-18 (hm2_7i80.0.7i84.0.1.output-09), SVON1
-IN5                      | 7i84.0.1 TB2-20 (hm2_7i80.0.7i84.0.1.output-11), SVON2
-IN6                      | 7i84.0.1 TB2-22 (hm2_7i80.0.7i84.0.1.output-13), SVON3
+IN4                      | transistor controlled by 7i84.0.1 TB2-18 (hm2_7i80.0.7i84.0.1.output-09), SVON1
+IN5                      | transistor controlled by 7i84.0.1 TB2-20 (hm2_7i80.0.7i84.0.1.output-11), SVON2
+IN6                      | transistor controlled by 7i84.0.1 TB2-22 (hm2_7i80.0.7i84.0.1.output-13), SVON3
 IN7                      |
 IN8                      |
 VCC                      | +5V on ATX power supply
