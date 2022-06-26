@@ -410,3 +410,82 @@ Ch6 NC                   |
 Ch6 NO                   | CAM1-39 "Servo On 3"
 -------------------------+-------------------------
 Channels 7-8 are currently unused.
+
+
+Reconstructed CON1 MR-50 spindle controller connector
+-----------------------------------------------------
+
+From "Details of Terminal Unit Connections CN4":
+
+Signal				Line #	Pin	Board	Pin	Notes
+nnSpindle Zero Speed		ZS1	3			Connected to pin 4 when active
+DC 24V +Com			ZS2	4
+Torque Limit Low		TL1	5
+Com				SET2	8
+Spindle Controller Normal/FAULT	FA	11			Connected to pin 12 when active
+DC 24V +Com	   		FC	12
+OS     				OS	14
+Spindle Set			SET1	17
+Spindle Orient Arrival		ORA1	22			Connected to pin 23 when active
+DC +24V +Com			ORA2	23
+Orient Command			ORC1	25
+ORC2   	     			ORC2	26
+				SES	30
+				SE1	31
+				SE2	32
+Spindle Forward 		SRN	45
+Spindle Reverse			SRI	46
+
+From Mitsubishi-Freqrol-FR-SE-Maintenance-Manual.pdf PDF page 11
+(Encoder type with multiple point orientation unit):
+
+				LMO	1			Load signal 10V 120% torque, ground is pin 18
+				SMO	2			Speed signal 10V Max. speed, ground is pin 18
+Zero speed			ZS1	3			Connects to pin 4 when zero speed
+Zero speed			ZS2	4
+Torque low			TL1	5			Connect to OT pin 6 to set
+				OT	6			P24
+Ready				SET1	7
+Ready				SET2	8			P24
+Up to speed open collector		9			Between 9 and 10
+Up to speed open collector		10			Between 9 and 10
+Fault				FA	11			Connects to pin 12 on fault
+Fault				FC	12
+Unused?					13
+				OS	14			P24
+Override set   			ORS	15
+Override set   			OR1	16
+Low gear orient.		CTL	17			Connect to ORC2 pin 26 to set
+				OM	18
+Alarm reset			ARST1	19
+Alarm reset			ARST2	20			P24
+Limiter high			TL2	21			Connect to OT pin 6 to set
+Orient. arrive			ORA1	22			Connects to pin 23 when set
+Orient. arrive			ORA2	23
+Middle gear orient.		CIM	24			Connect to ORC2 pin 26 to set
+Orient. command			ORC1	25			Connect to ORC2 pin 26 to set
+				ORC2	26			P24
+Override set   			OR3	27
+Override set   			OR2	28
+Analogue speed ref    		RP	29
+Analogue speed ref    		SES	30
+Analogue speed ref    		SE1	31
+Analogue speed ref    		SE2	32
+Digital speed ref bit 1		R01	33			Connect to DO24 (ground?) to set
+Digital speed ref bit 2		R02	34			Connect to DO24 (ground?) to set
+Digital speed ref bit 3		R03	35			Connect to DO24 (ground?) to set
+Digital speed ref bit 4		R04	36			Connect to DO24 (ground?) to set
+Digital speed ref bit 5		R05	37			Connect to DO24 (ground?) to set
+Digital speed ref bit 6		R06	38			Connect to DO24 (ground?) to set
+Digital speed ref bit 7		R07	39			Connect to DO24 (ground?) to set
+Digital speed ref bit 8		R08	40			Connect to DO24 (ground?) to set
+Digital speed ref bit 9		R09	41			Connect to DO24 (ground?) to set
+Digital speed ref bit 10	R10	42			Connect to DO24 (ground?) to set
+Digital speed ref bit 11	R11	43			Connect to DO24 (ground?) to set
+Digital speed ref bit 12	R12	44			Connect to DO24 (ground?) to set
+Normal run			SRN	45			Connect to OS pin 14 to set
+Inverse Run			SRI	46			Connect to OS pin 14 to set
+Emergency stop			ESP1	47			AGA (ground?)
+Emergency stop			ESP2	48			P24
+				LM1	49			Load meter when connect to + size of F.S. 1mA with - connected to pin 18
+				SM1	50			Speed meter when connect to + size of F.S. 1mA with - connected to pin 18
