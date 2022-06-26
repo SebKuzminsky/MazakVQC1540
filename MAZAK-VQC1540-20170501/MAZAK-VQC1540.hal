@@ -497,9 +497,15 @@ net coolant-mist  		<=	iocontrol.0.coolant-mist
 net coolant-flood 		<=	iocontrol.0.coolant-flood
 
 # Enable / ESTOP:
-net plc-estop			=>	iocontrol.0.emc-enable-in
-net estop-reset			<=	iocontrol.0.user-request-enable
-net estop-out			<=	iocontrol.0.user-enable-out
+# For ladder based ESTOP
+#net plc-estop			=>	iocontrol.0.emc-enable-in
+# Use simple estop_latch based ESTOP handling for now
+net machine-estop-ok           =>      estop-latch.0.ok-in
+net estop-reset                =>      estop-latch.0.reset
+net estop-ok                   <=      estop-latch.0.ok-out
+net estop-reset                <=      iocontrol.0.user-request-enable
+net estop-ok                   =>      iocontrol.0.emc-enable-in
+net estop-out                  <=      iocontrol.0.user-enable-out
 
 # See atc.hal for tool-change related IOCONTROL signals
 
