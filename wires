@@ -418,7 +418,7 @@ Reconstructed CON1 MR-50 spindle controller connector
 From "Details of Terminal Unit Connections CN4":
 
 Signal				Line #	Pin	Board	Pin	Notes
-nnSpindle Zero Speed		ZS1	3			Connected to pin 4 when active
+Spindle Zero Speed		ZS1	3			Connected to pin 4 when active
 DC 24V +Com			ZS2	4
 Torque Limit Low		TL1	5
 Com				SET2	8
