@@ -201,20 +201,20 @@ net tool-measuring-arm-extend  => hm2_7i80.0.7i84.0.0.output-15
 #net servo-x-off                => hm2_7i80.0.7i84.0.1.output-00
 #net servo-y-off                => hm2_7i80.0.7i84.0.1.output-01
 #net servo-z-off                => hm2_7i80.0.7i84.0.1.output-02
-net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-03 # this pin activates ABRK, which releases the Z brake
+net estop-ok                   => hm2_7i80.0.7i84.0.1.output-03 # this pin activates ABRK, which releases the Z brake
 net work-light                 => hm2_7i80.0.7i84.0.1.output-04
 net hydraulic-lube-pump-on     => hm2_7i80.0.7i84.0.1.output-05
 net flood-coolant-motor-on     => hm2_7i80.0.7i84.0.1.output-06
 net power-on                   => hm2_7i80.0.7i84.0.1.output-07
 #net ???                        => hm2_7i80.0.7i84.0.1.output-08
-net servo-on-1                 => hm2_7i80.0.7i84.0.1.output-09
-net servo-on-1                 => hm2_7i80.0.pwmgen.00.enable
+net estop-ok                   => hm2_7i80.0.7i84.0.1.output-09
+net estop-ok                   => hm2_7i80.0.pwmgen.00.enable
 #net ???                        => hm2_7i80.0.7i84.0.1.output-10
-net servo-on-2                 => hm2_7i80.0.7i84.0.1.output-11
-net servo-on-2                 => hm2_7i80.0.pwmgen.01.enable
+net estop-ok                   => hm2_7i80.0.7i84.0.1.output-11
+net estop-ok                   => hm2_7i80.0.pwmgen.01.enable
 #net ???                        => hm2_7i80.0.7i84.0.1.output-12
-net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-13 # this pin activates the Z servo
-net servo-on-3                 => hm2_7i80.0.pwmgen.02.enable
+net estop-ok                   => hm2_7i80.0.7i84.0.1.output-13 # this pin activates the Z servo
+net estop-ok                   => hm2_7i80.0.pwmgen.02.enable
 
 net overtravel-release         => hm2_7i80.0.7i84.0.1.output-14
 #net ???                        => hm2_7i80.0.7i84.0.1.output-15
@@ -229,7 +229,7 @@ setp hm2_7i80.0.resolver.excitation-khz [AXES]RESOLVER_EXC_FREQ
 # AXIS-X
 #-------------------
 # Servo Enable Command
-#net servo-x-enable		<=	joint.0.amp-enable-out
+net servo-x-enable		<=	joint.0.amp-enable-out
 
 # Set PID-loop Parameters (from .ini file variables):
 setp   pid.x.Pgain     [JOINT_0]P
@@ -246,11 +246,11 @@ setp   pid.x.maxerror  [JOINT_0]MAX_ERROR
 
 # Connect Virtual Pins to X-axis PID Loop:
 net x-index-enable	=>	pid.x.index-enable
-#net servo-x-enable     	=>	pid.x.enable
+net servo-x-enable     	=>	pid.x.enable
 net x-pos-cmd        	=>	pid.x.command
 net x-vel-cmd        	=>	pid.x.command-deriv
 net x-pos-fb         	=>	pid.x.feedback
-#net x-output         	<=	pid.x.output
+net x-output         	<=	pid.x.output
 
 
 # AXIS SERVO DRIVE / AMPLIFIER FAULT (from PLC)
