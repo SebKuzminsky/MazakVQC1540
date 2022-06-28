@@ -193,7 +193,9 @@ X: Negative control voltage moves table left (ie moves tool in
 pwmgen.00.value moves the tool in the +X direction (ie moves the table
 in the -X direction).  It is not an alternative to switch the ER and
 ERR pins on the Mesa card, as ERR is also ground 0G, this might cause
-unwanted currents to flow.
+unwanted currents to flow.  The work table drifts slowly to the right
+when the command voltage is zero.  Doing 'sets x-output 0.00048'
+almost stops it.
 
 Y: Negative control voltage moves spindle away from operator.  We set
 pwmgen.01.scale to -1 so that a positive pwmgen.01.value moves the
@@ -257,17 +259,20 @@ not directly to the tool magazine.
 
 ### X
 
+X has a negative limit switch (`-LX`, "-X Overtravel") and a combined
+Home and positive limit switch (`*DECX`, "X-Axis Zero Return Decel").
+
 ### Y
 
 Y has a negative limit switch (`-LY`, "-Y Over Travel"), and a combined
 Home and positive limit switch (`*DECY`, "Y Axis Zero Return Decelerate").
 
-
 ### Z
 
-Z has a switch near the top of its travel (ie a positive limit switch),
-but it's not `+LZ' (CND1-49).
-
+Z has a negative limit switch (`-LZ`, "-Z Over Travel") at the bottom
+(very close to the tablle), and a combined Home and positive limit
+switch (`*DECZ`, "Z Axis Zero Return Decelerate") at the top.  The +LZ
+(CND1-49) switch is not installed
 
 # To bring machine up
 
