@@ -216,6 +216,15 @@ net servo-on-2                 => hm2_7i80.0.pwmgen.01.enable
 net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-13 # this pin activates the Z servo
 net servo-on-3                 => hm2_7i80.0.pwmgen.02.enable
 
+# Enable axis servos when (|) "Machine power" button is pressed
+net servo-on-1                 <= motion.motion-enabled
+# Delay enabling Y and Z until X is working
+#net servo-on-2                 <= motion.motion-enabled
+#net servo-on-3                 <= motion.motion-enabled
+
+# Enable hydraulic and way lubrication pump when servos are enabled
+net hydraulic-lube-pump-on      <= motion.motion-enabled
+
 net overtravel-release         => hm2_7i80.0.7i84.0.1.output-14
 #net ???                        => hm2_7i80.0.7i84.0.1.output-15
 
@@ -229,7 +238,7 @@ setp hm2_7i80.0.resolver.excitation-khz [AXES]RESOLVER_EXC_FREQ
 # AXIS-X
 #-------------------
 # Servo Enable Command
-#net servo-x-enable		<=	joint.0.amp-enable-out
+net servo-x-enable		<=	joint.0.amp-enable-out
 
 # Set PID-loop Parameters (from .ini file variables):
 setp   pid.x.Pgain     [JOINT_0]P
@@ -246,11 +255,11 @@ setp   pid.x.maxerror  [JOINT_0]MAX_ERROR
 
 # Connect Virtual Pins to X-axis PID Loop:
 net x-index-enable	=>	pid.x.index-enable
-#net servo-x-enable     	=>	pid.x.enable
+net servo-x-enable     	=>	pid.x.enable
 net x-pos-cmd        	=>	pid.x.command
 net x-vel-cmd        	=>	pid.x.command-deriv
 net x-pos-fb         	=>	pid.x.feedback
-#net x-output         	<=	pid.x.output
+net x-output         	<=	pid.x.output
 
 
 # AXIS SERVO DRIVE / AMPLIFIER FAULT (from PLC)
