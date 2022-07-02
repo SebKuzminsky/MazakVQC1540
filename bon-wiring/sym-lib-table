@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name bon-mazak1540)(type Legacy)(uri ${KIPRJMOD}/bon-mazak1540.lib)(options "")(descr ""))
+)

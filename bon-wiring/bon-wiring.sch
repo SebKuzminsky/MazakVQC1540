@@ -1,0 +1,356 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L power:GND #PWR?
+U 1 1 62B2B938
+P 7350 6000
+F 0 "#PWR?" H 7350 5750 50  0001 C CNN
+F 1 "GND" H 7355 5827 50  0000 C CNN
+F 2 "" H 7350 6000 50  0001 C CNN
+F 3 "" H 7350 6000 50  0001 C CNN
+	1    7350 6000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 62B2ADC7
+P 7350 1700
+F 0 "#PWR?" H 7350 1550 50  0001 C CNN
+F 1 "+5V" H 7365 1873 50  0000 C CNN
+F 2 "" H 7350 1700 50  0001 C CNN
+F 3 "" H 7350 1700 50  0001 C CNN
+	1    7350 1700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8450 2650 8450 3000
+Wire Wire Line
+	8450 5750 7350 5750
+Connection ~ 7350 5750
+Wire Wire Line
+	7350 5750 7350 6000
+Connection ~ 8450 3000
+Wire Wire Line
+	8450 3000 8450 3350
+Connection ~ 8450 3350
+Wire Wire Line
+	8450 3350 8450 3700
+Connection ~ 8450 3700
+Wire Wire Line
+	8450 3700 8450 4050
+Connection ~ 8450 4050
+Wire Wire Line
+	8450 4050 8450 4400
+Connection ~ 8450 4400
+Wire Wire Line
+	8450 4400 8450 5750
+$Comp
+L Connector_Generic:Conn_02x25_Odd_Even J
+U 1 1 62B31FB2
+P 9800 3800
+F 0 "J" H 9850 5217 50  0001 C CNN
+F 1 "CAM1" H 9850 5125 50  0000 C CNN
+F 2 "" H 9800 3800 50  0001 C CNN
+F 3 "~" H 9800 3800 50  0001 C CNN
+	1    9800 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8650 2750 8650 2200
+Wire Wire Line
+	8650 2200 10300 2200
+Wire Wire Line
+	10300 2200 10300 2800
+Wire Wire Line
+	10300 2800 10100 2800
+Wire Wire Line
+	8750 2100 10400 2100
+Wire Wire Line
+	10400 2100 10400 3300
+Wire Wire Line
+	10400 3300 10100 3300
+Wire Wire Line
+	8850 3450 8850 2000
+Wire Wire Line
+	8850 2000 10500 2000
+Wire Wire Line
+	10500 2000 10500 4400
+Wire Wire Line
+	10500 4400 10100 4400
+Wire Wire Line
+	9100 3800 9100 2900
+Wire Wire Line
+	9100 2900 9600 2900
+Wire Wire Line
+	9200 4150 9200 3400
+Text Label 1300 5800 0    50   ~ 0
+SVON1
+Text Label 1300 5400 0    50   ~ 0
+SVON3
+Wire Wire Line
+	1200 5400 1600 5400
+$Comp
+L Transistor_BJT:2N3904 Q2
+U 1 1 62B9374B
+P 2400 5050
+F 0 "Q2" H 2590 5096 50  0000 L CNN
+F 1 "2N5551" H 2590 5005 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 2600 4975 50  0001 L CIN
+F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 2400 5050 50  0001 L CNN
+	1    2400 5050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_BJT:2N3904 Q1
+U 1 1 62B94209
+P 2400 4300
+F 0 "Q1" H 2590 4346 50  0000 L CNN
+F 1 "2N5551" H 2590 4255 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 2600 4225 50  0001 L CIN
+F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 2400 4300 50  0001 L CNN
+	1    2400 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 62B9DD55
+P 2050 4300
+F 0 "R1" V 1843 4300 50  0000 C CNN
+F 1 "22k" V 1934 4300 50  0000 C CNN
+F 2 "" V 1980 4300 50  0001 C CNN
+F 3 "~" H 2050 4300 50  0001 C CNN
+	1    2050 4300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 62B9E594
+P 2050 5050
+F 0 "R2" V 1843 5050 50  0000 C CNN
+F 1 "22k" V 1934 5050 50  0000 C CNN
+F 2 "" V 1980 5050 50  0001 C CNN
+F 3 "~" H 2050 5050 50  0001 C CNN
+	1    2050 5050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1750 5050 1900 5050
+Wire Wire Line
+	1600 4300 1900 4300
+$Comp
+L power:GND #PWR?
+U 1 1 62BB9C36
+P 2500 4500
+F 0 "#PWR?" H 2500 4250 50  0001 C CNN
+F 1 "GND" H 2505 4327 50  0000 C CNN
+F 2 "" H 2500 4500 50  0001 C CNN
+F 3 "" H 2500 4500 50  0001 C CNN
+	1    2500 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 62BBA94D
+P 2500 5250
+F 0 "#PWR?" H 2500 5000 50  0001 C CNN
+F 1 "GND" H 2505 5077 50  0000 C CNN
+F 2 "" H 2500 5250 50  0001 C CNN
+F 3 "" H 2500 5250 50  0001 C CNN
+	1    2500 5250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8750 3100 8750 2100
+Wire Wire Line
+	7950 4150 9200 4150
+Wire Wire Line
+	7950 3800 9100 3800
+Wire Wire Line
+	7950 3450 8850 3450
+Wire Wire Line
+	7950 3100 8750 3100
+Wire Wire Line
+	7950 2750 8650 2750
+Wire Wire Line
+	7950 4400 8450 4400
+Wire Wire Line
+	7950 4050 8450 4050
+Wire Wire Line
+	7950 3700 8450 3700
+Wire Wire Line
+	7950 3350 8450 3350
+Wire Wire Line
+	7950 3000 8450 3000
+Wire Wire Line
+	7950 2650 8450 2650
+Wire Wire Line
+	3050 3800 6750 3800
+Wire Wire Line
+	7350 2200 7350 1700
+Wire Wire Line
+	7350 5450 7350 5750
+$Comp
+L bon-mazak1540:8-channel-relay-board A?
+U 1 1 62B44A37
+P 7350 3850
+F 0 "A?" H 7350 5681 50  0001 C CNN
+F 1 "8-channel-relay-board" H 7350 5589 50  0000 C CNN
+F 2 "" H 7350 3850 50  0001 C CNN
+F 3 "" H 7350 3850 50  0001 C CNN
+	1    7350 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7950 4500 9600 4500
+Text Label 9300 2900 0    50   ~ 0
+SVON1
+Text Label 9300 3400 0    50   ~ 0
+SVON2
+Text Label 9250 4500 0    50   ~ 0
+SVON3
+Wire Wire Line
+	9200 3400 9600 3400
+$Comp
+L bon-mazak1540:Mesa-7i49 TB?
+U 1 1 62CB181C
+P 3350 750
+F 0 "TB?" H 3350 750 50  0001 C CNN
+F 1 "Mesa-7i49" H 3333 907 50  0000 C CNN
+F 2 "" H 3350 750 50  0001 C CNN
+F 3 "" H 3350 750 50  0001 C CNN
+	1    3350 750 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 5400 1600 4300
+Wire Wire Line
+	1200 5600 1750 5600
+Text Label 1300 5600 0    50   ~ 0
+SVON2
+$Comp
+L bon-mazak1540:Mesa-7i84 J?
+U 1 1 62B4C75A
+P 2250 5100
+F 0 "J?" H 2250 5150 50  0001 C CNN
+F 1 "Mesa-7i84 board 1" H 2150 2550 50  0000 C CNN
+F 2 "" H 2250 5150 50  0001 C CNN
+F 3 "" H 2250 5150 50  0001 C CNN
+	1    2250 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 62BA0B72
+P 2050 5800
+F 0 "R3" V 1843 5800 50  0000 C CNN
+F 1 "22k" V 1934 5800 50  0000 C CNN
+F 2 "" V 1980 5800 50  0001 C CNN
+F 3 "~" H 2050 5800 50  0001 C CNN
+	1    2050 5800
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 62BBB162
+P 2500 6000
+F 0 "#PWR?" H 2500 5750 50  0001 C CNN
+F 1 "GND" H 2505 5827 50  0000 C CNN
+F 2 "" H 2500 6000 50  0001 C CNN
+F 3 "" H 2500 6000 50  0001 C CNN
+	1    2500 6000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_BJT:2N3904 Q3
+U 1 1 62B930F3
+P 2400 5800
+F 0 "Q3" H 2590 5846 50  0000 L CNN
+F 1 "2N5551" H 2590 5755 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 2600 5725 50  0001 L CIN
+F 3 "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF" H 2400 5800 50  0001 L CNN
+	1    2400 5800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1200 5800 1900 5800
+Wire Wire Line
+	2500 5600 3050 5600
+Wire Wire Line
+	1750 5050 1750 5600
+Wire Wire Line
+	3050 5600 3050 3800
+Wire Wire Line
+	2950 3900 6750 3900
+Wire Wire Line
+	2500 4850 2950 4850
+Wire Wire Line
+	2950 4850 2950 3900
+Wire Wire Line
+	2500 4000 6750 4000
+Wire Wire Line
+	2500 4100 2500 4000
+$Comp
+L power:GND #PWR?
+U 1 1 62D6CF64
+P 4500 3450
+F 0 "#PWR?" H 4500 3200 50  0001 C CNN
+F 1 "GND" H 4505 3277 50  0000 C CNN
+F 2 "" H 4500 3450 50  0001 C CNN
+F 3 "" H 4500 3450 50  0001 C CNN
+	1    4500 3450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6050 1500 6200 1500
+Wire Wire Line
+	6200 1500 6200 1100
+Wire Wire Line
+	6200 1100 6050 1100
+Wire Wire Line
+	6200 1500 6200 3250
+Wire Wire Line
+	6200 3250 4500 3250
+Wire Wire Line
+	4500 3250 4500 3450
+Connection ~ 6200 1500
+Wire Wire Line
+	3700 1500 3900 1500
+Wire Wire Line
+	3900 1500 3900 3250
+Wire Wire Line
+	3900 3250 4500 3250
+Connection ~ 4500 3250
+Wire Wire Line
+	6050 1400 6300 1400
+Wire Wire Line
+	6300 1400 6300 3500
+Wire Wire Line
+	6300 3500 6750 3500
+Wire Wire Line
+	6750 3600 6400 3600
+Wire Wire Line
+	6400 3600 6400 1000
+Wire Wire Line
+	6400 1000 6050 1000
+Wire Wire Line
+	3700 1400 4850 1400
+Wire Wire Line
+	4850 1400 4850 3700
+Wire Wire Line
+	4850 3700 6750 3700
+Text Notes 7100 6850 0    197  ~ 0
+External Relay Board
+$EndSCHEMATC
