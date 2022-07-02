@@ -207,20 +207,17 @@ net hydraulic-lube-pump-on     => hm2_7i80.0.7i84.0.1.output-05
 net flood-coolant-motor-on     => hm2_7i80.0.7i84.0.1.output-06
 net power-on                   => hm2_7i80.0.7i84.0.1.output-07
 #net ???                        => hm2_7i80.0.7i84.0.1.output-08
-net servo-on-1                 => hm2_7i80.0.7i84.0.1.output-09
-net servo-on-1                 => hm2_7i80.0.pwmgen.00.enable
+net servo-on                   => hm2_7i80.0.7i84.0.1.output-09
+net servo-on                   => hm2_7i80.0.pwmgen.00.enable
 #net ???                        => hm2_7i80.0.7i84.0.1.output-10
-net servo-on-2                 => hm2_7i80.0.7i84.0.1.output-11
-net servo-on-2                 => hm2_7i80.0.pwmgen.01.enable
+net servo-on                   => hm2_7i80.0.7i84.0.1.output-11
+net servo-on                   => hm2_7i80.0.pwmgen.01.enable
 #net ???                        => hm2_7i80.0.7i84.0.1.output-12
 net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-13 # this pin activates the Z servo
 net servo-on-3                 => hm2_7i80.0.pwmgen.02.enable
 
 # Enable axis servos when (|) "Machine power" button is pressed
-net servo-on-1                 <= motion.motion-enabled
-# Delay enabling Y and Z until X is working
-#net servo-on-2                 <= motion.motion-enabled
-#net servo-on-3                 <= motion.motion-enabled
+net servo-on                   <= motion.motion-enabled
 
 # Enable hydraulic and way lubrication pump when servos are enabled
 # FIXME figure out working way to do this
@@ -317,7 +314,7 @@ net x-homing			<=	joint.0.homing
 # AXIS-Y
 #-------------------
 # Servo Enable Command
-#net servo-y-enable		<=	joint.1.amp-enable-out
+net servo-y-enable		<=	joint.1.amp-enable-out
 
 # Set PID-loop Parameters (from .ini file variables):
 setp   pid.y.Pgain     [JOINT_1]P
@@ -338,7 +335,7 @@ net servo-y-enable     	=>	pid.y.enable
 net y-pos-cmd        	<=	pid.y.command
 net y-vel-cmd        	<=	pid.y.command-deriv
 net y-pos-fb         	=>	pid.y.feedback
-#net y-output         	<=	pid.y.output
+net y-output         	<=	pid.y.output
 
 
 # AXIS SERVO DRIVE / AMPLIFIER FAULT (from PLC)
