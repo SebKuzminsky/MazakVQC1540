@@ -45,6 +45,9 @@ loadrt pid names=pid.x,pid.y,pid.z,pid.s
 
 loadrt estop_latch
 
+# logic.0 used to release Z brake when both servo-on-3 and
+# motion.motion-enabled is true
+loadrt logic count=1  personality=102
 
 #-------------------
 # LOAD MODULES
@@ -61,6 +64,8 @@ setp    hm2_7i80.0.watchdog.timeout_ns 5000000
 addf hm2_7i80.0.read          servo-thread
 
 addf estop-latch.0            servo-thread
+
+addf logic.0            servo-thread
 
 # - Motion command handler:
 addf motion-command-handler   servo-thread
@@ -201,7 +206,7 @@ net tool-measuring-arm-extend  => hm2_7i80.0.7i84.0.0.output-15
 #net servo-x-off                => hm2_7i80.0.7i84.0.1.output-00
 #net servo-y-off                => hm2_7i80.0.7i84.0.1.output-01
 #net servo-z-off                => hm2_7i80.0.7i84.0.1.output-02
-net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-03 # this pin activates ABRK, which releases the Z brake
+net z-brake-release            => hm2_7i80.0.7i84.0.1.output-03 # this pin activates ABRK, which releases the Z brake
 net work-light                 => hm2_7i80.0.7i84.0.1.output-04
 net hydraulic-lube-pump-on     => hm2_7i80.0.7i84.0.1.output-05
 net flood-coolant-motor-on     => hm2_7i80.0.7i84.0.1.output-06
@@ -218,6 +223,12 @@ net servo-on-3                 => hm2_7i80.0.pwmgen.02.enable
 
 # Enable axis servos when (|) "Machine power" button is pressed
 net servo-on                   <= motion.motion-enabled
+
+# Only release Z axis brake when Z is both ready and on
+# FIXME Note, net servo-on is standin for motion.motion-enabled
+net servo-on                   => logic.0.in-00
+net servo-on-3                 => logic.0.in-01
+net z-break-release            <= logic.0.and
 
 # Enable hydraulic and way lubrication pump when servos are enabled
 # FIXME figure out working way to do this
