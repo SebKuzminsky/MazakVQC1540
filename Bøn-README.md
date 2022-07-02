@@ -172,8 +172,8 @@ Each servo amp presents these pins on CAM1:
     ER             | Analog velocity control voltage, -10 to +10
     ERR            | Ground reference for ER
     ---------------+----------------------------------------------------------
-    SC             | FIXME
-    ALM            | 0V when amp is happy, 16.5V (?!) when amp is alarmed.  Maybe controller should pull it up weakly, then read it as an input?  FIXME
+    SC             | FIXME Is this input or output?  What is its function?  It is in a twisted pair with ALM.  Rounding it when ALM is set did nothing.
+    ALM            | 0V when amp is happy, 16.5V (!) when amp is alarmed.  Need pullup resistor.  47K resistor worked.
     ---------------+----------------------------------------------------------
     READY          | Controller pulls this to ground to enable servo power.
     SVON           | Controller pulls this to ground to enable servo control.
