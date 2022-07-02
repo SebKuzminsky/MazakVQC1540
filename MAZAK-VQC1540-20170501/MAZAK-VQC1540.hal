@@ -223,7 +223,8 @@ net servo-on-1                 <= motion.motion-enabled
 #net servo-on-3                 <= motion.motion-enabled
 
 # Enable hydraulic and way lubrication pump when servos are enabled
-net hydraulic-lube-pump-on      <= motion.motion-enabled
+# FIXME figure out working way to do this
+#net hydraulic-lube-pump-on      <= motion.motion-enabled
 
 net overtravel-release         => hm2_7i80.0.7i84.0.1.output-14
 #net ???                        => hm2_7i80.0.7i84.0.1.output-15
