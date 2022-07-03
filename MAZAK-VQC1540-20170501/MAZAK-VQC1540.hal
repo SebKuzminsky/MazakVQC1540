@@ -47,7 +47,8 @@ loadrt estop_latch
 
 # logic.0 used to release Z brake when both servo-on-3 and
 # motion.motion-enabled is true
-loadrt logic count=1  personality=102
+# logic.1 used to enable the lube and hydraulic system when needed
+loadrt logic count=2 personality=0x102,0x103
 
 #-------------------
 # LOAD MODULES
@@ -66,6 +67,7 @@ addf hm2_7i80.0.read          servo-thread
 addf estop-latch.0            servo-thread
 
 addf logic.0            servo-thread
+addf logic.1            servo-thread
 
 # - Motion command handler:
 addf motion-command-handler   servo-thread
@@ -231,8 +233,11 @@ net servo-on-3                 => logic.0.in-01
 net z-break-release            <= logic.0.and
 
 # Enable hydraulic and way lubrication pump when servos are enabled
-# FIXME figure out working way to do this
-#net hydraulic-lube-pump-on      <= motion.motion-enabled
+net lube-wanted                <= iocontrol.0.lube
+net lube-wanted                => logic.1.in-00
+net servo-on                   => logic.1.in-01
+net servo-on-3                 => logic.1.in-02
+net hydraulic-lube-pump-on     <= logic.1.or
 
 net overtravel-release         => hm2_7i80.0.7i84.0.1.output-14
 #net ???                        => hm2_7i80.0.7i84.0.1.output-15
