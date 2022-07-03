@@ -45,10 +45,10 @@ loadrt pid names=pid.x,pid.y,pid.z,pid.s
 
 loadrt estop_latch
 
-# logic.0 used to release Z brake when both servo-on-3 and
+# logic.0 used to release Z brake when both Z servo PWN is active and
 # motion.motion-enabled is true
 # logic.1 used to enable the lube and hydraulic system when needed
-loadrt logic count=2 personality=0x102,0x203
+loadrt logic count=2 personality=0x101,0x202
 
 #-------------------
 # LOAD MODULES
@@ -221,8 +221,8 @@ net servo-on                   => hm2_7i80.0.7i84.0.1.output-11 # this pin activ
 
 net servo-on                   => hm2_7i80.0.pwmgen.01.enable
 #net ???                        => hm2_7i80.0.7i84.0.1.output-12
-net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-13 # this pin activates the Z servo
-net servo-on-3                 => hm2_7i80.0.pwmgen.02.enable
+net servo-on                 => hm2_7i80.0.7i84.0.1.output-13 # this pin activates the Z servo
+net servo-on                 => hm2_7i80.0.pwmgen.02.enable
 
 # Enable axis servos when (|) "Machine power" button is pressed
 net servo-on                   <= motion.motion-enabled
@@ -230,14 +230,12 @@ net servo-on                   <= motion.motion-enabled
 # Only release Z axis brake when Z is both ready and on
 # FIXME Note, net servo-on is standin for motion.motion-enabled
 net servo-on                   => logic.0.in-00
-net servo-on-3                 => logic.0.in-01
 net z-brake-release            <= logic.0.and
 
 # Enable hydraulic and way lubrication pump when servos are enabled
 net lube-wanted                <= iocontrol.0.lube
 net lube-wanted                => logic.1.in-00
 net servo-on                   => logic.1.in-01
-net servo-on-3                 => logic.1.in-02
 net hydraulic-lube-pump-on     <= logic.1.or
 
 net overtravel-release         => hm2_7i80.0.7i84.0.1.output-14
@@ -347,7 +345,7 @@ setp   pid.y.error-previous-target true
 setp   pid.y.maxerror  [JOINT_1]MAX_ERROR
 
 # Connect Virtual Pins between Modules:
-net y-index-enable		<=>	pid.y.index-enable
+net y-index-enable	<=>	pid.y.index-enable
 net servo-y-enable     	=>	pid.y.enable
 net y-pos-cmd        	<=	pid.y.command
 net y-vel-cmd        	<=	pid.y.command-deriv
@@ -361,7 +359,7 @@ net plc-servo-y-drive-alarm	=>	joint.1.amp-fault-in
 
 # PWM GENERATOR SETUP
 # Set PWMGen type for 7i49 (2 = up/down) - y-axis
-setp 	hm2_7i80.0.pwmgen.01.output-type 2
+setp hm2_7i80.0.pwmgen.01.output-type	 		2
 
 # Set y-axis PWMGen scale - from .ini file
 setp hm2_7i80.0.pwmgen.01.scale  			[JOINT_1]OUTPUT_SCALE
@@ -407,7 +405,7 @@ net y-homing			<=	joint.1.homing
 # AXIS-Z
 #-------------------
 # Servo Enable Command
-#net servo-z-enable		<=	joint.2.amp-enable-out
+net servo-z-enable		<=	joint.2.amp-enable-out
 
 # Set PID-loop Parameters (from .ini file variables):
 setp   pid.z.Pgain     [JOINT_2]P
@@ -423,12 +421,12 @@ setp   pid.z.error-previous-target true
 setp   pid.z.maxerror  [JOINT_2]MAX_ERROR
 
 # Connect Virtual Pins between Modules:
-net z-index-enable		<=>	pid.z.index-enable
-net servo-z-enable	 =>	pid.z.enable
-net z-pos-cmd   	     =>	pid.z.command
-net z-vel-cmd       	 =>	pid.z.command-deriv
-net z-pos-fb        	 =>	pid.z.feedback
-#net z-output        	 =>	pid.z.output
+net z-index-enable	<=>	pid.z.index-enable
+net servo-z-enable	=>	pid.z.enable
+net z-pos-cmd   	=>	pid.z.command
+net z-vel-cmd       	=>	pid.z.command-deriv
+net z-pos-fb        	=>	pid.z.feedback
+net z-output        	<=	pid.z.output
 
 
 # AXIS SERVO DRIVE / AMPLIFIER FAULT (from PLC)
@@ -437,7 +435,7 @@ net plc-servo-z-drive-alarm	=>	joint.2.amp-fault-in
 
 # PWM GENERATOR SETUP
 # Set PWMGen type for 7i49 (2 = up/down) - z-axis
-setp 	hm2_7i80.0.pwmgen.02.output-type 2
+setp hm2_7i80.0.pwmgen.02.output-type			2
 
 # Set z-axis PWMGen scale - from .ini file
 setp hm2_7i80.0.pwmgen.02.scale  			[JOINT_2]OUTPUT_SCALE
