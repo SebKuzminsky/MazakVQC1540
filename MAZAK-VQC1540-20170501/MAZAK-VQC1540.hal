@@ -231,7 +231,7 @@ net servo-on                   <= motion.motion-enabled
 # FIXME Note, net servo-on is standin for motion.motion-enabled
 net servo-on                   => logic.0.in-00
 net servo-on-3                 => logic.0.in-01
-net z-break-release            <= logic.0.and
+net z-brake-release            <= logic.0.and
 
 # Enable hydraulic and way lubrication pump when servos are enabled
 net lube-wanted                <= iocontrol.0.lube
