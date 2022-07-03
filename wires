@@ -24,7 +24,7 @@ Magazine Pos 8			224	TB41-224	20	7i84.0.0	TB2-5	input-20	Bit 3 of the Tool Magaz
 Magazine Pos 16			225			21	7i84.0.0	TB2-9	input-24	Bit 4 of the Tool Magazine Address
 							22
 Tool Unclamp Key Switch		TUCSS	TB4-149		23
-Tool Clamp			209	TB51-209	24
+Tool Clamp			209	TB51-209	24	7i84.0.0	TB2-16	input-31
 Ext Reset			EXRST	TB6-EXRST	25
 Pallet Cycle No. 2 PB		PCY2PB	TB7-852		26
 Spindle Orient Arrival		ORA1	CON1-22		27	7i84.0.0	TB3-3	input-02
@@ -39,7 +39,7 @@ Pallet Door Open RS		PDORS	TB7-297		35
 Pallet Load PRS			PLPRS	TB7-283		36
 Machine Door Interlock		151	TB1-151		37
 Input Spare 3			ISP3			38
-Tool Unclamp			208	TB51-208	39
+Tool Unclamp			208	TB51-208	39	7i84.0.0	TB2-15	input-30
 Magazine Pos 1			221	TB41-221	40	7i84.0.0	TB2-2	input-17	Bit 0 of the Tool Magazine Address
 Tool Measure Arm Extended	342	TB41-342	41	7i84.0.0	TB2-12	input-27	Reads +24V when the tool length measurement arm is fully extended.
 Pallet Unload PRS		PULPRS	TB7-299		42
@@ -157,7 +157,7 @@ Orient Command					ORCM1	CN301A-30	45
 Output Spare 11					OSP11	CN301A-18	46
 Pallet Unclamp					PUC	TB6-722B	47
 Hydraulic / Head Lube Pump Motor Starter	835	CN13-16		48	7i84.0.0	TB3-22	output-05	Drive to +24 to turn on the Hydraulic Pump and the Head Lube Pump.
-Tool Unclamp					710	CN13-3		49
+Tool Unclamp					710	CN13-3		49	7i84.0.0	TB2-23	output-14
 Magazine Cover Close				727	CN13-14		50	7i84.0.0	TB2-21	output-12	Drive to +24 to close the door between the tool magazine and the workspace.
 
 CND4 MR-50
