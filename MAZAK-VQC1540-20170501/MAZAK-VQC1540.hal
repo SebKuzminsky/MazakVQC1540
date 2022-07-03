@@ -48,7 +48,8 @@ loadrt estop_latch
 # logic.0 used to release Z brake when both Z servo PWN is active and
 # motion.motion-enabled is true
 # logic.1 used to enable the lube and hydraulic system when needed
-loadrt logic count=2 personality=0x101,0x202
+# logic.2 used to turn on power-on when starting linuxcnc
+loadrt logic count=3 personality=0x101,0x202,0x202
 
 #-------------------
 # LOAD MODULES
@@ -68,6 +69,7 @@ addf estop-latch.0            servo-thread
 
 addf logic.0            servo-thread
 addf logic.1            servo-thread
+addf logic.2            servo-thread
 
 # - Motion command handler:
 addf motion-command-handler   servo-thread
@@ -537,3 +539,8 @@ net feed-hold			=> motion.feed-hold
 #-------------------
 # MISC CONNECTIONS
 #-------------------
+
+# Turn power-on true when linuxcnc starts
+net power-on                => logic.2.in-00
+net machine-estop-ok        => logic.2.in-01
+net power-on                <= logic.2.or
