@@ -214,10 +214,11 @@ net hydraulic-lube-pump-on     => hm2_7i80.0.7i84.0.1.output-05
 net flood-coolant-motor-on     => hm2_7i80.0.7i84.0.1.output-06
 net power-on                   => hm2_7i80.0.7i84.0.1.output-07
 #net ???                        => hm2_7i80.0.7i84.0.1.output-08
-net servo-on                   => hm2_7i80.0.7i84.0.1.output-09
+net servo-on                   => hm2_7i80.0.7i84.0.1.output-09 # this pin activates the X servo as well as ready all three servos
 net servo-on                   => hm2_7i80.0.pwmgen.00.enable
 #net ???                        => hm2_7i80.0.7i84.0.1.output-10
-net servo-on                   => hm2_7i80.0.7i84.0.1.output-11
+net servo-on                   => hm2_7i80.0.7i84.0.1.output-11 # this pin activates the Y servo
+
 net servo-on                   => hm2_7i80.0.pwmgen.01.enable
 #net ???                        => hm2_7i80.0.7i84.0.1.output-12
 net servo-on-3                 => hm2_7i80.0.7i84.0.1.output-13 # this pin activates the Z servo
