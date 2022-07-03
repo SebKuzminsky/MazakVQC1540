@@ -241,6 +241,9 @@ net servo-on                   => logic.1.in-01
 net hydraulic-lube-pump-on     <= logic.1.or
 
 net overtravel-release         => hm2_7i80.0.7i84.0.1.output-14
+# Axis GUI only have one setting for joint 0-2, arbitrary picking 0
+net overtravel-release         <= halui.joint.0.override-limits
+
 #net ???                        => hm2_7i80.0.7i84.0.1.output-15
 
 #=============================
