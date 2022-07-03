@@ -48,7 +48,7 @@ loadrt estop_latch
 # logic.0 used to release Z brake when both servo-on-3 and
 # motion.motion-enabled is true
 # logic.1 used to enable the lube and hydraulic system when needed
-loadrt logic count=2 personality=0x102,0x103
+loadrt logic count=2 personality=0x102,0x203
 
 #-------------------
 # LOAD MODULES
