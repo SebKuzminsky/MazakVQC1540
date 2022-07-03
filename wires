@@ -216,8 +216,8 @@ Main Transformer Over Heat	146	TB4-146		50
 
 CND5 MR-20
 ----------
-Signal				Line #			Pin	Control Board	Ctrl Pin
-Spindle Analog Control		SE1			4	7i49		TB3-24 AOUT3
+Signal				Line #			Pin	Control Board	Ctrl Pin	HAL Pin
+Spindle Analog Control		SE1			4	7i49		TB3-24 AOUT3			-10 to +10, vs GND3
 Spindle Analog Control Ground	SE2			5	7i49		TB3-23 GND3
 
 CAM1 MR-50
@@ -233,7 +233,7 @@ Servo On 1			SVON1			7	8-relay-board	Ch4 NO				*1 Pulled up to 24V by the servo 
 Servo Drive 1 Alarm		ALM1			8	7i84.0.1	TB2-14		input-29	No alarm: 16.5V from amp., need pull up resistor.  Yes alarm: 0V from amp.
 				RG			9							Connect to 0G ground
 							10
-Analog Servo CMD 2		ER2			11	7i49		P4-24 AOUT1			-10 to +10, vs GND0
+Analog Servo CMD 2		ER2			11	7i49		P4-24 AOUT1			-10 to +10, vs GND1
 Analog Servo CMD 2 Ground	ERR2			12	7i49		P4-23 GND1			
 							13
 							14
@@ -255,7 +255,7 @@ Servo Drive 2 Alarm		ALM2			18	7i84.0.1	TB2-15		input-30	No alarm: 16.5V from am
 				RG			30							Connect to 0G ground
 							31
 							32
-Analog Servo CMD 3		ER3			33	7i49		P3-20 AOUT2			-10 to +10, vs GND0
+Analog Servo CMD 3		ER3			33	7i49		P3-20 AOUT2			-10 to +10, vs GND2
 Analog Servo CMD 1 Ground	ERR3			34	7i49		P3-19 GND2			
 							35
 							36
