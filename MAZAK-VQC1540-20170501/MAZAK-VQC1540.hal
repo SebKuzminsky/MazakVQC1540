@@ -51,8 +51,6 @@ loadrt estop_latch
 # logic.2 used to turn on power-on when starting linuxcnc
 loadrt logic count=3 personality=0x101,0x202,0x202
 
-loadrt flipflop
-
 #-------------------
 # LOAD MODULES
 #-------------------
@@ -282,8 +280,8 @@ net x-pos-fb         	=>	pid.x.feedback
 net x-output         	<=	pid.x.output
 
 
-# AXIS SERVO DRIVE / AMPLIFIER FAULT
-net servo-x-drive-alarm	=>	joint.0.amp-fault-in
+# AXIS SERVO DRIVE / AMPLIFIER FAULT (from PLC)
+net plc-servo-x-drive-alarm	=>	joint.0.amp-fault-in
 
 
 # PWM GENERATOR SETUP
@@ -360,8 +358,8 @@ net y-pos-fb         	=>	pid.y.feedback
 net y-output         	<=	pid.y.output
 
 
-# AXIS SERVO DRIVE / AMPLIFIER FAULT
-net servo-y-drive-alarm	=>	joint.1.amp-fault-in
+# AXIS SERVO DRIVE / AMPLIFIER FAULT (from PLC)
+net plc-servo-y-drive-alarm	=>	joint.1.amp-fault-in
 
 
 # PWM GENERATOR SETUP
@@ -436,8 +434,8 @@ net z-pos-fb        	=>	pid.z.feedback
 net z-output        	<=	pid.z.output
 
 
-# AXIS SERVO DRIVE / AMPLIFIER FAULT
-net servo-z-drive-alarm	=>	joint.2.amp-fault-in
+# AXIS SERVO DRIVE / AMPLIFIER FAULT (from PLC)
+net plc-servo-z-drive-alarm	=>	joint.2.amp-fault-in
 
 
 # PWM GENERATOR SETUP
@@ -555,44 +553,3 @@ net feed-hold			=> motion.feed-hold
 net power-on                => logic.2.in-00
 net machine-estop-ok        => logic.2.in-01
 net power-on                <= logic.2.or
-
-
-
-# Calculate axis speed and acceleration from position
-loadrt ddt names=ddt_speedx,ddt_speedy,ddt_speedz,ddt_accx,ddt_accy,ddt_accz
-loadrt minmax names=minmax_speedx,minmax_speedy,minmax_speedz,minmax_accx,minmax_accy,minmax_accz
-
-addf ddt_speedx servo-thread
-addf ddt_speedy servo-thread
-addf ddt_speedz servo-thread
-addf ddt_accx servo-thread
-addf ddt_accy servo-thread
-addf ddt_accz servo-thread
-addf minmax_speedx servo-thread
-addf minmax_speedy servo-thread
-addf minmax_speedz servo-thread
-addf minmax_accx servo-thread
-addf minmax_accy servo-thread
-addf minmax_accx servo-thread
-
-net x-pos-fb        => ddt_speedx.in
-net derived-x-speed <= ddt_speedx.out
-net derived-x-speed => ddt_accx.in
-net derived-x-acc   <= ddt_speedx.out
-net derived-x-speed => minmax_speedx
-net derived-x-acc   => minmax_accx
-
-
-net y-pos-fb        => ddt_speedy.in
-net derived-y-speed <= ddt_speedy.out
-net derived-y-speed => ddt_accy.in
-net derived-y-acc   <= ddt_speedy.out
-net derived-y-speed => minmay.speedy
-net derived-y-acc   => minmay.accy
-
-net z-pos-fb        => ddt_speedz.in
-net derived-z-speed <= ddt_speedz.out
-net derived-z-speed => ddt_accz.in
-net derived-z-acc   <= ddt_speedz.out
-net derived-z-speed => minmaz.speedz
-net derived-z-acc   => minmaz.accz
