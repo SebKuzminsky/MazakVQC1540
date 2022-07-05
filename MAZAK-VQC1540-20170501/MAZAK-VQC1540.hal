@@ -546,6 +546,27 @@ net probe-in 			=>	motion.probe-input
 net feed-hold			=> motion.feed-hold
 
 #-------------------
+# Tool changer carousel
+#-------------------
+loadrt   carousel   pockets=30  encoding=binary  num_sense=5 dir=1
+addf carousel.0 servo-thread
+net tool-mag-position-1  => carousel.0.sense-0
+net tool-mag-position-2  => carousel.0.sense-1
+net tool-mag-position-4  => carousel.0.sense-2
+net tool-mag-position-8  => carousel.0.sense-3
+net tool-mag-position-16 => carousel.0.sense-4
+net tool-mag-in-position => carousel.0.strobe
+net magazine-run         <= carousel.0.active
+net magazine-ccw-forward <= carousel.0.motor-fwd
+# FIXME Disable button when machine is running? What about debouncing?
+net magazine-button      => carousel.0.jog-fwd
+# Set pocket-number to wanted tool pocked, then enable to true and
+# wait for ready to go true, then enable to false
+#net ? => carousel.N.pocket-number
+#net ? => carousel.0.enable
+#net ? <= carousel.0.ready
+
+#-------------------
 # MISC CONNECTIONS
 #-------------------
 
