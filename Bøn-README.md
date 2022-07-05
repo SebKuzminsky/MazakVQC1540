@@ -197,6 +197,10 @@ unwanted currents to flow.  The work table drifts slowly to the right
 when the command voltage is zero.  Doing 'sets x-output 0.00048'
 almost stops it.
 
+PID tuning
+
+https://gnipsel.com/linuxcnc/tuning/index.html
+
 Y: Negative control voltage moves spindle away from operator.  We set
 pwmgen.01.scale to -1 so that a positive pwmgen.01.value moves the
 tool in the +Y direction.  Spindle drifts towards operator slowly -
