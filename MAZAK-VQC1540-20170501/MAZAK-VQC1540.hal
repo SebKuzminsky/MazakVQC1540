@@ -349,11 +349,11 @@ setp   pid.y.maxoutput [JOINT_1]MAX_OUTPUT
 setp   pid.y.error-previous-target true
 setp   pid.y.maxerror  [JOINT_1]MAX_ERROR
 
-# Connect Virtual Pins between Modules:
-net y-index-enable	<=>	pid.y.index-enable
+# Connect Virtual Pins to Y-axis PID Loop:
+net y-index-enable	=>	pid.y.index-enable
 net servo-y-enable     	=>	pid.y.enable
-net y-pos-cmd        	<=	pid.y.command
-net y-vel-cmd        	<=	pid.y.command-deriv
+net y-pos-cmd        	=>	pid.y.command
+net y-vel-cmd        	=>	pid.y.command-deriv
 net y-pos-fb         	=>	pid.y.feedback
 net y-output         	<=	pid.y.output
 
@@ -425,8 +425,8 @@ setp   pid.z.maxoutput [JOINT_2]MAX_OUTPUT
 setp   pid.z.error-previous-target true
 setp   pid.z.maxerror  [JOINT_2]MAX_ERROR
 
-# Connect Virtual Pins between Modules:
-net z-index-enable	<=>	pid.z.index-enable
+# Connect Virtual Pins to Z-axis PID Loop:
+net z-index-enable	=>	pid.z.index-enable
 net servo-z-enable	=>	pid.z.enable
 net z-pos-cmd   	=>	pid.z.command
 net z-vel-cmd       	=>	pid.z.command-deriv
