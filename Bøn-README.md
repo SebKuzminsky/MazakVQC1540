@@ -254,10 +254,11 @@ height measuring arm run on air pressure.
 The tool change button at the back is connected to the control computer,
 not directly to the tool magazine.
 
-To unclamp the tool in the spindle, the spindle-run signal must be
-false and the spindle-zero-speed signal must be true.  Then the
-tool-unclamp signal can be set to true to release the tool, while
-watching the tool-clamped and tool-unclamped signals for feedback.
+To unclamp the tool in the spindle, the spindle-set signal must be
+true, spindle-run signal must be false and the spindle-zero-speed
+signal must be true.  Then the tool-unclamp signal can be set to true
+to release the tool, while watching the tool-clamped and
+tool-unclamped signals for feedback.
 
 
 ## Home and Limit switches
