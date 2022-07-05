@@ -562,9 +562,12 @@ net magazine-ccw-forward <= carousel.0.motor-fwd
 net magazine-button      => carousel.0.jog-fwd
 # Set pocket-number to wanted tool pocked, then enable to true and
 # wait for ready to go true, then enable to false
-#net ? => carousel.N.pocket-number
-#net ? => carousel.0.enable
-#net ? <= carousel.0.ready
+net tool-prep-number      => carousel.0.pocket-number
+net tool-prep-number      <= iocontrol.0.tool-prep-pocket
+net tool-prepare          => carousel.0.enable
+net tool-prepare          <= iocontrol.0.tool-prepare
+net tool-prepared         <= carousel.0.ready
+net tool-prepared         => iocontrol.0.tool-prepared
 
 #-------------------
 # MISC CONNECTIONS
