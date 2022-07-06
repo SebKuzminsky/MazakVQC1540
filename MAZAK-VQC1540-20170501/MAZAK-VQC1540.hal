@@ -325,7 +325,7 @@ net x-pos-rawcounts		<=	hm2_7i80.0.resolver.00.rawcounts
 # HOME/LIMIT-SWITCH SIGNAL SETUP
 net x-home-switch      => joint.0.home-sw-in
 net x-neg-limit-switch => joint.0.neg-lim-sw-in
-#net x-home-switch      => joint.0.pos-lim-sw-in
+net x-home-switch      => joint.0.pos-lim-sw-in
 
 # Homing Signal:
 net x-homing			<=	joint.0.homing
@@ -400,7 +400,7 @@ net y-pos-rawcounts		<=	hm2_7i80.0.resolver.01.rawcounts
 # HOME/LIMIT-SWITCH SIGNAL SETUP
 net y-home-switch      => joint.1.home-sw-in
 net y-neg-limit-switch => joint.1.neg-lim-sw-in
-#net y-home-switch      => joint.1.pos-lim-sw-in
+net y-home-switch      => joint.1.pos-lim-sw-in
 
 # Homing Signal:
 net y-homing			<=	joint.1.homing
@@ -476,7 +476,7 @@ net z-pos-rawcounts		<=	hm2_7i80.0.resolver.02.rawcounts
 # HOME/LIMIT-SWITCH SIGNAL SETUP
 net z-home-switch      => joint.2.home-sw-in
 net z-neg-limit-switch => joint.2.neg-lim-sw-in
-#net z-home-switch      => joint.2.pos-lim-sw-in
+net z-home-switch      => joint.2.pos-lim-sw-in
 
 # Homing Signal:
 net z-homing			<=	joint.2.homing
