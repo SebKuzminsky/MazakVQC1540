@@ -49,7 +49,10 @@ loadrt estop_latch
 # motion.motion-enabled is true
 # logic.1 used to enable the lube and hydraulic system when needed
 # logic.2 used to turn on power-on when starting linuxcnc
-loadrt logic count=3 personality=0x101,0x202,0x202
+# logic.3 used to disable magazine button in automatic mode
+loadrt logic count=4 personality=0x101,0x202,0x202,0x102
+
+loadrt not names=not-mode-auto
 
 #-------------------
 # LOAD MODULES
@@ -70,6 +73,9 @@ addf estop-latch.0            servo-thread
 addf logic.0            servo-thread
 addf logic.1            servo-thread
 addf logic.2            servo-thread
+addf logic.3            servo-thread
+
+addf not-mode-auto servo-thread
 
 # - Motion command handler:
 addf motion-command-handler   servo-thread
@@ -558,8 +564,15 @@ net tool-mag-position-16 => carousel.0.sense-4
 net tool-mag-in-position => carousel.0.strobe
 net magazine-run         <= carousel.0.active
 net magazine-ccw-forward <= carousel.0.motor-fwd
-# FIXME Disable button when machine is running? What about debouncing?
-net magazine-button      => carousel.0.jog-fwd
+# Only allow manual magazine forward jog button to work in manual and mdi mode
+net is-auto-mode               <= halui.mode.is-auto
+net is-auto-mode               => not-mode-auto.in
+net is-not-auto-mode           <= not-mode-auto.out
+net is-not-auto-mode           => logic.3.in-00
+net magazine-button            => logic.3.in-01
+net tool-mag-manual-jog        <= logic.3.and
+net tool-mag-manual-jog        => carousel.0.jog-fwd
+
 # Set pocket-number to wanted tool pocked, then enable to true and
 # wait for ready to go true, then enable to false
 net tool-prep-number      => carousel.0.pocket-number
