@@ -166,7 +166,7 @@ Signal				Line #	Conn.		Pin	IO Board	IO Pin	HAL Pin
 DC 24V -Com			OG	TB51-OG		1
 Pallet No. 1 On			P1ON	TB6-P1ON	2
 Head Lube Pressure Alarm #2	CH24	TB1-CH24	3
-Input Spare 24			ISP24			4
+Tool Eject Cover Interlock	ISP24			4	7i84.0.0	TB3-5	input-04	Reads +24 when back door to magazine is closed
 							5
 							6
 							7
