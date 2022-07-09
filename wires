@@ -162,7 +162,7 @@ Magazine Cover Close				727	CN13-14		50	7i84.0.0	TB2-21	output-12	Drive to +24 t
 
 CND4 MR-50
 ----------
-Signal				Line #	Conn.		Pin	IO Board	IO Pin	HAL Pin
+Signal				Line #	Conn.		Pin	IO Board	IO Pin	HAL Pin		Notes
 DC 24V -Com			OG	TB51-OG		1
 Pallet No. 1 On			P1ON	TB6-P1ON	2
 Head Lube Pressure Alarm #2	CH24	TB1-CH24	3
