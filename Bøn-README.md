@@ -236,12 +236,25 @@ Tested 0-200 ohm resistance between N and U, V and W is infinite
 Tested 0-2000 ohm resistance between P and U, V and W is around 500 ohm
 Tested 0-2000 ohm resistance between N and U, V and W is around 500 ohm and rising
 
+New measurement with Caltek CM100 multimeter after machine had been
+turned off for 10 hours:
+
+Tested 0-500 voltage between P and N is 0.00.
+Tested 0-2000m voltage between P and N is 000 - 001.
+
+Tested 0-2000 ohm resistance between P and R3, S3 and T3 is 366, 367, 367 ohm.
+Tested 0-2000 ohm resistance between N and R3, S3 and T3 start below 100 and raises during measurement.
+
+Tested 0-2000 ohm resistance between P and U, V and W is 350, 351, 356 ohm.
+Tested 0-2000 ohm resistance between N and U, V and W is start around 200 and raises during measurement.
+
 The transistors are marked QM150DY-H and BKO-C2144H01.
 
 Some ideas:
 
  * https://forum.linuxcnc.org/30-cnc-machines/32162-mitsubishi-freqrol-fr-se-replacement-recommendations
  * https://www.practicalmachinist.com/forum/threads/spindle-drive-issues-leadwell-mcv-0p-3-axis-vmc-with-mitsubish-freqrol-fr-sf-spindl.280843/
+ * https://carelabz.com/megger-test-performed/
 
 
 ## Tool Magazine
