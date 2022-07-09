@@ -1,9 +1,29 @@
-T0 P0 D0.500000 ; 
-T1 P1 ; 
-T2 P2 ; 
-T3 P3 Z-0.000000 ; 
-T4 P4 Z-0.563900 ;comment 
-T5 P5 ;comment 
-T8 P8 ;comment 
-T10 P10 ;comment 
-T7 P7 ;comment 
+T1 P1 D0.500000 ;dummy
+T2 P2 ;
+T3 P3 Z-0.000000 ;dummy
+T4 P4 Z-0.500000 ;dummy
+T5 P5 ;dummy 
+T6 P6 ;dummy 
+T7 P7 ;dummy 
+T8 P8 ;dummy 
+T9 P9 ;dummy 
+T10 P10 ;dummy 
+T11 P11 ;dummy 
+T12 P12 ;dummy 
+T13 P13 ;dummy 
+T14 P14 ;dummy 
+T15 P15 ;dummy 
+T16 P16 ;dummy 
+T17 P17 ;dummy 
+T18 P18 ;dummy 
+T19 P19 ;dummy 
+T20 P20 ;dummy 
+T21 P21 ;dummy 
+T22 P22 ;dummy 
+T23 P23 ;dummy 
+T24 P24 ;dummy 
+T25 P25 ;dummy 
+T26 P26 ;dummy 
+T27 P27 ;dummy 
+T28 P28 ;dummy 
+T29 P29 ;MMS probe
