@@ -566,7 +566,7 @@ net tool-mag-in-position => carousel.0.strobe
 net magazine-ccw-forward <= carousel.0.motor-fwd
 
 # Block magazine from moving automatically when eject door is open
-# Only allow to move while manual jog button is pressed when dore is
+# Only allow to move while manual jog button is pressed when door is
 # open.
 setp tool-mag-movable.function 0xa8a8a8a8 # in-0 and in-1
 net tool-mag-enabled           <= carousel.0.active
