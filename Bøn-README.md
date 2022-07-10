@@ -214,6 +214,25 @@ trying to move the Z axis.
 
 spindle drive: Mitsubishi Freqrol FR-SE-2-11K
 
+Spindle motor: Mitsubishi SJ 9 A
+
+   AC SPINDLE MOTOR, THREE PHASE INDUCTION MOTOR
+   
+   TYPE      SJ 9 A
+   RPM       1500 1500 5000
+   CONT (KW)  5.5  5.5  4.0
+   1/2H (KW)   9    9   6.5
+   VOLT            ?
+   AMP             ?
+   INS CLASS       ?
+   AMB TEMP        ?
+   FRAME           ?
+   DATE
+   SERIAL
+   ...
+
+Encoder: Tamagawa Seiki RFA-1024-22-1-68 (parts list) / OSE 1024-3-68 (unit plate)
+
 When enabling Spindle and trying to run forward or backwards, by
 activating relays SSET and SMR using 'sets spindle-run 1', 'sets
 spindle-set 1' and 'sets spindle-cw 1', the spindle controller trip
@@ -256,6 +275,22 @@ Some ideas:
  * https://www.practicalmachinist.com/forum/threads/spindle-drive-issues-leadwell-mcv-0p-3-axis-vmc-with-mitsubish-freqrol-fr-sf-spindl.280843/
  * https://carelabz.com/megger-test-performed/
 
+### The great magic smoke escape
+
+I tried to run the spindle with no motor connected, to see if
+something still was drawing too much current:
+
+  sets spindle-set 1
+  sets spindle-run 1
+  sets spindle-output 0.01
+  sets spindle-forward 1
+
+The last command triggered the fuse in the cupboard.  When I then
+enabled the fuse again, and tried to enable the spindle controllre
+again using 'sets spindle-set 1' to see if things were ok, sparks came
+out of the controller card and smoke escaped, then silence from the
+spindle controller.  Several diodes and resistors are blown on the
+PCBs.
 
 ## Tool Magazine
 
