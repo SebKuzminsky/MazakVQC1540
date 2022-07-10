@@ -256,7 +256,7 @@ Servo Drive 2 Alarm		ALM2			18	7i84.0.1	TB2-15		input-30	No alarm: 16.5V from am
 							31
 							32
 Analog Servo CMD 3		ER3			33	7i49		P3-20 AOUT2			-10 to +10, vs GND2
-Analog Servo CMD 1 Ground	ERR3			34	7i49		P3-19 GND2			
+Analog Servo CMD 3 Ground	ERR3			34	7i49		P3-19 GND2			
 							35
 							36
 				SC3			37							FIXME Unused?
