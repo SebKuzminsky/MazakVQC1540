@@ -16,7 +16,7 @@
 loadrt classicladder_rt numPhysOutputs=60 numPhysInputs=60
 
 # Load ClassicLadder File (comment out --nogui to launch GUI on start)
-loadusr classicladder MAZAK-VQC1540.clp #--nogui
+loadusr classicladder MAZAK-VQC1540.clp --nogui
 # ClassicLadder PLC program for Mazak VQC 15/40
 # Author: Luke Snowden / Solid Rock Development
 
