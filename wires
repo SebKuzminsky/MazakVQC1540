@@ -156,7 +156,7 @@ Dust Inhale Eliminate				735	CN13-11		44
 Orient Command					ORCM1	CN301A-30	45
 Output Spare 11					OSP11	CN301A-18	46
 Pallet Unclamp					PUC	TB6-722B	47
-Hydraulic / Head Lube Pump Motor Starter	835	CN13-16		48	7i84.0.0	TB3-22	output-05	Drive to +24 to turn on the Hydraulic Pump and the Head Lube Pump.
+Hydraulic / Head Lube Pump Motor Starter	835	CN13-16		48	7i84.0.1	TB3-22	output-05	Drive to +24 to turn on the Hydraulic Pump and the Head Lube Pump.
 Tool Unclamp					710	CN13-3		49	7i84.0.0	TB2-23	output-14
 Magazine Cover Close				727	CN13-14		50	7i84.0.0	TB2-21	output-12	Drive to +24 to close the door between the tool magazine and the workspace.
 
