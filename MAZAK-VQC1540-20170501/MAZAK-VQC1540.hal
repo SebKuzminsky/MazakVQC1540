@@ -45,11 +45,11 @@ loadrt pid names=pid.x,pid.y,pid.z,pid.s
 
 loadrt estop_latch
 
-# logic.0 used to release Z brake when both Z servo PWN is active and
+# brake-z used to release Z brake when both Z servo PWN is active and
 # motion.motion-enabled is true
-# logic.1 used to enable the lube and hydraulic system when needed
-# logic.2 used to turn on power-on when starting linuxcnc
-loadrt logic count=3 personality=0x101,0x202,0x202
+# hydraulic-lube used to enable the lube and hydraulic system when needed
+# power-logic used to turn on power-on when starting linuxcnc
+loadrt logic names=brake-z,hydraulic-lube,power-logic personality=0x101,0x202,0x202
 
 loadrt lut5 names=tool-mag-jog-button,tool-mag-movable
 
@@ -71,9 +71,9 @@ addf hm2_7i80.0.read          servo-thread
 
 addf estop-latch.0            servo-thread
 
-addf logic.0            servo-thread
-addf logic.1            servo-thread
-addf logic.2            servo-thread
+addf brake-z                  servo-thread
+addf hydraulic-lube           servo-thread
+addf power-logic                  servo-thread
 
 addf tool-mag-jog-button      servo-thread
 addf tool-mag-movable         servo-thread
@@ -238,14 +238,14 @@ net servo-on                   <= motion.motion-enabled
 
 # Only release Z axis brake when Z is both ready and on
 # FIXME Note, net servo-on is standin for motion.motion-enabled
-net servo-on                   => logic.0.in-00
-net z-brake-release            <= logic.0.and
+net servo-on                   => brake-z.in-00
+net z-brake-release            <= brake-z.and
 
 # Enable hydraulic and way lubrication pump when servos are enabled
 net lube-wanted                <= iocontrol.0.lube
-net lube-wanted                => logic.1.in-00
-net servo-on                   => logic.1.in-01
-net hydraulic-lube-pump-on     <= logic.1.or
+net lube-wanted                => hydraulic-lube.in-00
+net servo-on                   => hydraulic-lube.in-01
+net hydraulic-lube-pump-on     <= hydraulic-lube.or
 
 net overtravel-release         => hm2_7i80.0.7i84.0.1.output-14
 # Axis GUI only have one setting for joint 0-2, arbitrary picking 0
@@ -596,6 +596,6 @@ net tool-prepared         => iocontrol.0.tool-prepared
 #-------------------
 
 # Turn power-on true when linuxcnc starts
-net power-on                => logic.2.in-00
-net machine-estop-ok        => logic.2.in-01
-net power-on                <= logic.2.or
+net power-on                => power-logic.in-00
+net machine-estop-ok        => power-logic.in-01
+net power-on                <= power-logic.or
