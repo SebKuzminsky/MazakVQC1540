@@ -407,7 +407,7 @@ net y-pos-rawcounts		<=	hm2_7i80.0.resolver.01.rawcounts
 # HOME/LIMIT-SWITCH SIGNAL SETUP
 net y-home-switch      => joint.1.home-sw-in
 net y-neg-limit-switch => joint.1.neg-lim-sw-in
-net y-home-switch      => joint.1.pos-lim-sw-in
+net y-pos-limit-switch => joint.1.pos-lim-sw-in
 
 # Homing Signal:
 net y-homing			<=	joint.1.homing
