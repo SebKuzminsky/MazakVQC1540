@@ -216,11 +216,12 @@ spindle drive: Mitsubishi Freqrol FR-SE-2-11K
 
 Spindle motor: Mitsubishi SJ 9 A
 
-   AC SPINDLE MOTOR, THREE PHASE INDUCTION MOTOR
+   AC SPINDLE MOTOR
+   THREE PHASE INDUCTION MOTOR
    
    TYPE      SJ 9 A
-   RPM       1500 1500 5000
-   CONT (KW)  5.5  5.5  4.0
+   RPM       1500 4500 6000
+   CONT (KW)  5.5  5.5  4.5
    1/2H (KW)   9    9   6.5
    VOLT            ?
    AMP             ?
