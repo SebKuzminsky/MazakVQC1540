@@ -20,3 +20,5 @@ Documentation downloaded from the Internet
   http://catiadoc.free.fr/img/MazatrolM2OperatorManual.pdf
 * Mitsubishi-Freqrol-SE-Standard-Specification.pdf
   https://elektrotanya.com/mitsubishi_freqrol_fr-se_ac-spindle-controller_ver-3.00_instruction_sm.zip/download.html#dl
+* Mazak-VQC-15-40-1986-Electrical-Circuit-Diagrams.pdf
+  https://pastebin.com/uzooZah6
