@@ -146,9 +146,9 @@ Work Light					WL	CN301A-8	34
 Pallet Cycle No. 1 LED				PCY1	TB6-PCY1	35
 M Function					MF	TB6-MF		36
 Pallet Stocker Lock Pin				PSLP	TB7-1572	37
-									38
-									39
-									40
+Feed Hold Led					FHDL			38
+2nd zero position Z-axis			ZP2Z			39
+Output Spare 18					OSP18			40
 Pallet Cycle No. 2 LED				PCY2	TB7-PCY2	41
 Pallet Clamp					PCL	TB7-722A	42
 Spindle Set					SSET	CN301A-9	43	7i84.0.0	TB3-17	output-00	turn on spindle drive?
