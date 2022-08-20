@@ -534,7 +534,12 @@ net coolant-flood 		<=	iocontrol.0.coolant-flood
 # For ladder based ESTOP
 #net plc-estop                  =>      iocontrol.0.emc-enable-in
 # Use simple estop_latch based ESTOP handling for now
-net machine-estop-ok            =>      estop-latch.0.ok-in
+loadrt not count=1
+addf not.0 servo-thread
+net machine-estop-ok            =>      not.0.in
+net machine-estop-fault         <=      not.0.out
+net machine-estop-fault         =>      estop-latch.0.fault-in
+net estop-out                   =>      estop-latch.0.ok-in
 net estop-reset                 =>      estop-latch.0.reset
 net estop-ok                    <=      estop-latch.0.ok-out
 net estop-reset                 <=      iocontrol.0.user-request-enable
