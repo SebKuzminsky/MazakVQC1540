@@ -59,7 +59,7 @@ net spindle-index-enable	pid.s.index-enable
 net spindle-enable		=>	pid.s.enable
 net spindle-vel-cmd-rpm		pid.s.command
 net spindle-vel-fb-rpm		pid.s.feedback
-#net spindle-output		pid.s.output
+net spindle-output		pid.s.output
 
 # Setup Spindle Control Signals
 net spindle-vel-cmd-rps		spindle.0.speed-out-rps
@@ -67,9 +67,9 @@ net spindle-vel-cmd-rps-abs	spindle.0.speed-out-rps-abs
 net spindle-vel-cmd-rpm		spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs	spindle.0.speed-out-abs
 # FIXME enable when spindle is working
-#net spindle-enable		<=	motion.motion-enabled
-net spindle-cw			spindle.0.forward
-net spindle-ccw			spindle.0.reverse
+net spindle-enable		<=	spindle.0.on
+net spindle-forward			spindle.0.forward
+net spindle-reverse		spindle.0.reverse
 net spindle-brake		spindle.0.brake
 net spindle-revs		spindle.0.revs
 net spindle-at-speed		spindle.0.at-speed

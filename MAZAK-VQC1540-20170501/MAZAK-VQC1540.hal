@@ -53,7 +53,7 @@ loadrt logic names=brake-z,hydraulic-lube,power-logic personality=0x101,0x202,0x
 
 loadrt lut5 names=tool-mag-jog-button,tool-mag-movable
 
-
+loadrt mux2 names=y_softlim,z_softlim
 
 #-------------------
 # LOAD MODULES
@@ -77,6 +77,9 @@ addf power-logic                  servo-thread
 
 addf tool-mag-jog-button      servo-thread
 addf tool-mag-movable         servo-thread
+
+addf y_softlim servo-thread
+addf z_softlim servo-thread
 
 # - Motion command handler:
 addf motion-command-handler   servo-thread
@@ -130,7 +133,7 @@ net tool-mag-door-interlock    <= hm2_7i80.0.7i84.0.0.input-04
 #net ???                        <= hm2_7i80.0.7i84.0.0.input-05
 #net magazine-cover-open        <= hm2_7i80.0.7i84.0.0.input-06
 #net magazine-cover-closed      <= hm2_7i80.0.7i84.0.0.input-07
-#net ???                        <= hm2_7i80.0.7i84.0.0.input-08
+net tool-mag-in-position        <= hm2_7i80.0.7i84.0.0.input-08 # or maybe -16
 #net ???                        <= hm2_7i80.0.7i84.0.0.input-09
 #net ???                        <= hm2_7i80.0.7i84.0.0.input-10
 #net ???                        <= hm2_7i80.0.7i84.0.0.input-11
@@ -138,7 +141,7 @@ net tool-mag-door-interlock    <= hm2_7i80.0.7i84.0.0.input-04
 #net ???                        <= hm2_7i80.0.7i84.0.0.input-13
 #net ???                        <= hm2_7i80.0.7i84.0.0.input-14
 #net ???                        <= hm2_7i80.0.7i84.0.0.input-15
-net tool-mag-in-position       <= hm2_7i80.0.7i84.0.0.input-16
+#net tool-mag-in-position       <= hm2_7i80.0.7i84.0.0.input-16 # or maybe -08
 net tool-mag-position-1        <= hm2_7i80.0.7i84.0.0.input-17
 net tool-mag-position-2        <= hm2_7i80.0.7i84.0.0.input-18
 net tool-mag-position-4        <= hm2_7i80.0.7i84.0.0.input-19
@@ -194,8 +197,9 @@ net servo-z-drive-alarm        <= hm2_7i80.0.7i84.0.1.input-31
 #-------------------
 
 # Enable spindle drive
-net spindle-set                => hm2_7i80.0.7i84.0.0.output-00
-net spindle-set                => hm2_7i80.0.pwmgen.03.enable
+# this wire currently not connected, the Altivar VFD works differently
+# net spindle-set                => hm2_7i80.0.7i84.0.0.output-00
+net spindle-enable               => hm2_7i80.0.pwmgen.03.enable
 
 # Spindle forward/reverse commands (requires spindle-run for spindle to activate)
 net spindle-reverse            => hm2_7i80.0.7i84.0.0.output-01
@@ -306,6 +310,7 @@ setp hm2_7i80.0.pwmgen.00.scale  			[JOINT_0]OUTPUT_SCALE
 net x-output  			=>	hm2_7i80.0.pwmgen.00.value
 # - Commanded-position from internal axis module
 net x-pos-cmd 			<=	joint.0.motor-pos-cmd
+net x-vel-cmd 			<=	joint.0.vel-cmd
 
 
 # RESOLVER FEEDBACK SIGNALS/SETUP
@@ -381,6 +386,7 @@ setp hm2_7i80.0.pwmgen.01.scale  			[JOINT_1]OUTPUT_SCALE
 net y-output  			=>	hm2_7i80.0.pwmgen.01.value
 # - Commanded-position to internal axis module
 net y-pos-cmd 			<=	joint.1.motor-pos-cmd
+net y-vel-cmd 			<=	joint.1.vel-cmd
 
 
 # RESOLVER FEEDBACK SIGNALS/SETUP
@@ -457,6 +463,7 @@ setp hm2_7i80.0.pwmgen.04.scale  			[JOINT_2]OUTPUT_SCALE
 net z-output  			=>	hm2_7i80.0.pwmgen.04.value
 # - Commanded-position to internal axis module
 net z-pos-cmd 			=>	joint.2.motor-pos-cmd
+net z-vel-cmd 			<=	joint.2.vel-cmd
 
 
 # RESOLVER FEEDBACK SIGNALS/SETUP
@@ -483,7 +490,7 @@ net z-pos-rawcounts		<=	hm2_7i80.0.resolver.02.rawcounts
 # HOME/LIMIT-SWITCH SIGNAL SETUP
 net z-home-switch      => joint.2.home-sw-in
 net z-neg-limit-switch => joint.2.neg-lim-sw-in
-net z-home-switch      => joint.2.pos-lim-sw-in
+net z-pos-lim-switch      => joint.2.pos-lim-sw-in
 
 # Homing Signal:
 net z-homing			<=	joint.2.homing
@@ -604,3 +611,10 @@ net tool-prepared         => iocontrol.0.tool-prepared
 net power-on                => power-logic.in-00
 net machine-estop-ok        => power-logic.in-01
 net power-on                <= power-logic.or
+
+# 'M64 P4' turn on light
+# 'M65 P4' turn off light
+net work-light                 <= motion.digital-out-04
+
+# Manual control over tool clamping.  Good idea?
+net tool-unclamp               <= motion.digital-out-05

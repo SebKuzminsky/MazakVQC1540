@@ -21,3 +21,17 @@
 #net plc-spindle-controller-al	=> gmoccapy.messages.spindle-cntrlr-alarm
 #net plc-machine-power-fault	=> gmoccapy.messages.machine-power-fault
 #net plc-way-lube-fault		=> gmoccapy.messages.lube-waylube
+
+
+show pin ini*
+
+# switch limits for tool change
+net tool-change-release-limits y_softlim.sel
+setp y_softlim.in0 [ATC]Y_MAX_NORM
+setp y_softlim.in1 [ATC]Y_MAX_ATC
+net y_maxlim y_softlim.out => ini.1.max_limit ini.y.max_limit
+
+net tool-change-release-limits z_softlim.sel
+setp z_softlim.in0 [ATC]Z_MAX_NORM
+setp z_softlim.in1 [ATC]Z_MAX_ATC
+net z_maxlim z_softlim.out => ini.2.max_limit ini.z.max_limit

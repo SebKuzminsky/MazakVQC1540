@@ -5,7 +5,7 @@ spindle_start_rpm = 500.0
 hide_turtle_jog_button = False
 turtle_jog_factor = 20
 scale_max_vel = 1000.0
-scale_jog_vel = 1.0000002
+scale_jog_vel = 1.0
 scale_spindle_override = 1.0
 scale_feed_override = 1.0
 open_file = /home/mazak/linuxcnc/nc_files/readme.ngc
@@ -77,5 +77,6 @@ blockheight = 0.0
 use_toolmeasurement = False
 icon_theme = None
 hide_tooltips = False
-reload_tool = True
+reload_tool = False
+kbd_height = 250
 
