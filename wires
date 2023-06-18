@@ -97,7 +97,7 @@ Pallet Clamp SS			PCLSS		TB7-855		39
 Pallet Unclamp SS		PUCSS		TB7-856		40
 Reset Out			RST		TB1-RST		41
 Servo Ready			SA		CN301A-7	42	7i84.0.1	TB3-20	output-03	Drive to +24V to release the Z auxillary brake
-Tool Change Memory		TCME		CN301A-33	43
+Tool Change Memory		TCME		CN301A-33	43	7i84.0.0	TB2-22	output-13	Drive to +24V to allow Y and Z to trigger limit switches on tool changing side
 				M43T		CN301A-3	44
 Tool Measuring Arm Extend	762		CN13-9		45	7i84.0.0	TB2-24	output-15	Drive to +24V to extend the tool length probe.  Drive to 0V to retract the arm.
 Pallet Clamp Command		PCLCD		TB6-PCLCD	46
@@ -121,8 +121,8 @@ SSR Spare 3					SSP3	CN13-13		9
 Oil Hole					736	CN13-12		10
 Mist Coolant					717	CN13-8		11
 Work Air Blast					716	CN13-7		12
-Spindle Reverse					SRV	CN301A-28	13	7i84.0.0	TB3-18	output-01	Drive to +24 to select Spindle Reverse (CCW) next time Spindle Run goes on.
-Spindle Forward					SFR	CN301A-27	14	7i84.0.0	TB3-19	output-02	Drive to +24 to select Spindle Forward (CW) next time Spindle Run goes on.
+Spindle Reverse					SRV	CN301A-28	13	7i84.0.0	TB3-18	output-01	Drive to +24 to select Spindle Reverse (CCW) next time Spindle Run goes on.  (changed 2023-06-17 to test VFD)
+Spindle Forward					SFR	CN301A-27	14	7i84.0.0	TB3-19	output-02	Drive to +24 to select Spindle Forward (CW) next time Spindle Run goes on. (changed 2023-06-17 to test VFD)
 Pallet Load					PLD	TB7-782A	15
 Spindle Motor Cooling Air Blow			754	CN13-4		16	7i84.0.0	TB3-22	output-05	Drive to +24 to turn on the spindle cooling fan.  FIXME: on Petter's machine this is something else
 Power On					PW1	CN301A-20	17
@@ -138,7 +138,7 @@ Pallet Lock Pin					PLP	TB7-1571	26
 Pallet Door Open				PDO	TB7-725A	27
 Magazine Run (CN11 SSR board connector)		7574	CN11-5		28	7i84.0.0	TB2-17	output-08	Drive to +24 to allow the magazine to move.
 Pallet Unload					PUD	TB7-782B	29
-Spindle Run					SMR	CN301A-29	30	7i84.0.0	TB3-20	output-03	Drive to +24 to turn on spindle (drive Spindle Fwd or Spindle Rev first to pick direction).
+Spindle Run					SMR	CN301A-29	30	7i84.0.0	TB3-20	output-03	Drive to +24 to turn on spindle (drive Spindle Fwd or Spindle Rev first to pick direction). (disconnected 2023-06-17 to test VFD)
 Magazine CCW (Forward)				708A	CN13-2		31	7i84.0.0	TB2-20	output-11	Drive to +24 to move the magazine one step in the forward/CCW direction. (works)
 Over Travel Release				OTR	CN301A-11	32	7i84.0.1	TB2-23	output-14	Drive to +24 to allow movement even when overtravel is active
 Pallet Select No. 2 				P2S	TB7-787B	33
@@ -151,7 +151,7 @@ Feed Hold Led					FHDL			38
 Output Spare 18					OSP18			40
 Pallet Cycle No. 2 LED				PCY2	TB7-PCY2	41
 Pallet Clamp					PCL	TB7-722A	42
-Spindle Set					SSET	CN301A-9	43	7i84.0.0	TB3-17	output-00	turn on spindle drive?
+Spindle Set					SSET	CN301A-9	43	7i84.0.0	TB3-17	output-00	turn on spindle drive? (changed 2023-06-17 to test VFD)
 Dust Inhale Eliminate				735	CN13-11		44
 Orient Command					ORCM1	CN301A-30	45
 Output Spare 11					OSP11	CN301A-18	46
@@ -217,14 +217,14 @@ Main Transformer Over Heat	146	TB4-146		50
 CND5 MR-20
 ----------
 Signal				Line #			Pin	Control Board	Ctrl Pin	HAL Pin
-Spindle Analog Control		SE1			4	7i49		TB3-24 AOUT3			-10 to +10, vs GND3
-Spindle Analog Control Ground	SE2			5	7i49		TB3-23 GND3
+Spindle Analog Control		SE1			4	7i49		TB3-24 AOUT3			-10 to +10, vs GND3  (changed 2023-06-17 to test VFD)
+Spindle Analog Control Ground	SE2			5	7i49		TB3-23 GND3 			 (changed 2023-06-17 to test VFD)
 
 CAM1 MR-50
 ----------
 Signal				Line #	Conn.		Pin	Control Board	Pin		HAL Pin		Notes
-Analog Servo CMD 1		ER1			1	7i49		P4-20 AOUT0			-10 to +10, vs GND0
-Analog Servo CMD 1 Ground	ERR1			2	7i49		P4-19 GND0			
+Analog Servo CMD 1 X		ER1			1	7i49		P4-20 AOUT0			-10 to +10, vs GND0
+Analog Servo CMD 1 X Ground	ERR1			2	7i49		P4-19 GND0
 							3
 							4
 				SC1			5							FIXME Unused?
@@ -233,8 +233,8 @@ Servo On 1			SVON1			7	8-relay-board	Ch4 NO				*1 Pulled up to 24V by the servo 
 Servo Drive 1 Alarm		ALM1			8	7i84.0.1	TB2-14		input-29	No alarm: 16.5V from amp., need pull up resistor.  Yes alarm: 0V from amp.
 				RG			9							Connect to 0G ground
 							10
-Analog Servo CMD 2		ER2			11	7i49		P4-24 AOUT1			-10 to +10, vs GND1
-Analog Servo CMD 2 Ground	ERR2			12	7i49		P4-23 GND1			
+Analog Servo CMD 2 Y		ER2			11	7i49		P4-24 AOUT1			-10 to +10, vs GND1
+Analog Servo CMD 2 Y Ground	ERR2			12	7i49		P4-23 GND1
 							13
 							14
 				SC2			15							FIXME Unused?
@@ -255,8 +255,8 @@ Servo Drive 2 Alarm		ALM2			18	7i84.0.1	TB2-15		input-30	No alarm: 16.5V from am
 				RG			30							Connect to 0G ground
 							31
 							32
-Analog Servo CMD 3		ER3			33	7i49		P3-20 AOUT2			-10 to +10, vs GND2
-Analog Servo CMD 3 Ground	ERR3			34	7i49		P3-19 GND2			
+Analog Servo CMD 3 Z		ER3			33	7i49		P2-20 AOUT2			-10 to +10, vs GND2
+Analog Servo CMD 3 Z Ground	ERR3			34	7i49		P2-19 GND2
 							35
 							36
 				SC3			37							FIXME Unused?
@@ -373,7 +373,7 @@ than 1 mA to activate the relay (per '8 Relay Module.pdf').
 GND                      | GND on ATX power supply
 IN1                      | 7i49 P4-18 ENA0+ (P4-17 ENA0- is wired to GND on the ATX power supply, which is tied to 0G)
 IN2                      | 7i49 P4-22 ENA1+ (P4-21 ENA1- is wired to GND on the ATX power supply, which is tied to 0G)
-IN3                      | 7i49 P3-18 ENA2+ (P3-17 ENA2- is wired to GND on the ATX power supply, which is tied to 0G)
+IN3                      | 7i49 P2-18 ENA2+ (P2-17 ENA2- is wired to GND on the ATX power supply, which is tied to 0G)
 IN4                      | transistor controlled by 7i84.0.1 TB2-18 (hm2_7i80.0.7i84.0.1.output-09), SVON1
 IN5                      | transistor controlled by 7i84.0.1 TB2-20 (hm2_7i80.0.7i84.0.1.output-11), SVON2
 IN6                      | transistor controlled by 7i84.0.1 TB2-22 (hm2_7i80.0.7i84.0.1.output-13), SVON3
