@@ -231,7 +231,7 @@ net servo-on                   => hm2_7i80.0.7i84.0.1.output-11 # this pin activ
 net servo-on                   => hm2_7i80.0.pwmgen.01.enable
 #net ???                        => hm2_7i80.0.7i84.0.1.output-12
 net servo-on                 => hm2_7i80.0.7i84.0.1.output-13 # this pin activates the Z servo
-net servo-on                 => hm2_7i80.0.pwmgen.02.enable
+net servo-on                 => hm2_7i80.0.pwmgen.04.enable
 
 # Enable axis servos when (|) "Machine power" button is pressed
 net servo-on                   <= motion.motion-enabled
@@ -447,14 +447,14 @@ net plc-servo-z-drive-alarm	=>	joint.2.amp-fault-in
 
 # PWM GENERATOR SETUP
 # Set PWMGen type for 7i49 (2 = up/down) - z-axis
-setp hm2_7i80.0.pwmgen.02.output-type			2
+setp hm2_7i80.0.pwmgen.04.output-type			2
 
 # Set z-axis PWMGen scale - from .ini file
-setp hm2_7i80.0.pwmgen.02.scale  			[JOINT_2]OUTPUT_SCALE
+setp hm2_7i80.0.pwmgen.04.scale  			[JOINT_2]OUTPUT_SCALE
 
 # Connect Signals:
 # - Analog servo drive command signal to Mesa board analog-out
-net z-output  			=>	hm2_7i80.0.pwmgen.02.value
+net z-output  			=>	hm2_7i80.0.pwmgen.04.value
 # - Commanded-position to internal axis module
 net z-pos-cmd 			=>	joint.2.motor-pos-cmd
 
