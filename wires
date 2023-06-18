@@ -164,7 +164,7 @@ CND4 MR-50
 ----------
 Signal				Line #	Conn.		Pin	IO Board	IO Pin	HAL Pin		Notes
 DC 24V -Com			OG	TB51-OG		1
-Pallet No. 1 On			P1ON	TB6-P1ON	2
+Magazine inposition CW		2068	TB6-P1ON	2	7i84.0.0	TB3-8	input-07     Magazine in position counter-clockwise
 Head Lube Pressure Alarm #2	CH24	TB1-CH24	3
 Tool Eject Cover Interlock	ISP24			4	7i84.0.0	TB3-5	input-04	Reads +24 when back door to magazine is closed
 							5
@@ -198,7 +198,7 @@ Sensor Start			MMS ST	CN200S-4	30
 DC 24V +Com			+24V	TB1-+24V	33
 Pallet Load SS			PLSS	TB7-857		34
 Pallet Unload SS		PULSS	TB7-858		35
-Pallet No. 2 On			P2On	TB6-P2ON	36
+Magazine Motor Inposition	2069	CA17-R		36	7i84.0.0	TB3-9	input-08     Magazine motor in position
 							37
 							38
 							39
