@@ -83,7 +83,7 @@ Machine Malfunction		MMAL		CN301A-19	25
 Machine Ready			MRDY		TB6-MRDY	26
 Air Jet				761		CN13-10		27
 				M44T		CN301A-2	28
-MMS Start Command		MMS STCMD	CN200-14	29
+MMS Start Command		MMS STCMD	CN200-14	29	7i84.0.0	TB3-23	output-06	Drive to +24V to start Renishaw probe
 				M45T		CN301A-4	30
 Cycle Start LED			CSTL		TB6-CSTL	31
 								32
