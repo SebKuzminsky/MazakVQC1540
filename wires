@@ -27,7 +27,7 @@ Tool Unclamp Key Switch		TUCSS	TB4-149		23
 Tool Clamp			209	TB51-209	24	7i84.0.0	TB2-16	input-31
 Ext Reset			EXRST	TB6-EXRST	25
 Pallet Cycle No. 2 PB		PCY2PB	TB7-852		26
-Spindle Orient Arrival		ORA1	CON1-22		27	7i84.0.0	TB3-3	input-02
+#Spindle Orient Arrival		ORA1	CON1-22		27	7i84.0.0	TB3-3	input-02
 Pallet Lock Pin Retract		PLPR	TB7-2063	28
 							29
 							30
