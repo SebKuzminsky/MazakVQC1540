@@ -62,7 +62,7 @@ O10 IF [#<tool_in_spindle> NE #<selected_tool>]
 	G53 G0 Z #<z-up>  ; move to up position
 	G53 X #<x-atc>  ; move in line to enter ATC
 
-	M66 P0 L3 Q60  ; wait up to 30s for PLC atc-arrive-request to go HIGH
+	M66 P0 L3 Q60  ; wait up to 60s for PLC atc-arrive-request to go HIGH
 	; Abort if wait times out
 	O30 IF [#5399 LT 0]
 		(ABORT, ERROR: Failed to open cover, ready empty pocket assigned to current tool, and/or orient spindle [Debug Info: atc-arrive-request did not activate])
