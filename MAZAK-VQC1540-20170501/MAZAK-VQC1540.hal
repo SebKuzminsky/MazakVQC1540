@@ -612,9 +612,18 @@ net power-on                => power-logic.in-00
 net machine-estop-ok        => power-logic.in-01
 net power-on                <= power-logic.or
 
-# 'M64 P4' turn on light
-# 'M65 P4' turn off light
-net work-light                 <= motion.digital-out-04
+# 'M64 PX' turn on
+# 'M65 PX' turn off
 
-# Manual control over tool clamping.  Good idea?
+net work-light                 <= motion.digital-out-01
+
+net tool-measuring-arm-extend  <= motion.digital-out-02
+net tool-change-release-limits <= motion.digital-out-03
+net magazine-cover-close       => motion.digital-out-04
+
+# Manual control over tool clamping.
 net tool-unclamp               <= motion.digital-out-05
+
+# Enable Renishaw probe
+# on = 'M64 P6', off = 'M65 P6'
+net mms-probe-start            <= motion.digital-out-06
