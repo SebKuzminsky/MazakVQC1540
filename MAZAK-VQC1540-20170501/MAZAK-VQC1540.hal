@@ -54,6 +54,7 @@ loadrt logic names=brake-z,hydraulic-lube,power-logic personality=0x101,0x202,0x
 loadrt lut5 names=tool-mag-jog-button,tool-mag-movable
 
 loadrt mux2 names=y_softlim,z_softlim
+loadrt mux_generic config=bb2
 
 #-------------------
 # LOAD MODULES
@@ -80,6 +81,8 @@ addf tool-mag-movable         servo-thread
 
 addf y_softlim servo-thread
 addf z_softlim servo-thread
+
+addf mux-gen.00 servo-thread
 
 # - Motion command handler:
 addf motion-command-handler   servo-thread
@@ -128,7 +131,7 @@ addf hm2_7i80.0.write         servo-thread
 net spindle-zero-speed         <= hm2_7i80.0.7i84.0.0.input-00
 net spindle-controller-normal  <= hm2_7i80.0.7i84.0.0.input-01
 net spindle-orient-arrival     <= hm2_7i80.0.7i84.0.0.input-02
-net spindle-tool-detector      <= hm2_7i80.0.7i84.0.0.input-03
+net spindle-tool-clamped       <= hm2_7i80.0.7i84.0.0.input-03
 net tool-mag-door-interlock    <= hm2_7i80.0.7i84.0.0.input-04
 #net ???                        <= hm2_7i80.0.7i84.0.0.input-05
 #net magazine-cover-open        <= hm2_7i80.0.7i84.0.0.input-06
@@ -555,8 +558,11 @@ net estop-out                   <=      iocontrol.0.user-enable-out
 
 # See atc.hal for tool-change related IOCONTROL signals
 
-# PROBE SIGNAL
-net probe-in 			=>	motion.probe-input
+# Provide M64 P7 to enable upper switch
+net toolprobe-upper           <= motion.digital-out-07 => mux-gen.00.sel-bit-00
+net tool-measure-lower-switch => mux-gen.00.in-bit-00
+net tool-measure-upper-switch => mux-gen.00.in-bit-01
+net probe-in                  <= mux-gen.00.out-bit  => motion.probe-input
 
 #-------------------
 # MOTION MODULE SIGNALS
@@ -627,3 +633,6 @@ net tool-unclamp               <= motion.digital-out-05
 # Enable Renishaw probe
 # on = 'M64 P6', off = 'M65 P6'
 net mms-probe-start            <= motion.digital-out-06
+
+net spindle-tool-clamped       => motion.digital-in-00
+net tool-measure-arm-extended  => motion.digital-in-01
