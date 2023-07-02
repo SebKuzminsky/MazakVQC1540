@@ -4,8 +4,16 @@ g21
 (absolute position mode relative to coordinate system)
 g90
 
+; #<toolnum> = #<_hal[iocontrol.0.tool-number]>
+#<toolnum> = #5400
+
+(print, Setting height of tool #<toolnum>)
 (cancel tool length compensation)
 g49
+
+#<zworkoffset> = [#[5203 + #5220 * 20] + #5213 * #5210]
+
+(print, Z work offset is #<zworkoffset>)
 
 (print, reference length at start is #1000)
 
@@ -31,30 +39,35 @@ G91 G0 y-30
 #1000 = 0
 O10 ENDIF
 
-(msg, Enable first tool height trigger, approach quickly)
+(print, Enable first tool height trigger, approach quickly)
 M64 P7
 G91
-G38.2 Z-250 F700 (measure)
+G38.3 Z-250 F700 (measure)
 G0z.2 (off the switch)
+O101 IF [#5070 EQ 0]
+(print, Probe failed, lift spindle and move away)
+G0 Z20
+G90
+O101 ELSE
 G90
 
-(msg, Enable second tool height trigger, approach slowly)
+(print, Enable second tool height trigger, approach slowly)
 M65 P7
 G91
 G38.2 Z-50 F50 (measure)
 G0z.2 (off the switch)
 G90
 O20 IF [#1000 EQ 0]
-#1000=#5063 (save reference tool length)
+#1000 = [ #5063 + #<zworkoffset> ] (save reference tool length)
 (print, reference length is #1000)
-(msg, reference length is #1000)
 O20 ENDIF
 G30
 (print, tool trigger height #5063)
-#1001 = [#5063-#1000]
-g43.1 z#1001 (set new tool offset)
+#1001 = [#5063 + #<zworkoffset> - #1000]
+G10 L1 P#<toolnum> Z#1001 (set new tool offset)
+G43
 (print, new length is #1001)
-(msg, new length is #1001)
+O101 ENDIF
 
 M65 P2
 
