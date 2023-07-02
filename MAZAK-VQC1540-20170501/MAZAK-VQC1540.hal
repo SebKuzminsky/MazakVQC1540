@@ -615,7 +615,7 @@ net power-on                <= power-logic.or
 # 'M64 PX' turn on
 # 'M65 PX' turn off
 
-net work-light                 <= motion.digital-out-01
+net work-light                 <= motion.digital-out-00
 
 net tool-measuring-arm-extend  <= motion.digital-out-02
 net tool-change-release-limits <= motion.digital-out-03
