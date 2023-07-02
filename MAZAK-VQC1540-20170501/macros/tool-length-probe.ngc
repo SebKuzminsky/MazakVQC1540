@@ -1,0 +1,64 @@
+(Measure and use tool height)
+(metric)
+g21
+(absolute position mode relative to coordinate system)
+g90
+
+(cancel tool length compensation)
+g49
+
+(print, reference length at start is #1000)
+
+(Move to home, first lift tool off workpiece)
+G53 G0 Z0
+G53 G0 x0 y0
+
+(Extend tool measure arm)
+M64 P2
+M66 P1 Q30
+G4 P3 (Give arm time to swing, arm extended pin P1 show up too soon)
+
+(move spindle above tool measure arm switch)
+g30
+
+(If no tool in spindle, offset Y to hit spindle edge)
+(FIXME should also orient spindle to hit cylinder, not dogs)
+(FIXME do not work, pin spindle-tool-detector detect clamped, not presense)
+M66 P0 L0
+(#5399 = 1)
+O10 IF [#5399 EQ 1]
+G91 G0 y-30
+#1000 = 0
+O10 ENDIF
+
+(msg, Enable first tool height trigger, approach quickly)
+M64 P7
+G91
+G38.2 Z-250 F700 (measure)
+G0z.2 (off the switch)
+G90
+
+(msg, Enable second tool height trigger, approach slowly)
+M65 P7
+G91
+G38.2 Z-50 F50 (measure)
+G0z.2 (off the switch)
+G90
+O20 IF [#1000 EQ 0]
+#1000=#5063 (save reference tool length)
+(print, reference length is #1000)
+(msg, reference length is #1000)
+O20 ENDIF
+G30
+(print, tool trigger height #5063)
+#1001 = [#5063-#1000]
+g43.1 z#1001 (set new tool offset)
+(print, new length is #1001)
+(msg, new length is #1001)
+
+M65 P2
+
+G53 G0 Z0
+G53 G0 X0 Y0
+
+M2
