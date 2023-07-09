@@ -23,8 +23,6 @@
 #net plc-way-lube-fault		=> gmoccapy.messages.lube-waylube
 
 
-show pin ini*
-
 # switch limits for tool change
 net tool-change-release-limits y_softlim.sel
 setp y_softlim.in0 [ATC]Y_MAX_NORM
