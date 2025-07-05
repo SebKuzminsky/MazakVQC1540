@@ -1,5 +1,13 @@
 Mazak VQC 15/40
 
+
+Possible encoder input cards suggested 7i52, alternative 7i42
+
+https://eusurplus.com/
+
+Firmware used before 2025-07-05: 7i80hd_25_rmsvss6_8.bit
+Firmware used after 2025-07-05: 7i80hd_25_rmsvss6_12_8.bit
+
 # Mesa interface hardware
 
     7i80HD-25 (AnyIO FPGA board, 3x50-pin connectors)
