@@ -38,7 +38,7 @@ loadrt hostmot2
 #    * 2: I/O + encoder + Ain fast display
 # Choose mode PER CHANNEL (= per board)
 # x = disabled (which defaults to GPIO if available)
-loadrt hm2_eth board_ip="192.168.1.121,192.168.1.122" config="num_resolvers=6 num_encoders=0 num_pwmgens=6 num_stepgens=0 sserial_port_0=000xxx"
+loadrt hm2_eth board_ip="192.168.1.121" config="num_resolvers=6 num_encoders=1 num_pwmgens=6 num_stepgens=0 sserial_port_0=000xxx"
 
 # PID Realtime Loop Component - axis x, y, & z
 loadrt pid names=pid.x,pid.y,pid.z,pid.s
@@ -72,7 +72,6 @@ setp    hm2_7i80.0.watchdog.timeout_ns 5000000
 
 # - Read the 7i80 pins:
 addf hm2_7i80.0.read          servo-thread
-addf hm2_7i92.0.read          servo-thread
 
 addf estop-latch.0            servo-thread
 
@@ -104,7 +103,6 @@ addf pid.z.do-pid-calcs       servo-thread
 
 # - Write out new values to the 7i80 pins every servo-thread cycle:
 addf hm2_7i80.0.write         servo-thread
-addf hm2_7i92.0.write         servo-thread
 
 
 #=============================

@@ -15,6 +15,9 @@
 # load a near component for at-speed discovery and attach it to a thread
 loadrt near
 
+# Make sure to not ramp down Altivar VDF too fast
+loadrt limit2
+
 #-------------------
 # LOAD FUNCTIONS
 #-------------------
@@ -24,6 +27,9 @@ addf pid.s.do-pid-calcs servo-thread
 
 # - Update near calculation
 addf near.0 servo-thread
+
+# - Update limit2 calculation
+addf limit2.0 servo-thread
 
 #=============================
 # EXTERNAL SIGNALS
@@ -58,12 +64,13 @@ setp   pid.s.maxoutput [SPINDLE_9]MAX_OUTPUT
 setp   pid.s.error-previous-target true
 setp   pid.s.maxerror  [SPINDLE_9]MAX_ERROR
 
-setp   hm2_7i92.0.encoder.00.scale [SPINDLE_9]ENCODER_SCALE
+setp   hm2_7i80.0.encoder.00.scale [SPINDLE_9]ENCODER_SCALE
 
 # Connect Virtual Pins between Modules:
 net spindle-index-enable	pid.s.index-enable
 net spindle-enable		=>	pid.s.enable
-net spindle-vel-cmd-rpm		spindlelin.in
+net spindle-vel-cmd-rpm		=> limit2.0.in
+net spindle-rpm-lim     limit2.0.out => spindlelin.in
 net spindle-rpm-lin		spindlelin.out => pid.s.command
 net spindle-vel-fb-rpm		pid.s.feedback
 net spindle-output		pid.s.output
@@ -83,11 +90,14 @@ net spindle-at-speed		spindle.0.at-speed
 net spindle-vel-fb-rps		spindle.0.speed-in
 net spindle-index-enable	spindle.0.index-enable
 
+# Setup VFD ramp speed limitation, to avoid erroring out the Altivar
+setp limit2.0.maxv 120
+
 # Setup 'Spindle at Speed' Signals
 # Connect near component to commanded and current speed to signal
 # spindle-at-speed
 net spindle-vel-cmd-rpm => near.0.in1
-net spindle-vel-fb-rpm hm2_7i92.0.encoder.00.velocity-rpm  => near.0.in2
+net spindle-vel-fb-rpm hm2_7i80.0.encoder.00.velocity-rpm  => near.0.in2
 net spindle-at-speed spindle.0.at-speed <= near.0.out
 
 # set the spindle speed inputs to agree if within 10% (from .ini file)
