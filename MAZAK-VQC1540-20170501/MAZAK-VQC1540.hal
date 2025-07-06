@@ -45,7 +45,7 @@ loadrt pid names=pid.x,pid.y,pid.z,pid.s
 
 loadrt estop_latch
 
-loadrt lincurve names=spindlelin personality=6
+loadrt lincurve names=spindlelin personality=7
 addf spindlelin servo-thread
 
 # brake-z used to release Z brake when both Z servo PWN is active and
