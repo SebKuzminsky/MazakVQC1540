@@ -66,7 +66,7 @@ G30
 #1001 = [#5063 + #<zworkoffset> - #1000]
 G10 L1 P#<toolnum> Z#1001 (set new tool offset)
 G43
-(print, new length is #1001)
+(debug, new #5400 tool length is #1001)
 O101 ENDIF
 
 M65 P2
