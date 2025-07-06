@@ -7,6 +7,9 @@ https://eusurplus.com/
 
 Firmware used before 2025-07-05: 7i80hd_25_rmsvss6_8.bit
 Firmware used after 2025-07-05: 7i80hd_25_rmsvss6_12_8.bit
+ (for encoder support)
+Firmware used after 2025-07-06: 7i80hd_25_rmsvsspkt_6_4.bit
+ (for encoder and modbus support)
 
 # Mesa interface hardware
 
