@@ -12,6 +12,8 @@
 # PID Realtime Loop Component - add spindle
 # already loaded in main hal file
 
+# load a near component for at-speed discovery and attach it to a thread
+loadrt near
 
 #-------------------
 # LOAD FUNCTIONS
@@ -20,6 +22,8 @@
 # - Update the PID calculations for the spindle:
 addf pid.s.do-pid-calcs servo-thread
 
+# - Update near calculation
+addf near.0 servo-thread
 
 #=============================
 # EXTERNAL SIGNALS
@@ -54,6 +58,8 @@ setp   pid.s.maxoutput [SPINDLE_9]MAX_OUTPUT
 setp   pid.s.error-previous-target true
 setp   pid.s.maxerror  [SPINDLE_9]MAX_ERROR
 
+setp   hm2_7i92.0.encoder.00.scale [SPINDLE_9]ENCODER_SCALE
+
 # Connect Virtual Pins between Modules:
 net spindle-index-enable	pid.s.index-enable
 net spindle-enable		=>	pid.s.enable
@@ -78,9 +84,14 @@ net spindle-vel-fb-rps		spindle.0.speed-in
 net spindle-index-enable	spindle.0.index-enable
 
 # Setup 'Spindle at Speed' Signals
-# (not implementing a spindle speed ramp-up configuration, so
-#  simply set spindle-at-speed as true)
-sets spindle-at-speed true
+# Connect near component to commanded and current speed to signal
+# spindle-at-speed
+net spindle-vel-cmd-rpm => near.0.in1
+net spindle-vel-fb-rpm hm2_7i92.0.encoder.00.velocity-rpm  => near.0.in2
+net spindle-at-speed spindle.0.at-speed <= near.0.out
+
+# set the spindle speed inputs to agree if within 10% (from .ini file)
+setp near.0.scale [SPINDLE_9]ATSPEED
 
 
 #=============================
