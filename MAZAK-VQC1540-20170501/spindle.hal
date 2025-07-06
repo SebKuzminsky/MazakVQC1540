@@ -57,7 +57,8 @@ setp   pid.s.maxerror  [SPINDLE_9]MAX_ERROR
 # Connect Virtual Pins between Modules:
 net spindle-index-enable	pid.s.index-enable
 net spindle-enable		=>	pid.s.enable
-net spindle-vel-cmd-rpm		pid.s.command
+net spindle-vel-cmd-rpm		spindlelin.in
+net spindle-rpm-lin		spindlelin.out => pid.s.command
 net spindle-vel-fb-rpm		pid.s.feedback
 net spindle-output		pid.s.output
 
@@ -88,3 +89,16 @@ sets spindle-at-speed true
 net spindle-manual-cw     	halui.spindle.0.forward
 net spindle-manual-ccw    	halui.spindle.0.reverse
 net spindle-manual-stop   	halui.spindle.0.stop
+
+setp spindlelin.x-val-00 500
+setp spindlelin.y-val-00 800
+setp spindlelin.x-val-01 1000
+setp spindlelin.y-val-01 1120
+setp spindlelin.x-val-02 2000
+setp spindlelin.y-val-02 2000
+setp spindlelin.x-val-03 3000
+setp spindlelin.y-val-03 2870
+setp spindlelin.x-val-04 4000
+setp spindlelin.y-val-04 3760
+setp spindlelin.x-val-05 6000
+setp spindlelin.y-val-05 6000
