@@ -234,16 +234,18 @@ Spindle motor: Mitsubishi SJ 9 A
    RPM       1500 4500 6000
    CONT (KW)  5.5  5.5  4.5
    1/2H (KW)   9    9   6.5
-   VOLT            ?
-   AMP             ?
-   INS CLASS       ?
-   AMB TEMP        ?
-   FRAME           ?
-   DATE
-   SERIAL
+   VOLT          200 (fortrykt)
+   AMP            54
+   INS CLASS       F (fortrykt)
+   AMB TEMP       40 (fortrykt)
+   FRAME      ??112F
+   DATE       ????-2
+   SERIAL    ???8948
    ...
 
-Encoder: Tamagawa Seiki RFA-1024-22-1-68 (parts list) / OSE 1024-3-68 (unit plate)
+Encoder with Tamagawa Seiki RFA-1024-22-1-68u (parts list) /
+Mitsubishi OSE 1024-3-68 (unit plate).  There are 4096 ticks per
+rotation.
 
 When enabling Spindle and trying to run forward or backwards, by
 activating relays SSET and SMR using 'sets spindle-run 1', 'sets
@@ -286,6 +288,24 @@ Some ideas:
  * https://forum.linuxcnc.org/30-cnc-machines/32162-mitsubishi-freqrol-fr-se-replacement-recommendations
  * https://www.practicalmachinist.com/forum/threads/spindle-drive-issues-leadwell-mcv-0p-3-axis-vmc-with-mitsubish-freqrol-fr-sf-spindl.280843/
  * https://carelabz.com/megger-test-performed/
+
+The encoder is according to the wiring diagram on PDF page 106
+connected to connector CONA on the spindle controller with the
+following pins:
+
+CONA
+--------------
+PA  -16 = A
+PA^ -17 = N
+PB  -18 = C
+PB^ -19 = R
+SC  -14 = B
+SC^ -15 = P
+P5H  -6 = H?
+OH   -1 = K
+?   -20 = cable earth
+
+This is an incremental ABZ encoder with short blips on SC for each rotation.
 
 ### The great magic smoke escape
 
