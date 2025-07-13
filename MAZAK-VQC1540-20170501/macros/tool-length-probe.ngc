@@ -56,14 +56,18 @@ G4 P3 (Give arm time to swing, arm extended pin P#<pintoolarmsensor> show up too
 g30
 
 (If no tool in spindle, offset Y to hit spindle edge)
+(If tool in spindle, move half its diameter #5410 to the side to measure edge)
 (FIXME should also orient spindle to hit cylinder, not dogs)
 (FIXME do not work, pin spindle-tool-detector detect clamped, not presence)
 M66 P0 L0
-(#5399 = 1)
+(if #5399 = 1, aka no tool locked in spindle)
 O10 IF [#5399 EQ 1]
   (print, Measuring spindle without tool)
   G91 G0 Y#<diaspindle>
   #1000 = 0
+O10 ELSE
+  (print, Measuring height of tool #<toolnum> edge in spindle)
+  G91 G0 Y[0 - #5410 / 2]
 O10 ENDIF
 
 (print, Enable first tool height trigger, approach quickly)
