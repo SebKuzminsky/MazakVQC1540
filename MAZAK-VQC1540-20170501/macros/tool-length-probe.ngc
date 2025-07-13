@@ -79,6 +79,7 @@ G38.3 Z#<totriggerfirst> F#<feedfirst> (measure)
 G0z.2 (off the switch)
 O101 IF [#5070 EQ 0]
   (print, Probe failed, lift spindle and move away)
+  G90
   G53 G0 Z#<max_limit_z>
 O101 ELSE
   (print, Using first tool height trigger, approach slowly)
