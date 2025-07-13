@@ -1,4 +1,30 @@
 (Measure and use tool height)
+
+; max mm movement from g30 start position to where the first
+; switch should trigger
+#<totriggerfirst> = -250
+
+; max mm movement from the first switch triggering to the second
+#<totriggersecond> = -50
+
+; diameter of spindle edge, for measuring baseline when there is no tool
+#<diaspindle> = -30
+
+; pin number for enabling tool height measuring arm
+#<pinenabletoolarm> = 2
+
+; pin number switching from 0 to 1 when tool height measuring arm is fully extended
+#<pintoolarmsensor> = 1
+
+; pin number for select input for first or second tool height trigger 0=second
+#<pintoolarmtrigselect> = 7
+
+; Feed rate for quick decend towards first height trigger
+#<feedfirst> = 700
+
+; Feed rate for slow decend towards second height trigger
+#<feedsecond> = 50
+
 (metric)
 g21
 (absolute position mode relative to coordinate system)
@@ -22,27 +48,28 @@ G53 G0 Z0
 G53 G0 x0 y0
 
 (Extend tool measure arm)
-M64 P2
-M66 P1 Q30
-G4 P3 (Give arm time to swing, arm extended pin P1 show up too soon)
+M64 P#<pinenabletoolarm>
+M66 P#<pintoolarmsensor> Q30
+G4 P3 (Give arm time to swing, arm extended pin P#<pintoolarmsensor> show up too soon)
 
 (move spindle above tool measure arm switch)
 g30
 
 (If no tool in spindle, offset Y to hit spindle edge)
 (FIXME should also orient spindle to hit cylinder, not dogs)
-(FIXME do not work, pin spindle-tool-detector detect clamped, not presense)
+(FIXME do not work, pin spindle-tool-detector detect clamped, not presence)
 M66 P0 L0
 (#5399 = 1)
 O10 IF [#5399 EQ 1]
-  G91 G0 y-30
+  (print, Measuring spindle without tool)
+  G91 G0 Y#<diaspindle>
   #1000 = 0
 O10 ENDIF
 
 (print, Enable first tool height trigger, approach quickly)
-M64 P7
+M64 P#<pintoolarmtrigselect>
 G91
-G38.3 Z-250 F700 (measure)
+G38.3 Z#<totriggerfirst> F#<feedfirst> (measure)
 G0z.2 (off the switch)
 O101 IF [#5070 EQ 0]
   (print, Probe failed, lift spindle and move away)
@@ -52,9 +79,9 @@ O101 ELSE
   G90
 
   (print, Enable second tool height trigger, approach slowly)
-  M65 P7
+  M65 P#<pintoolarmtrigselect>
   G91
-  G38.2 Z-50 F50 (measure)
+  G38.2 Z#<totriggersecond> F#<feedsecond> (measure)
   G0z.2 (off the switch)
   G90
   O20 IF [#1000 EQ 0]
@@ -69,7 +96,7 @@ O101 ELSE
   (debug, new #5400 tool length is #1001)
 O101 ENDIF
 
-M65 P2
+M65 P#<pinenabletoolarm>
 
 G53 G0 Z0
 G53 G0 X0 Y0
