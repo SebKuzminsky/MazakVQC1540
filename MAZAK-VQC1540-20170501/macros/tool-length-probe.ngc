@@ -25,6 +25,8 @@
 ; Feed rate for slow decend towards second height trigger
 #<feedsecond> = 50
 
+#<max_limit_z> = #<_ini[axis_z]max_limit>
+
 (metric)
 g21
 (absolute position mode relative to coordinate system)
@@ -43,8 +45,8 @@ g49
 
 (print, reference length at start is #1000)
 
-(Move to home, first lift tool off workpiece)
-G53 G0 Z0
+(Move to the top xy home, first lift tool off workpiece, compensating for tool height)
+G53 G0 Z[#<max_limit_z> - #5403]
 G53 G0 x0 y0
 
 (Extend tool measure arm)
@@ -52,8 +54,9 @@ M64 P#<pinenabletoolarm>
 M66 P#<pintoolarmsensor> Q30
 G4 P3 (Give arm time to swing, arm extended pin P#<pintoolarmsensor> show up too soon)
 
-(move spindle above tool measure arm switch)
-g30
+(move spindle above tool measure arm switch, ie G30 X+Y location, keeping height)
+G53 G0 X#5181 Y#5182
+
 
 (If no tool in spindle, offset Y to hit spindle edge)
 (If tool in spindle, move half its diameter #5410 to the side to measure edge)
@@ -92,7 +95,6 @@ O101 ELSE
     #1000 = [ #5063 + #<zworkoffset> ] (save reference tool length)
     (print, reference length is #1000)
   O20 ENDIF
-  G30
   (print, tool trigger height #5063)
   #1001 = [#5063 + #<zworkoffset> - #1000]
   G10 L1 P#<toolnum> Z#1001 (set new tool offset)
@@ -102,7 +104,7 @@ O101 ENDIF
 
 M65 P#<pinenabletoolarm>
 
-G53 G0 Z0
+G53 G0 Z[#<max_limit_z> - #5403]
 G53 G0 X0 Y0
 
 M2
