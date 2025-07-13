@@ -59,7 +59,7 @@ G53 G0 X#5181 Y#5182
 
 (If no tool in spindle, offset Y to hit spindle edge)
 (If tool in spindle, move half its diameter #5410 to the side to measure edge)
-(FIXME should also orient spindle to hit cylinder, not dogs)
+(FIXME should also orient spindle to hit cylinder, not drive dogs)
 (FIXME do not work, pin spindle-tool-detector detect clamped, not presence)
 M66 P0 L0
 (if #5399 = 1, aka no tool locked in spindle)
