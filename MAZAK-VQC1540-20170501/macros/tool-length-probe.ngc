@@ -35,8 +35,8 @@ g30
 M66 P0 L0
 (#5399 = 1)
 O10 IF [#5399 EQ 1]
-G91 G0 y-30
-#1000 = 0
+  G91 G0 y-30
+  #1000 = 0
 O10 ENDIF
 
 (print, Enable first tool height trigger, approach quickly)
@@ -45,28 +45,28 @@ G91
 G38.3 Z-250 F700 (measure)
 G0z.2 (off the switch)
 O101 IF [#5070 EQ 0]
-(print, Probe failed, lift spindle and move away)
-G0 Z20
-G90
+  (print, Probe failed, lift spindle and move away)
+  G0 Z20
+  G90
 O101 ELSE
-G90
+  G90
 
-(print, Enable second tool height trigger, approach slowly)
-M65 P7
-G91
-G38.2 Z-50 F50 (measure)
-G0z.2 (off the switch)
-G90
-O20 IF [#1000 EQ 0]
-#1000 = [ #5063 + #<zworkoffset> ] (save reference tool length)
-(print, reference length is #1000)
-O20 ENDIF
-G30
-(print, tool trigger height #5063)
-#1001 = [#5063 + #<zworkoffset> - #1000]
-G10 L1 P#<toolnum> Z#1001 (set new tool offset)
-G43
-(debug, new #5400 tool length is #1001)
+  (print, Enable second tool height trigger, approach slowly)
+  M65 P7
+  G91
+  G38.2 Z-50 F50 (measure)
+  G0z.2 (off the switch)
+  G90
+  O20 IF [#1000 EQ 0]
+    #1000 = [ #5063 + #<zworkoffset> ] (save reference tool length)
+    (print, reference length is #1000)
+  O20 ENDIF
+  G30
+  (print, tool trigger height #5063)
+  #1001 = [#5063 + #<zworkoffset> - #1000]
+  G10 L1 P#<toolnum> Z#1001 (set new tool offset)
+  G43
+  (debug, new #5400 tool length is #1001)
 O101 ENDIF
 
 M65 P2
