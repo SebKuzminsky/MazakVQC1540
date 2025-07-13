@@ -45,9 +45,8 @@ g49
 
 (print, reference length at start is #1000)
 
-(Move to the top xy home, first lift tool off workpiece, compensating for tool height)
+(Move to the top to lift tool off workpiece, compensating for tool height)
 G53 G0 Z[#<max_limit_z> - #5403]
-G53 G0 x0 y0
 
 (Extend tool measure arm)
 M64 P#<pinenabletoolarm>
