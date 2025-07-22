@@ -1,11 +1,20 @@
+;
+; Measure tool height using Mazak VQC 15/40 tool height measuring sensor.
+;
+; The start position over the measuring tool is fetch from position
+; saved in G30
+;
+O<toolheightmeasure> sub
 (Measure and use tool height)
-
 ; max mm movement from g30 start position to where the first
 ; switch should trigger
 #<totriggerfirst> = -250
 
+; mm to lift tool from first switch before approaching again
+#<triggerlift> = 2
+
 ; max mm movement from the first switch triggering to the second
-#<totriggersecond> = -50
+#<totriggersecond> = [#<triggerlift> + 1]
 
 ; diameter of spindle edge, for measuring baseline when there is no tool
 #<diaspindle> = -30
@@ -25,14 +34,15 @@
 ; Feed rate for slow decend towards second height trigger
 #<feedsecond> = 50
 
+; The highest point in the machine, max position for z
 #<max_limit_z> = #<_ini[axis_z]max_limit>
 
-(metric)
+(ensure all measurements are in metric)
 g21
-(absolute position mode relative to coordinate system)
+
+(use absolute position mode relative to coordinate system)
 g90
 
-; #<toolnum> = #<_hal[iocontrol.0.tool-number]>
 #<toolnum> = #5400
 
 (print, Setting height of tool #<toolnum>)
@@ -72,36 +82,38 @@ O10 ELSE
   (print, Measuring height of tool #<toolnum> edge in spindle)
   G0 Y[0 - #5410 / 2]
 O10 ENDIF
-
 (print, Using first tool height trigger, approach quickly)
 M64 P#<pintoolarmtrigselect>
 G38.3 Z#<totriggerfirst> F#<feedfirst> (measure)
-G0z.2 (off the switch)
-O101 IF [#5070 EQ 0]
-  (print, Probe failed, lift spindle and move away)
+#<triggered> = #5070
+G0z#<triggerlift> (off the switch)
+O101 IF [#<triggered> EQ 0]
   G90
+  (print, Probe failed, lifting spindle and moving away)
+  (move up before retracting tool measuring arm, to avoid scratching it)
   G53 G0 Z#<max_limit_z>
+  M65 P#<pinenabletoolarm>
+  O<toolheightmeasure> return
 O101 ELSE
   (print, Using first tool height trigger, approach slowly)
-  G38.2 Z#<totriggersecond> F#<feedsecond> (measure)
-  G0z.2 (off the switch)
+  G38.2 Z[-#<totriggersecond>] F#<feedsecond> (measure)
+  G90
+  (move up imediately before retracting tool measuring arm, to avoid scratching it)
+  G53 G0 Z#<max_limit_z>
   O20 IF [#1000 EQ 0]
     #1000 = [ #5063 + #<zworkoffset> ] (save reference tool length)
     (print, reference length is #1000)
   O20 ENDIF
   (print, tool trigger height #5063)
-  #1001 = [#5063 + #<zworkoffset> - #1000]
-  G10 L1 P#<toolnum> Z#1001 (set new tool offset)
-  (debug, new #5400 tool length is #1001)
+  #<tool_height> = [#5063 + #<zworkoffset> - #<tool_height>]
+  (set new tool offset)
+  G10 L1 P#<toolnum> Z#<tool_height>
+  (debug, new #<toolnum> tool length is #<tool_height>)
   G43
+  M65 P#<pinenabletoolarm>
 O101 ENDIF
-G90
+O<toolheightmeasure> endsub [#<tool_height>]
 
-(move up before retracting tool measuring arm, to avoid scratching it)
-G53 G0 Z#<max_limit_z>
-
-M65 P#<pinenabletoolarm>
-
-G53 G0 X0 Y0
+O<toolheightmeasure> call
 
 M2
