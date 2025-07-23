@@ -18,12 +18,17 @@ loadrt near
 # Make sure to not ramp down Altivar VDF too fast
 loadrt limit2
 
+loadrt orient names=spindleorient
+loadrt scale names=spindleorientscale
+loadrt or2 names=spindleactive,spindleforward
+
 #-------------------
 # LOAD FUNCTIONS
 #-------------------
 # Every servo thread cycle:
 # - Update the PID calculations for the spindle:
 addf pid.s.do-pid-calcs servo-thread
+addf pid.so.do-pid-calcs servo-thread
 
 # - Update near calculation
 addf near.0 servo-thread
@@ -31,11 +36,44 @@ addf near.0 servo-thread
 # - Update limit2 calculation
 addf limit2.0 servo-thread
 
+# - Update orientation calculation
+addf spindleorient servo-thread
+addf spindleorientscale servo-thread
+addf spindleactive servo-thread
+addf spindleforward servo-thread
+
 #=============================
 # EXTERNAL SIGNALS
 #=============================
 # Connected in PLC
 
+
+#=============================
+# SPINDLE ORIENTATION CONTROL
+#=============================
+
+# SET PID-LOOP PARAMETERS (from .ini file variables):
+setp   pid.so.Pgain     [SPINDLE_ORIENT]P
+setp   pid.so.Igain     [SPINDLE_ORIENT]I
+setp   pid.so.Dgain     [SPINDLE_ORIENT]D
+setp   pid.so.bias      [SPINDLE_ORIENT]BIAS
+setp   pid.so.FF0       [SPINDLE_ORIENT]FF0
+setp   pid.so.FF1       [SPINDLE_ORIENT]FF1
+setp   pid.so.FF2       [SPINDLE_ORIENT]FF2
+setp   pid.so.deadband  [SPINDLE_ORIENT]DEADBAND
+setp   pid.so.maxoutput [SPINDLE_ORIENT]MAX_OUTPUT
+setp   pid.so.error-previous-target true
+setp   pid.so.maxerror  [SPINDLE_ORIENT]MAX_ERROR
+
+net spindle-orient-fb hm2_7i80.0.encoder.00.position => spindleorient.position pid.so.feedback
+
+setp spindleorientscale.gain [SPINDLE_ORIENT]OUTPUT_SCALE
+
+net spindle-orient-enable      spindle.0.orient => spindleorient.enable pid.so.enable
+net spindle-orient-position    spindle.0.orient-angle => spindleorient.angle
+net spindle-orient-cmd 	       spindleorient.command => pid.so.command
+net spindle-orient-cmd-scaled  pid.so.output => spindleorientscale.in
+net spindle-orient-output      <= spindleorientscale.out
 
 #=============================
 # SPINDLE MOTION CONTROL
@@ -49,7 +87,7 @@ setp hm2_7i80.0.pwmgen.03.scale  			[SPINDLE_9]OUTPUT_SCALE
 
 # Connect Signals:
 # - Analog servo drive command signal to Mesa board analog-out
-net spindle-output  	hm2_7i80.0.pwmgen.03.value
+net spindle-mode-output  	hm2_7i80.0.pwmgen.03.value
 
 # SET PID-LOOP PARAMETERS (from .ini file variables):
 setp   pid.s.Pgain     [SPINDLE_9]P
@@ -68,12 +106,12 @@ setp   hm2_7i80.0.encoder.00.scale [SPINDLE_9]ENCODER_SCALE
 
 # Connect Virtual Pins between Modules:
 net spindle-index-enable	pid.s.index-enable
-net spindle-enable		=>	pid.s.enable
+net spindle-rotate-enable	=> pid.s.enable
 net spindle-vel-cmd-rpm		=> limit2.0.in
 net spindle-rpm-lim     limit2.0.out => spindlelin.in
 net spindle-rpm-lin		spindlelin.out => pid.s.command
 net spindle-vel-fb-rpm		pid.s.feedback
-net spindle-output		pid.s.output
+net spindle-vel-output		pid.s.output
 
 # Setup Spindle Control Signals
 net spindle-vel-cmd-rps		spindle.0.speed-out-rps
@@ -81,14 +119,15 @@ net spindle-vel-cmd-rps-abs	spindle.0.speed-out-rps-abs
 net spindle-vel-cmd-rpm		spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs	spindle.0.speed-out-abs
 # FIXME enable when spindle is working
-net spindle-enable		<=	spindle.0.on
-net spindle-forward			spindle.0.forward
+net spindle-rotate-enable		<=	spindle.0.on
+net spindle-rotate-forward			spindle.0.forward
 net spindle-reverse		spindle.0.reverse
 net spindle-brake		spindle.0.brake
 net spindle-revs		spindle.0.revs
 net spindle-at-speed		spindle.0.at-speed
 net spindle-vel-fb-rps		spindle.0.speed-in
 net spindle-index-enable	spindle.0.index-enable
+net spindle-index-enable	hm2_7i80.0.encoder.00.index-enable
 
 # Setup VFD ramp speed limitation, to avoid erroring out the Altivar
 setp limit2.0.maxv 120
@@ -103,6 +142,22 @@ net spindle-at-speed spindle.0.at-speed <= near.0.out
 # set the spindle speed inputs to agree if within 10% (from .ini file)
 setp near.0.scale [SPINDLE_9]ATSPEED
 
+#=============================
+# Select vel/pos mode
+#=============================
+
+net spindle-orient-enable	=> spindlemode.sel
+net spindle-vel-output 		=> spindlemode.in0
+net spindle-orient-output	=> spindlemode.in1
+net spindle-mode-output		<= spindlemode.out
+
+net spindle-rotate-enable	=> spindleactive.in0
+net spindle-orient-enable	=> spindleactive.in1
+net spindle-enable		<= spindleactive.out
+
+net spindle-forward		spindleforward.out
+net spindle-rotate-forward 	=> spindleforward.in0
+net spindle-orient-enable	=> spindleforward.in1
 
 #=============================
 # INTERNAL SIGNALS

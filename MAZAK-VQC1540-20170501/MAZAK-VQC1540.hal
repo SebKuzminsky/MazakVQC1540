@@ -40,8 +40,8 @@ loadrt hostmot2
 # x = disabled (which defaults to GPIO if available)
 loadrt hm2_eth board_ip="192.168.1.121" config="num_resolvers=6 num_encoders=1 num_pwmgens=6 num_stepgens=0 sserial_port_0=000xxx"
 
-# PID Realtime Loop Component - axis x, y, & z
-loadrt pid names=pid.x,pid.y,pid.z,pid.s
+# PID Realtime Loop Component - axis x, y, z, spindle speed and orientation
+loadrt pid names=pid.x,pid.y,pid.z,pid.s,pid.so
 
 loadrt estop_latch
 
@@ -56,7 +56,7 @@ loadrt logic names=brake-z,hydraulic-lube,power-logic personality=0x101,0x202,0x
 
 loadrt lut5 names=tool-mag-jog-button,tool-mag-movable
 
-loadrt mux2 names=y_softlim,z_softlim
+loadrt mux2 names=y_softlim,z_softlim,spindlemode
 loadrt mux_generic config=bb2
 
 #-------------------
@@ -84,6 +84,7 @@ addf tool-mag-movable         servo-thread
 
 addf y_softlim servo-thread
 addf z_softlim servo-thread
+addf spindlemode servo-thread
 
 addf mux-gen.00 servo-thread
 
