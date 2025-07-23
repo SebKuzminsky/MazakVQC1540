@@ -352,6 +352,19 @@ TG1			18			Tach output, unused
 TG2			19			Tach output, unused
 GND			20	7i49	P3-5
 
+CONA MR-20
+----------
+Signal				Line #			Pin	Control Board	Ctrl Pin	HAL Pin
+Rotary Encoder 0H		0H			1	7i44		S7-4 BR
+Rotary Encoder P5H		P5H			6	7i44		S7-7 BRW
+Rotary Encoder Z+		SC_			14	7i44		S7-6 BLW
+Rotary Encoder Z-		SC			15	7i44		S7-3 BL
+Rotary Encoder A+		PA_			16	7i44		S6-6 OW
+Rotary Encoder A-		PA			17	7i44		S6-3 O
+Rotary Encoder B+		PB_			18	7i44		S5-6 GRW
+Rotary Encoder B-		PB			19	7i44		S5-3 GR
+
+3 x SmartSerial samarbeider om aa ta imot spindelencoder-maalinger.
 
 # External relay board
 
