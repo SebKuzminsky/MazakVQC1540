@@ -65,7 +65,7 @@ setp   pid.so.maxoutput [SPINDLE_ORIENT]MAX_OUTPUT
 setp   pid.so.error-previous-target true
 setp   pid.so.maxerror  [SPINDLE_ORIENT]MAX_ERROR
 
-net spindle-orient-fb hm2_7i80.0.encoder.00.position => spindleorient.position pid.so.feedback
+net spindle-revs hm2_7i80.0.encoder.00.position => spindleorient.position pid.so.feedback
 
 setp spindleorientscale.gain [SPINDLE_ORIENT]OUTPUT_SCALE
 
