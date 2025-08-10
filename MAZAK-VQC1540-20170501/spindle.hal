@@ -22,6 +22,9 @@ loadrt orient names=spindleorient
 loadrt scale names=spindleorientscale
 loadrt or2 names=spindleactive,spindleforward
 
+loadrt abs names=spindlespeed
+addf spindlespeed servo-thread
+
 #-------------------
 # LOAD FUNCTIONS
 #-------------------
@@ -105,13 +108,17 @@ setp   pid.s.maxerror  [SPINDLE_9]MAX_ERROR
 setp   hm2_7i80.0.encoder.00.scale [SPINDLE_9]ENCODER_SCALE
 
 # Connect Virtual Pins between Modules:
-net spindle-index-enable	pid.s.index-enable
-net spindle-rotate-enable	=> pid.s.enable
-net spindle-vel-cmd-rpm		=> limit2.0.in
-net spindle-rpm-lim     limit2.0.out => spindlelin.in
-net spindle-rpm-lin		spindlelin.out => pid.s.command
-net spindle-vel-fb-rpm		pid.s.feedback
-net spindle-vel-output		pid.s.output
+net spindle-index-enable        pid.s.index-enable
+net spindle-rotate-enable       => pid.s.enable
+net spindle-vel-cmd-rpm         => limit2.0.in
+net spindle-rpm-lim             limit2.0.out => spindlespeed.in
+net spindle-rpm-lin             spindlelin.out => pid.s.command
+net spindle-vel-fb-rpm          pid.s.feedback
+net spindle-vel-output          pid.s.output
+
+net spindle-rpm-dir-split       spindlespeed.out => spindlelin.in
+net spindle-reverse             <= spindlespeed.is-negative
+net spindle-rotate-forward      <= spindlespeed.is-positive
 
 # Setup Spindle Control Signals
 net spindle-vel-cmd-rps		spindle.0.speed-out-rps
@@ -120,8 +127,8 @@ net spindle-vel-cmd-rpm		spindle.0.speed-out
 net spindle-vel-cmd-rpm-abs	spindle.0.speed-out-abs
 # FIXME enable when spindle is working
 net spindle-rotate-enable		<=	spindle.0.on
-net spindle-rotate-forward			spindle.0.forward
-net spindle-reverse		spindle.0.reverse
+#net spindle-rotate-forward	spindle.0.forward
+#net spindle-reverse		spindle.0.reverse
 net spindle-brake		spindle.0.brake
 net spindle-revs		spindle.0.revs
 net spindle-at-speed		spindle.0.at-speed
