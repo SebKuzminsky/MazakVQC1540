@@ -135,9 +135,10 @@ setp limit2.0.maxv 120
 # Setup 'Spindle at Speed' Signals
 # Connect near component to commanded and current speed to signal
 # spindle-at-speed
-net spindle-vel-cmd-rpm => near.0.in1
-net spindle-vel-fb-rpm hm2_7i80.0.encoder.00.velocity-rpm  => near.0.in2
-net spindle-at-speed spindle.0.at-speed <= near.0.out
+net spindle-vel-cmd-rpm		=> near.0.in1
+net spindle-vel-fb-rpm 		hm2_7i80.0.encoder.00.velocity-rpm  => near.0.in2
+net spindle-at-speed 		spindle.0.at-speed <= near.0.out
+net spindle-vel-fb-rps		hm2_7i80.0.encoder.00.velocity
 
 # set the spindle speed inputs to agree if within 10% (from .ini file)
 setp near.0.scale [SPINDLE_9]ATSPEED
