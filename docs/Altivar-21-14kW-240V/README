@@ -3,8 +3,8 @@ Altivar ATV21HD15M3X
 
 Setup
 
-Factory reset
-Factory reset 50 Hz
+TYP 3 Factory reset
+TYP 1 Factory reset 50 Hz
 
 Followed quick setup instructions:
 
@@ -30,6 +30,8 @@ F109: 2 (Logic input - source positive logic)
 F111: 2 (forward run command)
 F112: 3 (reverse run command)
 F113: 10 (fault reset)
+
+FNOd: 2 (VIB) - Remote Mode Primary Speed Reference Source
 
 Fr: 2 (Run FORWARD with reverse selectable) - had no effect
 F311: Was 1 (Reverse operation PROHIBITED), changed to 0 (Forward and
