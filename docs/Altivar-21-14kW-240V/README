@@ -1,1 +1,36 @@
 Altivar ATV21HD15M3X
+====================
+
+Setup
+
+Factory reset
+Factory reset 50 Hz
+
+Followed quick setup instructions:
+
+AUF:
+ * Pt 1 (Variable torque) - Motor control mode
+ * uL 50.0 Hz - Motor rated frequency
+ * uLu  200 V - Motor rated Voltage
+F415: 54 A - Motor rated full load current
+F417: 6000 RPM - Motor rated speed
+F601: ca. 64 % - Motor Current Limit
+F400: 2 (Auto Tuning)
+AUF:
+ * AU1 1 (Enabled) - Auto ramp adaptation
+ * ACC 10 s - Acceleration time 1
+ * dEC 10 s - Deceleration time 1
+ * LL 0.0 Hz - Low speed
+ * Ul 50.0 Hz - High Speed
+ * tHr ca. 64% - Motor rated current overload setting (not sure about this one.
+F300: untouched.
+CNOD: 0 (control terminal logic input)
+
+F109: 2 (Logic input - source positive logic)
+F111: 2 (forward run command)
+F112: 3 (reverse run command)
+F113: 10 (fault reset)
+
+Fr: 2 (Run FORWARD with reverse selectable) - had no effect
+F311: Was 1 (Reverse operation PROHIBITED), changed to 0 (Forward and
+      Reverse operation PERMITTED)
