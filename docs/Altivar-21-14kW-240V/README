@@ -14,14 +14,14 @@ AUF:
  * uLu  200 V - Motor rated Voltage
 F415: 54 A - Motor rated full load current
 F417: 6000 RPM - Motor rated speed
-F601: ca. 64 % - Motor Current Limit
+F601: 67.1 % - Motor Current Limit
 F400: 2 (Auto Tuning)
 AUF:
  * AU1 1 (Enabled) - Auto ramp adaptation
  * ACC 10 s - Acceleration time 1
  * dEC 10 s - Deceleration time 1
  * LL 0.0 Hz - Low speed
- * Ul 50.0 Hz - High Speed
+ * Ul 50.0 Hz - High Speed (UL?)
  * tHr ca. 64% - Motor rated current overload setting (not sure about this one.
 F300: untouched.
 CNOD: 0 (control terminal logic input)
@@ -36,3 +36,61 @@ FNOd: 2 (VIB) - Remote Mode Primary Speed Reference Source
 Fr: 2 (Run FORWARD with reverse selectable) - had no effect
 F311: Was 1 (Reverse operation PROHIBITED), changed to 0 (Forward and
       Reverse operation PERMITTED)
+
+
+Old Altivar 71 settings
+=======================
+tCC 2/3 wire control = 2C
+CFG Macro configuration = HDG (M. handling)
+CCFG Customized macro = yes
+bFr Standard mot. freq  = 50
+iPl Input phase loss = No
+nPr Rated motor Power = 4.5
+*unS Rated motor volt = 100
+nCr Rated motor current = 20.5
+*FrS Rated motor frequency = 200
+nSP Rated motor speed = 6000
+*tFr max frequency = 200
+tun Auto tuning = No
+TuS Auto tuning status = tab (Not Done)
+PHr Output Ph rotation ACB (Reverse)
+iTH Mot. term. current = 11.3
+*ACC Acceleration = 1.5
+*Dec Deceleration = 1.5
+*LSB Low Speed = 0.0
+*HSP High Speed = 200
+
+
+
+AUF:
+ * Pt 0 (Constant V/Hz) - Motor control mode
+  - low torque with 1 but error out with EPH0 (1 = Variable torque)
+  - higher torque, but error out with EPH0 (2 = Constant V/Hz with automatic torque boost)
+  - error out with eph0 (0 Constant V/Hz with automatic torque boost) - Motor control mode
+ * uL 200.0 Hz - Motor rated frequency
+   - testing uL 50 Hz gave very eratic behaviour
+ * uLu  200 V - Motor rated Voltage
+ * ACC 3 s - Acceleration time 1 (first 1.5)
+ * dEC 3 s - Deceleration time 1 (first 1.5)
+ * Ul 200.0 Hz - High Speed
+ * tHr ca. 64% - Motor rated current overload setting (not sure about this one.
+FH: 200 Hz
+
+F213: 200 Hz (VIB output frequency level 2)
+ - var 50 Hz
+
+etter autotune alle hz og rpm er omtrentlige):
+
+  50:  0 Hz
+ 100:  0.9  Hz   30 rpm
+ 150:  1.3  Hz   38 rpm
+ 600:  4.95 Hz  140 rpm
+1200:  9.9  Hz  300 rpm
+1500: 12.3  Hz  370 rpm
+2000: 16.6  Hz  495 rpm    3.34 V
+3000: 25.1  Hz  750 rpm
+5000: 42.0  Hz 1255 rpm    8.35 V
+5500: 46.2  Hz 1385 rpm    9.19 V
+5800: 48.8  Hz 1460 rpm    9.70 V
+6000: 50.4  Hz 1505 rpm   10.03 V
+8000: 50.4  Hz 1505 rpm   10.03 V
